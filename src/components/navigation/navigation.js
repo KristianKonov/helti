@@ -1,31 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './navigation.sass'
 
 const Navigation = () => {
     const navLinks = [
         {
-            pageName: 'Home',
+            pageName: 'Начало',
             pageURL: '/'
         },
         {
-            pageName: 'Home',
+            pageName: 'За нас',
             pageURL: '/'
         },
         {
-            pageName: 'Home',
+            pageName: 'Логин',
             pageURL: '/'
         },
         {
-            pageName: 'Home',
+            pageName: 'Регистрация',
             pageURL: '/'
         }
     ]
     return(
-        {
-            navLinks.map(nav => {
-                return <li><Link to={pageURL}>{nav.pageName}</Link></li>
-            })
-        }
+        navLinks.map(nav => {
+            return <li><Link key={nav.pageName} to={nav.pageURL}>{nav.pageName}</Link></li>
+        })
     )
 }
 

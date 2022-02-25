@@ -5,3 +5,30 @@ $mediumBlue: #02195B
 $lightBlue: #13B0DB
 
 $heltiGreen: #1BED80
+
+@mixin backgroundGradient
+    background: -moz-linear-gradient(287deg, rgba(0, 7, 28, 1) 0%, rgba(0, 7, 28, 1) 72%, rgba(2, 25, 91, 1) 100%);
+    background: -webkit-linear-gradient(287deg, rgba(0, 7, 28, 1) 0%, rgba(0, 7, 28, 1) 72%, rgba(2, 25, 91, 1) 100%)
+    background: -o-linear-gradient(287deg, rgba(0, 7, 28, 1) 0%, rgba(0, 7, 28, 1) 72%, rgba(2, 25, 91, 1) 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00071C', endColorstr='#02195B', GradientType=0)
+    background: -ms-linear-gradient(287deg, rgba(0, 7, 28, 1) 0%, rgba(0, 7, 28, 1) 72%, rgba(2, 25, 91, 1) 100%)
+    background: linear-gradient(287deg, rgba(0, 7, 28, 1) 0%, rgba(0, 7, 28, 1) 72%, rgba(2, 25, 91, 1) 100%)
+
+@mixin container($width)
+    width: $width
+    margin: 0 auto
+
+@mixin clearFix()
+  &:before,
+  &:after
+    content: " "; 
+    display: table; 
+  &:after
+    display: block;
+    clear: both;
+    height: 1px;
+    margin-top: -1px;
+    visibility: hidden;
+  &
+    *zoom: 1;
+  

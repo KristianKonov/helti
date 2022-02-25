@@ -1,8 +1,8 @@
 import React from 'react'
 
-const LandingPage = () => {
+const LandingPage = (props) => {
     return(
-        <div className="">
+        <div className="landing-page">
             {props.children}
         </div>
     )
