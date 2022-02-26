@@ -1,22 +1,26 @@
 import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Link } from 'react-router-dom'
+import LandingPage from '../landing'
 import Navigation from '../navigation/navigation'
-import logo from './../../logo.svg'
+import logo from './../../images/logo.svg'
 import './header.sass'
 
 
-const Header = () => {
+const Header = ({flag}) => {
+    console.log(flag)
     return(
-        <header>
-            <div>
-                <BrowserRouter>
-                    <img className='logo' src={logo} />
+        <header className={(flag ? "headerBg" : "")}>
+            <div className="container">
+                <div className="header-wrapper">
+                    <div className="logo-wrapper">
+                        <Link to='/'><img className='logo' src={logo} /></Link>
+                    </div>
                     <div className="navigation">
                         <ul>
                             <Navigation />
                         </ul>
                     </div>
-                </BrowserRouter>
+                </div>
             </div>
         </header>
     )

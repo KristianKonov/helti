@@ -6,24 +6,28 @@ const Navigation = () => {
     const navLinks = [
         {
             pageName: 'Начало',
-            pageURL: '/'
+            pageURL: '/',
+            pageID: '1'
         },
         {
             pageName: 'За нас',
-            pageURL: '/'
+            pageURL: '/about',
+            pageID: '2'
         },
         {
             pageName: 'Логин',
-            pageURL: '/'
+            pageURL: '/',
+            pageID: '3'
         },
         {
             pageName: 'Регистрация',
-            pageURL: '/'
+            pageURL: '/',
+            pageID: '4'
         }
     ]
     return(
         navLinks.map(nav => {
-            return <li><Link key={nav.pageName} to={nav.pageURL}>{nav.pageName}</Link></li>
+            return <li key={nav.pageName}><Link key={nav.pageName} to={nav.pageURL}>{nav.pageName}</Link></li>
         })
     )
 }

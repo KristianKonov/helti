@@ -1,0 +1,34 @@
+@import './../../styles/variables.sass'
+    
+.landing-wrapper
+    margin: 5% 0%
+    .photo-wrapper
+        float: left
+        .landing-photo
+            display: inline-block
+            animation: 1s ease-out 0s 1 rotateImage
+            padding: 0px 50px 0px 0px
+    .landing-textbox
+        padding: 2.5% 0%
+        .landing-title
+            @include text-gradient()
+            font-size: 32px
+            font-weight: 700
+            animation: 2s ease-out 0s 1 text-anim
+
+
+@keyframes rotateImage
+    from
+        transform: rotate(-20deg)
+        opacity: 0%
+    to
+        transform: rotate(0deg)
+        opacity: 100%
+
+@keyframes text-anim
+    0%
+        background-position: 0% 50%
+    50%
+        background-position: 100% 50%
+    100%
+        background-position: 0% 50%

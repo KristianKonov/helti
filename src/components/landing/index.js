@@ -1,9 +1,12 @@
 import React from 'react'
+import './landing.sass'
 
 const LandingPage = (props) => {
     return(
         <div className="landing-page">
-            {props.children}
+            <div className="container">
+                {props.children}
+            </div>
         </div>
     )
 }
