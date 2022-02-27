@@ -16,12 +16,12 @@ const Navigation = () => {
         },
         {
             pageName: 'Логин',
-            pageURL: '/',
+            pageURL: '/login',
             pageID: '3'
         },
         {
             pageName: 'Регистрация',
-            pageURL: '/',
+            pageURL: '/register',
             pageID: '4'
         }
     ]
