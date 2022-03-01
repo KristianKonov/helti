@@ -77,6 +77,10 @@ $heltiGreen: #1BED80
   @media (max-width: 800px) 
     @content
 
+@mixin exiting-tablets
+  @media (min-width: 600px) 
+    @content
+
 @mixin for-phone-only
   @media (max-width: 599px) 
     @content
