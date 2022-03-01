@@ -40,9 +40,12 @@ $heltiGreen: #1BED80
     -webkit-background-clip: text
     -webkit-text-fill-color: transparent
 
-@mixin container($width)
-    width: $width
+@mixin container()
+    width: 900px
     margin: 0 auto
+    @media (max-width: 1000px)
+      width: 95%
+
 
 @mixin clearfix()
   &:before,
@@ -62,3 +65,18 @@ $heltiGreen: #1BED80
   display: flex
   flex-direction: column
   height: $heightvh
+
+  
+// @media (min-width: 768px)
+//   @mixin container($width)
+//     width: 90%
+//     margin: 0 auto
+
+
+@mixin for-tablets
+  @media (max-width: 800px) 
+    @content
+
+@mixin for-phone-only
+  @media (max-width: 599px) 
+    @content

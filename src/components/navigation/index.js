@@ -6,23 +6,19 @@ const Navigation = () => {
     const navLinks = [
         {
             pageName: 'Начало',
-            pageURL: '/',
-            pageID: '1'
+            pageURL: '/'
         },
         {
             pageName: 'За нас',
-            pageURL: '/about',
-            pageID: '2'
+            pageURL: '/about'
         },
         {
             pageName: 'Логин',
-            pageURL: '/login',
-            pageID: '3'
+            pageURL: '/login'
         },
         {
             pageName: 'Регистрация',
-            pageURL: '/register',
-            pageID: '4'
+            pageURL: '/register'
         }
     ]
     return(

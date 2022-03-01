@@ -3,19 +3,34 @@
 .not-found
     position: relative
     @include flexbox(90vh)
-    @include container(900px)
+    @include container()
     justify-content: center
     text-align: center
+    @include for-tablets
+        display: block
+        padding: 2.5% 0%
     .not-found-image
         float: left
         height: 400px
         margin-right: 100px
         width: auto
+        @include for-tablets
+            float: unset
+            margin-right: 0px
+            width: 80%
+            height: auto
     .not-found-text
         position: absolute
-        right: 0px
-        text-align: left
+        @include for-tablets
+            position: unset
+        text-align: center
         h3
             font-size: 38px
+            @include for-tablets
+                font-size: 24px
+                margin: 10px 0px
         p
             font-size: 24px
+            @include for-tablets
+                font-size: 18px
+                margin: 0px 

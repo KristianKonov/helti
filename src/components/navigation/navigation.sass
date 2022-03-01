@@ -2,7 +2,7 @@
 
 .navigation
     @include clearfix
-    ul
+    .navigation-ul
         list-style: none
         margin: 0px
         padding: 0px
@@ -20,6 +20,8 @@
             transition: background 0.3s ease
             border-radius: 4px
             position: relative
+            @include for-phone-only
+                display: none
             a
                 padding: 5px
                 display: inline-block
@@ -29,3 +31,8 @@
                 transition: color 1s ease
                 &:hover
                     color: $heltiGreen
+        #burger-nav
+            display: none
+            float: right
+            @include for-phone-only
+                display: block !important

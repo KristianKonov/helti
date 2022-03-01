@@ -1,7 +1,7 @@
 @import './../../styles/variables.sass'
 
 .container
-    width: 900px
+    @include container()
     margin: 0 auto
     background-color: transparent
 
@@ -13,9 +13,24 @@
     -moz-animation: textanim 20s ease infinite
     animation: textanim 20s ease infinite
 
+.photo-wrapper
+    @include for-tablets
+        float: none !important
+        text-align: center
+    @include for-phone-only
+        float: none !important
+        text-align: center
+
 .landing-photo
     height: 400px
-
+    @include for-tablets
+        height: 400px
+        display: block
+        text-align: center
+    @include for-phone-only
+        height: 200px
+        text-align: center
+        display: block
 
 @-webkit-keyframes textanim
     0%
