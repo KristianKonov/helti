@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 const Homepage = () => {
     return(
+    <div className="landing">
         <div className="landing-wrapper">
             <div className="photo-wrapper">
                 <img alt="iPhone" className="landing-photo" src={iPhone} />
@@ -23,7 +24,7 @@ const Homepage = () => {
                 <p>Вече имате акаунт? <Link to='/login'>Влезте сега!</Link></p>
             </div>
         </div>
-
+    </div>
     )
 }
 

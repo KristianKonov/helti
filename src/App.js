@@ -10,14 +10,34 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/globalStyles";
 import { lightTheme, darkTheme } from "./components/theme"
 import NotFound from './pages/not-found'
+import LandingInfo from './components/landing_info';
+import LoginPage from './pages/login';
+import SearchOurDatabase from './components/SearchDB';
 
 function App() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('');
+  if(!localStorage.getItem('theme'))
+    localStorage.setItem('theme', 'light')
+  
+  console.log('start: LS - ', localStorage.getItem('theme'), ' theme - ', theme)
+
   const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light')
+    console.log('before: LS - ', localStorage.getItem('theme'), ' theme - ', theme)
+    if (localStorage.getItem('theme') === 'light'){
+      localStorage.setItem('theme', 'dark')
+      setTheme('dark')
+    } else {
+      localStorage.setItem('theme', 'light')
+      setTheme('light')
+    }
+
+    
+    // {theme === 'light' ? setTheme('dark') : setTheme('light')}
+    // localStorage.setItem('theme', theme)
+    console.log('after: LS - ', localStorage.getItem('theme'), ' theme - ', theme)
   }
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={localStorage.getItem('theme') === 'light' ? lightTheme : darkTheme}>
       <>
         <GlobalStyles/>
         <div className="App">
@@ -29,12 +49,20 @@ function App() {
                     <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} />
                     <Homepage />
                   </LandingPage>
+                  <LandingInfo />
+                  <SearchOurDatabase />
                 </>
               } />
               <Route exact path='/about' element={
                 <>
                   <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
                   <About />
+                </>
+              } />
+              <Route path='/login' element={
+                <>
+                  <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+                  <LoginPage />
                 </>
               } />
               <Route path='*' element={

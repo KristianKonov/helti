@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import Navigation from '../navigation/index'
 import logo from './../../images/logo.svg'
 import './header.sass'
-import ThemeSwitch from '../themeswitch'
 import MobileNavigation from './../mobile_nav/'
 import './../mobile_nav/mobile_nav.sass'
 import './../burger-menu/burger-nav.sass'
+import adjust from './../../images/icons/adjust.svg'
 
 const Header = ({flag, themeToggler}, props) => {
     const [navToggle, setNavToggle] = useState(false)
@@ -23,10 +23,7 @@ const Header = ({flag, themeToggler}, props) => {
                     <div className="navigation">
                         <ul className="navigation-ul">
                             <Navigation />
-                            <li className="switch">
-                                <ThemeSwitch />
-                            </li>
-                            <li><button onClick={themeToggler}>Switch</button></li>
+                            <img className={localStorage.getItem('theme') === 'dark' ? 'dark burger-img-pc' : 'burger-img-pc'} onClick={themeToggler} alt="adjust" src={adjust} />
                         </ul>
                         <div className="mobile-navigation">
                             <ul className="mobile-ul">

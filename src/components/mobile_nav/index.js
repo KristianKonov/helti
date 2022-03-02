@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './mobile_nav.sass'
-import BurgerNav from '../burger-menu'
 import adjust from './../../images/icons/adjust.svg'
 
 const MobileNavigation = ({themeToggler}) => {
@@ -25,10 +24,12 @@ const MobileNavigation = ({themeToggler}) => {
     ]
     return(
         <div>
+            
             {mobileLinks.map(nav => {
                 return <li key={nav.pageName}><Link key={nav.pageName} to={nav.pageURL}>{nav.pageName}</Link></li>
             })}
-            <button className="mobile-switch-btn" onClick={themeToggler}><img alt="adjust" src={adjust} /></button>
+            {/* <button className="mobile-switch-btn" onClick={themeToggler}><img alt="adjust" src={adjust} /></button> */}
+            <img className={localStorage.getItem('theme') === 'dark' ? 'dark burger-img' : 'burger-img'} onClick={themeToggler} alt="adjust" src={adjust} />
         </div>
     )
 }
