@@ -1,48 +1,118 @@
 @import './../../styles/variables.sass'
     
 .login-page
+    min-height: 83vh
     @include container()
+    .login-additional
+        p
+            color: #999
+            a
+                color: $mediumBlue
+                font-weight: 700
+                text-decoration: none
+    .login-form
+        color: $darkBlue
+        background-color: #efefef
+        box-shadow: 0px 0px 5px rgba(0,0,0,.3)
+        width: 40%
+        text-align: center
+        margin: 0 auto
+        margin-top: 25px
+        padding: 20px
+        border-radius: 10px
+        @include for-tablets
+            width: 100%
+            padding: 0
     .input-div
         display: flex
+        animation: inputAnim 3s ease
+        margin: 5px 0px
+        padding: 10px 0px
+        border-radius: 10px
+        @include for-tablets
+            margin: 0px
+            padding: 5px 0px
+    .login-submit-btn
+        background-color: $heltiGreen
+        color: #fff
+        border: none
+        padding: 10px 30px
+        border-radius: 10px
+        margin: 10px 0px
+        font-weight: 700
+        box-shadow: 0px 0px 5px rgba(0,0,0,.4)
+        @include loginButtonGradient()
+        opacity: .7
+        cursor: pointer
+        transition: 1s ease
+        &:hover
+            opacity: 1
     .login-welcome
         margin: 20px 0px
+        animation: inputAnim 1s ease
+        @include for-tablets
+            padding: 10px 0px 0px 0px
+            margin: 0px 0px 15px 0px
+        @include for-phone-only
+            padding: 20px 0px 0px 0px
+            margin: 10px
         h3
             text-align: left
             font-size: 32px
             margin: 0px
             padding: 0px
-    .login-form
-    color: $darkBlue
-    width: 40%
-    text-align: center
-    margin: 0 auto
-    margin-top: 25px
-    background-color: rgb(255, 255, 255)
-    padding: 20px
-    border-radius: 10px
+            @include for-tablets
+                display: inline
+            @include for-phone-only
+                font-size: 26px
     form
         width: auto
     label
         margin: 5px
         width: 100%
-        color: #999
+        color: $mediumBlue
         font-weight: 700
         cursor: pointer
         align-items: center
         justify-content: center
         display: flex
     input
-        padding: 10px 5px
+        padding: 10px
         color: #999
         font-family: 'Comfortaa', cursive
         font-size: 16px
         width: 100%-3%
         margin: 1% 2%
-        border: none
-        border-radius: 10px
         box-shadow: 0px 0px 10px rgba(0,0,0,.3)
         transition: 1s ease
+        border: none
+        border-radius: 10px
+        &[type="email"]
+            background-image: url('./../../images/icons/email.svg')
+            background-repeat: no-repeat
+            background-position: 1% center
+            background-size: 20px 20px
+            padding-left: 30px
+            @include for-phone-only
+                background: none
+                padding-left: 5px
+        &[type="password"]
+            background-image: url('./../../images/icons/password.svg')
+            background-repeat: no-repeat
+            background-position: 1% center
+            background-size: 20px 20px
+            padding-left: 30px
+            @include for-phone-only
+                background: none
+                padding-left: 5px
         &:focus
-            box-shadow: 0px 0px 10px rgba(0,0,200,.5)
+            box-shadow: 0px 0px 10px rgba(27, 237, 128, .5)
             border: none
             outline: none
+            
+
+@keyframes inputAnim
+    0%
+        opacity: 0
+    100%
+        opacity: 100

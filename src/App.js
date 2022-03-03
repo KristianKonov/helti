@@ -13,16 +13,14 @@ import NotFound from './pages/not-found'
 import LandingInfo from './components/landing_info';
 import LoginPage from './pages/login';
 import SearchOurDatabase from './components/SearchDB';
+import Footer from './components/footer';
 
 function App() {
   const [theme, setTheme] = useState('');
   if(!localStorage.getItem('theme'))
     localStorage.setItem('theme', 'light')
-  
-  console.log('start: LS - ', localStorage.getItem('theme'), ' theme - ', theme)
 
   const themeToggler = () => {
-    console.log('before: LS - ', localStorage.getItem('theme'), ' theme - ', theme)
     if (localStorage.getItem('theme') === 'light'){
       localStorage.setItem('theme', 'dark')
       setTheme('dark')
@@ -34,7 +32,6 @@ function App() {
     
     // {theme === 'light' ? setTheme('dark') : setTheme('light')}
     // localStorage.setItem('theme', theme)
-    console.log('after: LS - ', localStorage.getItem('theme'), ' theme - ', theme)
   }
   return (
     <ThemeProvider theme={localStorage.getItem('theme') === 'light' ? lightTheme : darkTheme}>
@@ -51,24 +48,28 @@ function App() {
                   </LandingPage>
                   <LandingInfo />
                   <SearchOurDatabase />
+                  <Footer />
                 </>
               } />
               <Route exact path='/about' element={
                 <>
                   <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
                   <About />
+                  <Footer />
                 </>
               } />
               <Route path='/login' element={
                 <>
                   <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
                   <LoginPage />
+                  <Footer />
                 </>
               } />
               <Route path='*' element={
                 <>
                   <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
                   <NotFound />
+                  <Footer />
                 </>
               } />
             </Routes>

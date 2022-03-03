@@ -34,6 +34,14 @@ $cursive-font: 'Comfortaa', cursive
     -webkit-background-clip: text
     -webkit-text-fill-color: transparent
 
+@mixin loginButtonGradient()
+    background: -moz-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)
+    background: -webkit-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)
+    background: -o-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#02195B', endColorstr='#13B0DB', GradientType=1 )
+    background: -ms-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)
+    background: linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)
+
 @mixin container()
     width: 900px
     margin: 0 auto

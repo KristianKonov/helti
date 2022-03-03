@@ -12,7 +12,7 @@ const SearchOurDatabase = () => {
                     Научи за калориите и макросите на
                     храната, която ядеш (протейн, въглехидрати и мазнини)
                 </p>
-                <input placeholder="Въведете хранителен продукт.." value={search} onChange={(e) => setSearch(e.target.value)} />
+                <input maxLength='40' placeholder="Въведете хранителен продукт.." value={search} onChange={(e) => setSearch(e.target.value)} />
             </div>
         </div>
     )
