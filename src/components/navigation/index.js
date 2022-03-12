@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import './navigation.sass'
+import UserContext from '../../context'
 
-const Navigation = () => {
+const Navigation = ({isLogged}) => {
+    const userData = useContext(UserContext)
     const navLinks = [
         {
             pageName: 'Начало',
@@ -21,11 +23,37 @@ const Navigation = () => {
             pageURL: '/register'
         }
     ]
-    return(
-        navLinks.map(nav => {
-            return <li key={nav.pageName}><Link key={nav.pageName} to={nav.pageURL}>{nav.pageName}</Link></li>
-        })
-    )
+    const loggedLinks = [
+        {
+            pageName: 'Начало',
+            pageURL: '/'
+        },
+        {
+            pageName: 'За нас',
+            pageURL: '/about'
+        },
+        {
+            pageName: 'Профил',
+            pageURL: '/profile/'+userData.userData.id
+        }
+    ]
+    console.log(userData.userData)
+    if(isLogged) {
+        return(
+            <>
+                {loggedLinks.map(nav => {
+                    return <li key={nav.pageName}><Link key={nav.pageName} to={nav.pageURL}>{nav.pageName}</Link></li>
+                })}
+                <button className="logout-btn" onClick={userData.logOut}>Логаут</button>
+            </>
+        )
+    } else {
+        return(
+            navLinks.map(nav => {
+                return <li key={nav.pageName}><Link key={nav.pageName} to={nav.pageURL}>{nav.pageName}</Link></li>
+            })
+        )
+    }
 }
 
 export default Navigation

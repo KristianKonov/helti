@@ -1,16 +1,16 @@
 @import './../../styles/variables.sass'
     
-.login-page
+.register-page
     min-height: 83vh
     @include container()
-    .login-additional
+    .register-additional
         p
             color: #999
             a
                 color: $mediumBlue
                 font-weight: 700
                 text-decoration: none
-    .login-form
+    .register-form
         color: $darkBlue
         background-color: #efefef
         box-shadow: 0px 0px 5px rgba(0,0,0,.3)
@@ -27,12 +27,12 @@
         display: flex
         animation: inputAnim 3s ease
         margin: 5px 0px
-        padding: 10px 0px
+        padding: 5px 0px
         border-radius: 10px
         @include for-tablets
             margin: 0px
             padding: 5px 0px
-    .login-submit-btn
+    .register-submit-btn
         background-color: $heltiGreen
         color: #fff
         border: none
@@ -47,7 +47,7 @@
         transition: 1s ease
         &:hover
             opacity: 1
-    .login-welcome
+    .register-welcome
         margin: 20px 0px
         animation: inputAnim 1s ease
         @include for-tablets
@@ -103,7 +103,24 @@
             box-shadow: 0px 0px 10px rgba(27, 237, 128, .5)
             border: none
             outline: none
-            
+
+.register-error
+    width: 100%
+    background-color: rgba(255,0,0,.2)
+    border: 1px solid rgba(0,0,0,.3)
+    padding: 20px 0px
+    h3
+        font-size: 20px
+        margin: 5px 0px 10px 0px
+        color: rgba(0,0,0,.8)
+    ul
+        list-style: none
+        margin: 0
+        padding: 0
+        li
+            padding: 5px 0px
+            color: rgba(0,0,0,.6)
+
 
 @keyframes inputAnim
     0%

@@ -39,3 +39,17 @@
         display: none
 .dark
     transform: rotate(180deg)
+.logout-btn 
+    background-color: $mediumBlue
+    color: #fff
+    border: none
+    opacity: .7
+    padding: 10px 15px
+    border-radius: 5px
+    margin: 0px 10px 0px 0px
+    cursor: pointer
+    transition: 1s ease
+    @include for-phone-only
+        display: none
+    &:hover
+        opacity: 1

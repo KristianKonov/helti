@@ -27,7 +27,7 @@ export const lightTheme = {
 
 }
 export const darkTheme = {
-    body: '#02195B',
+    body: '#222',
     text: '#fff',
     background: '#999',
     footerBg: '#ffffff',
