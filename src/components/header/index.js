@@ -9,14 +9,19 @@ import './../mobile_nav/mobile_nav.sass'
 import './../burger-menu/burger-nav.sass'
 import adjust from './../../images/icons/adjust.svg'
 import adminIcon from './../../images/icons/admin.svg'
+import { CircularProgress } from '@mui/material'
 
 const Header = ({flag, themeToggler}, props) => {
-    
     const [navToggle, setNavToggle] = useState(false)
+    const [loaded, setLoaded] = useState(false)
     const navHandler = () => {
         setNavToggle(!navToggle)
     }
     const userData = useContext(UserContext)
+    if(userData.userData.role && !loaded) {
+        setLoaded(true)
+        return
+    }
     const isLogged = userData.userData.isEnabled
     return(
         <header className={(flag ? "headerBg" : "")}>
@@ -24,7 +29,7 @@ const Header = ({flag, themeToggler}, props) => {
                 <div className="header-wrapper">
                     <div className="logo-wrapper">
                         <Link to='/'><img alt="Helti Logo" className='logo' src={logo} /></Link>
-                        <Link to='/admin'><img className="admin-icon" src={adminIcon} alt="Admin" /></Link>
+                        {loaded && (userData.userData.role === 'ADMIN') ? (<Link to='/admin'><img className="admin-icon" src={adminIcon} alt="Admin" /></Link>) : null}
                     </div>
                     <div className="navigation">
                         <ul className="navigation-ul">

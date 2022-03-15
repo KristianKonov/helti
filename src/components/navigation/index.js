@@ -34,10 +34,9 @@ const Navigation = ({isLogged}) => {
         },
         {
             pageName: 'Профил',
-            pageURL: '/profile/'+userData.userData.id
+            pageURL: '/dashboard'
         }
     ]
-    console.log(userData.userData)
     if(isLogged) {
         return(
             <>

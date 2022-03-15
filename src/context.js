@@ -12,9 +12,14 @@ export const UserProvider = (props) => {
     const setUserContext = () => {
         if(Cookies.get('x-auth-token')) {
             const token = jwt_decode(Cookies.get('x-auth-token'))
-            console.log('works' , Cookies.get('x-auth-token'))
             setLoading(false)
-            setUserData(token)
+            setUserData({
+                'id': token.id,
+                'email': token.sub,
+                'role': token.authorities[0].authority,
+                'isEnabled': token.isEnabled,
+                'isAuthenticated': true
+            })
         }
         if(userData.isEnabled)
             setIsAuthenticated(true)
@@ -28,11 +33,6 @@ export const UserProvider = (props) => {
 
     useEffect(() => {
         setUserContext()
-        // if(loading) {
-        //     console.log('waiting')
-        // } else {
-        //     console.log(userData)
-        // }
     },[])
 
     return(

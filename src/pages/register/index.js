@@ -2,72 +2,61 @@ import React, { isValidElement, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './register.sass'
 
+
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
 const RegisterPage = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
-    const [errorToggle, setErrorToggle] = useState(false)
-    const [somethingEmpty, setSomethingEmpty] = useState(true)
-    const [isNameEmpty, setIsNameEmpty] = useState(true)
-    const [isEmailEmpty, setIsEmailEmpty] = useState(true)
-    const [isPasswordEmpty, setIsPasswordEmpty] = useState(true)
-    const [isRePasswordEmpty, setIsRePasswordEmpty] = useState(true)
-    const [doesPasswordMatch, setDoesPasswordMatch] = useState(false)
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    const [validMail, setValidMail] = useState(false)
-
-
-    // const formValidator = () => {
-    //     if (firstName === '' || lastName === '' || email === '' || password === '' || rePassword === '') {
-    //         setSomethingEmpty(true)
-    //         setErrorToggle(true)
-    //         if(firstName !== '' && lastName !== '')
-    //             setIsNameEmpty(false)
-    //         if(email !== '')
-    //             alert(email)
-    //             setIsEmailEmpty(false)
-    //         if(password !== '')
-    //             setIsPasswordEmpty(false)
-    //         if(rePassword !== '')
-    //             setIsRePasswordEmpty(false)
-    //         setErrorToggle(true)
-    //     }
-    //     else {
-    //         setSomethingEmpty(false)
-    //         if (rePassword !== password)
-    //             setDoesPasswordMatch(false)
-    //     }
-
-    //     if(email.match(mailformat)) {
-    //         setValidMail(true)
-    //     } else {
-    //         setValidMail(false)
-    //     } 
-    // }
-
+    const [error, setError] = useState({
+        'error': false,
+        'message': ''
+    })
+    const [success, setSuccess] = useState({
+        'status': false,
+        'message': ''
+    })
+    const [serverError, setServerError] = useState(null)
     const registerHandler = (e) => {
         e.preventDefault()
-        
 
+        const validateForm = () => {
+            if((password !== '' && rePassword !== '') &&
+            (password === rePassword) &&
+            (firstName !== '' && lastName !== '')) {
+                setError({'error': false, 'message': ''})
+                registerRequest()
+            }
+        }
+        if(firstName === '' || lastName === '')
+            setError({'error': true, 'message': 'Enter your name!'})
+            
+        if(email === '')
+            setError({'error': true, 'message': 'Enter email!'})
+
+        if(password === '' || rePassword === '') {
+            setError({'error': true, 'message':'Enter password!'})
+        }
+        if(password !== rePassword) {
+            setError({'error': true, 'message':'Passwords do not match!'})
+            console.log(error)
+        }
+        validateForm()
+    }
+
+    const registerRequest = () => {
         var axios = require('axios');
-
-        // axios.post('http://localhost:8000/api/register', {'email': email, 'firstName': firstName, 'lastName': lastName, 'password': password})
-        // .then(response => {
-        //     console.log(response.data);
-        // })
-        // .catch(error => {
-        //     console.log(error.data)
-        // })
-
-
         axios.post('http://localhost:8080/api/registration/register', {'email': email, 'firstName': firstName, 'lastName': lastName, 'password': password})
         .then(response => {
-            console.log(response.data);
+            setSuccess({'status': true, 'message': "Thank you for the registration! Email confirmation sent at "+email+"! Confirmation link will be active for the next 2 hours!"})
         })
         .catch(error => {
-            console.log(error.data)
+            setError({'error': true, 'message': error.response.data.message})
         })
     }
 
@@ -80,17 +69,19 @@ const RegisterPage = () => {
                         <h3>Register </h3>
                         <h3>now!</h3>
                     </div>
-                    {errorToggle && 
-                        <div className="register-error">
-                            <h3>Грешка при регистриране!</h3>
-                            <ul>
-                                {isNameEmpty && <li>Моля въведете име</li>}
-                                {!validMail && <li>Моля въведете валидна електронна поща</li>}
-                                {isEmailEmpty && <li>Моля въведете електронна поща</li>}
-                                {isPasswordEmpty && <li>Моля въведете проверете паролата</li>}
-                                {!doesPasswordMatch && <li>Паролите не съвпадат</li>}
-                            </ul>
-                        </div>
+                    {error.error && 
+                    <Stack sx={{ width: '100%' }} spacing={2}>
+                        <Alert variant="outlined" severity="error">
+                        {error.message}
+                        </Alert>
+                  </Stack>
+                    }
+                    {success.status && 
+                    <Stack sx={{ width: '100%' }} spacing={2}>
+                        <Alert variant="outlined" severity="success">
+                        {success.message}
+                        </Alert>
+                  </Stack>
                     }
                     <div className="input-div">
                         <label>

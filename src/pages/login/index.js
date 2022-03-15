@@ -5,8 +5,15 @@ import UserContext from '../../context';
 import Cookies from 'js-cookie'
 import './login.sass'
 
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
 const LoginPage = (props) => {
     const history = useNavigate()
+    const [error, setError] = useState({
+        'error': false,
+        'message': ''
+    })
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     let user = {}
@@ -42,14 +49,13 @@ const LoginPage = (props) => {
             //     'email': decoded.sub,
             //     'role': decoded.authorities[0].authority
             // })
-            console.log('User data: ', user)
-            console.log('decoded', decoded)
             loaded = true
             if(loaded)
                 userData.setUserData(user)
             history('/')
         } catch(err) {
-            console.log(err)
+            console.log(err.response)
+            setError({'error': true, 'message': 'Check account and password!'})
         }
     }
 
@@ -70,6 +76,13 @@ const LoginPage = (props) => {
                             <h3>Welcome </h3>
                             <h3>back!</h3>
                         </div>
+                        {error.error && 
+                        <Stack sx={{ width: '100%' }} spacing={2}>
+                            <Alert variant="outlined" severity="error">
+                            {error.message}
+                            </Alert>
+                        </Stack>
+                        }
                         <div className="input-div">
                             <label>
                                 <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" type="email" />

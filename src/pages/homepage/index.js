@@ -20,8 +20,7 @@ const Homepage = () => {
                     Следете вашите калории, упражнения, 
                     биометрични и здравни данни.
                 </p>
-                <Button variant="contained">Започни сега!</Button>
-                <Link to='/register'><button className="landing-btn">Започни сега!</button></Link>
+                <Link to='/register'><Button variant="contained">Започни сега!</Button></Link>
                 <p>Вече имате акаунт? <Link to='/login'>Влезте сега!</Link></p>
             </div>
         </div>

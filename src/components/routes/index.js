@@ -11,7 +11,6 @@ import RegisterPage from '../../pages/register'
 import LoginPage from '../../pages/login'
 import SearchOurDatabase from '../SearchDB'
 import Dashboard from '../../pages/dashboard/Dashboard'
-import OrdersPage from '../../pages/dashboard/OrdersPage'
 import history from './../history'
 
 const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
@@ -50,7 +49,7 @@ const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
                     <Footer />
                 </>
                 } />
-                <Route path='/admin' element={
+                <Route exact path='/admin/*' element={
                 <>
                     <Dashboard />
                     <Footer />

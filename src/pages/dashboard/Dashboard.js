@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import Footer from '../../components/footer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -21,13 +23,15 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits'
 import Orders from './Orders';
+import UserDashboard from './Users';
+import FoodDashboard from './foods';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" to="/">
-        Your Website
+        Helti
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -161,40 +165,62 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Chart />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
-                </Paper>
-              </Grid>
-            </Grid>
+    
+            <Routes>
+              <Route exact path='/' element={
+                <>
+                    <Grid container spacing={3}>
+                    {/* Chart */}
+                    <Grid item xs={12} md={8} lg={9}>
+                      <Paper
+                        sx={{
+                          p: 2,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          height: 240,
+                        }}
+                      >
+                        <Chart />
+                      </Paper>
+                    </Grid>
+                    {/* Recent Deposits */}
+                    <Grid item xs={12} md={4} lg={3}>
+                      <Paper
+                        sx={{
+                          p: 2,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          height: 240,
+                        }}
+                      >
+                        <Deposits />
+                      </Paper>
+                    </Grid>
+                    {/* Recent Orders */}
+                    <Grid item xs={12}>
+                      <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                        <Orders />
+                      </Paper>
+                    </Grid>
+                  </Grid>
+                </>
+                } />
+              <Route exact path='/users' element={
+                <>
+                    <UserDashboard />
+                </>
+              } />
+              <Route path='/foods' element={
+                <>
+                    <FoodDashboard />
+                </>
+              } />
+              <Route path='*' element={
+                <>
+                    <h1>here</h1>
+                </>
+              } />
+            </Routes>
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>

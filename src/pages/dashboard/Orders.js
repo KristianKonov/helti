@@ -1,86 +1,70 @@
-import * as React from 'react';
-import Link from '@mui/material/Link';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
-
-// Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
-}
-
-const rows = [
-  createData(
-    0,
-    '16 Mar, 2019',
-    'Elvis Presley',
-    'Tupelo, MS',
-    'VISA ⠀•••• 3719',
-    312.44,
-  ),
-  createData(
-    1,
-    '16 Mar, 2019',
-    'Paul McCartney',
-    'London, UK',
-    'VISA ⠀•••• 2574',
-    866.99,
-  ),
-  createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-  createData(
-    3,
-    '16 Mar, 2019',
-    'Michael Jackson',
-    'Gary, IN',
-    'AMEX ⠀•••• 2000',
-    654.39,
-  ),
-  createData(
-    4,
-    '15 Mar, 2019',
-    'Bruce Springsteen',
-    'Long Branch, NJ',
-    'VISA ⠀•••• 5919',
-    212.79,
-  ),
-];
+import axios from 'axios'
 
 function preventDefault(event) {
   event.preventDefault();
 }
 
 export default function Orders() {
+  const [loaded, setLoaded] = useState(false)
+  const [users, setUsers] = useState([{}])
+  var recentUsers = users.slice((users.length-5),(users.length))
+  useEffect(() => {
+    var config = {
+      method: 'get',
+      url: 'http://localhost:8080/api/admin/all',
+      headers: { 
+          'accept': '*/*', 
+          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlckBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNjQ2OTQ3MDgzLCJleHAiOjE2NDgwODAwMDB9.veK6HF-RavyY-iIe99qaIO5bmBMx1RTt05VTqKRhwE18cadtZOZM4yyCapvChn3BMI_kBvUmq4Hi2-CjB1YmCw'
+      }
+    }
+    axios(config).then(response => {
+      setUsers(response.data)
+      setLoaded(true)
+    }).catch(error => {
+      console.log(error.message)
+    })
+  },[])
+
   return (
     <React.Fragment>
-      <Title>Recent Orders</Title>
+      <Title>Recent Users</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
+            <TableCell>ID</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Role</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{`$${row.amount}`}</TableCell>
+          {
+          loaded ? 
+          recentUsers.map((user) => (
+            <TableRow key={user.id}>
+              <TableCell>{user.id}</TableCell>
+              <TableCell>{user.firstName + ' ' + user.lastName}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.appUserRole}</TableCell>
             </TableRow>
-          ))}
+          )) :
+          'Loading...'
+          }
         </TableBody>
       </Table>
-      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-        See more orders
-      </Link>
+      <div className="box">
+        <Link to='/admin/users'>
+          See more users
+        </Link>
+      </div>
     </React.Fragment>
   );
 }
