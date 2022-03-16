@@ -22,7 +22,7 @@ const Header = ({flag, themeToggler}, props) => {
         setLoaded(true)
         return
     }
-    const isLogged = userData.userData.isEnabled
+    const isLogged = userData.userData.isAuthenticated
     return(
         <header className={(flag ? "headerBg" : "")}>
             <div className="container">

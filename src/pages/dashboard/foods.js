@@ -5,10 +5,13 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
 import TableRow from '@mui/material/TableRow';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from '@mui/material';
 import Title from './Title';
+import Cookies from 'js-cookie'
 import axios from 'axios'
 import './foods.sass'
 
@@ -32,7 +35,7 @@ const FoodDashboard = () => {
             url: '/api/foods',
             headers: { 
                 'accept': '*/*', 
-                'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlckBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNjQ2OTQ3MDgzLCJleHAiOjE2NDgwODAwMDB9.veK6HF-RavyY-iIe99qaIO5bmBMx1RTt05VTqKRhwE18cadtZOZM4yyCapvChn3BMI_kBvUmq4Hi2-CjB1YmCw'
+                'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
             }
         }
         axios(config).then(response => {
@@ -47,7 +50,7 @@ const FoodDashboard = () => {
             method: 'delete',
             url: 'http://localhost:8080/api/foods/delete/'+foodId,
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlckBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNjQ2OTQ3MDgzLCJleHAiOjE2NDgwODAwMDB9.veK6HF-RavyY-iIe99qaIO5bmBMx1RTt05VTqKRhwE18cadtZOZM4yyCapvChn3BMI_kBvUmq4Hi2-CjB1YmCw'
+                'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
             }
         }
         axios(config).then(response => {
@@ -82,7 +85,7 @@ const FoodDashboard = () => {
             method: 'put',
             url: 'http://localhost:8080/api/foods/update',
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlckBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNjQ2OTQ3MDgzLCJleHAiOjE2NDgwODAwMDB9.veK6HF-RavyY-iIe99qaIO5bmBMx1RTt05VTqKRhwE18cadtZOZM4yyCapvChn3BMI_kBvUmq4Hi2-CjB1YmCw',
+                'Authorization': 'Bearer ' + Cookies.get('x-auth-token'),
                 'Content-Type': 'application/json',
                 'accept': '*/*'
             },
@@ -104,38 +107,18 @@ const FoodDashboard = () => {
 
     return(
         <React.Fragment>
-            <Title>All foods</Title>
-            <Table size="small">
-                <TableHead>
-                <TableRow>
-                    <TableCell>ID</TableCell>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Calories</TableCell>
-                    <TableCell>Protein</TableCell>
-                    <TableCell>Carbs</TableCell>
-                    <TableCell>Fats</TableCell>
-                    <TableCell>Edit</TableCell>
-                    <TableCell>Delete</TableCell>
-                </TableRow>
-                </TableHead>
-                <TableBody>
-                {
-                loaded && 
-                foods.map((food, index) => (
-                    <TableRow key={index}>
-                    <TableCell>{food.id}</TableCell>
-                    <TableCell>{food.name}</TableCell>
-                    <TableCell>{food.calories}</TableCell>
-                    <TableCell>{food.protein}</TableCell>
-                    <TableCell>{food.carbs}</TableCell>
-                    <TableCell>{food.fats}</TableCell>
-                    <TableCell onClick={() => {setEditFood(food); editToggle()}} ><EditIcon key={food.name} fontSize="inherit" /></TableCell>
-                    <TableCell onClick={() => {foodId = food.id; handleDelete()}}><DeleteIcon key={food.email} fontSize="inherit" /></TableCell>
-                    </TableRow>
-                ))
-                }
-                </TableBody>
-            </Table>
+            <div className="foods-top-bar">
+                <div className="title">
+                    <Title>All foods</Title>
+                </div>
+                <div className="add-btn">
+                    <Link to='/admin/foods/create'>
+                        <Button variant="contained" endIcon={<AddIcon />}>
+                            Add food
+                        </Button>
+                    </Link>
+                </div>
+            </div>
             {editLoaded && editFood.name !== null && editFood.id !== null && updateFats !== null ?
             <div className={editFlag ? 'edit-form visible' : 'edit-form'}>
             <Title>Edit food:</Title>
@@ -180,6 +163,37 @@ const FoodDashboard = () => {
             </form>
         </div>
         : 'Loading...'}
+            <Table size="small">
+                <TableHead>
+                <TableRow>
+                    <TableCell>ID</TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Calories</TableCell>
+                    <TableCell>Protein</TableCell>
+                    <TableCell>Carbs</TableCell>
+                    <TableCell>Fats</TableCell>
+                    <TableCell>Edit</TableCell>
+                    <TableCell>Delete</TableCell>
+                </TableRow>
+                </TableHead>
+                <TableBody>
+                {
+                loaded && 
+                foods.map((food, index) => (
+                    <TableRow key={index}>
+                    <TableCell>{food.id}</TableCell>
+                    <TableCell>{food.name}</TableCell>
+                    <TableCell>{food.calories}</TableCell>
+                    <TableCell>{food.protein}</TableCell>
+                    <TableCell>{food.carbs}</TableCell>
+                    <TableCell>{food.fats}</TableCell>
+                    <TableCell onClick={() => {setEditFood(food); editToggle()}} ><EditIcon key={food.name} fontSize="inherit" /></TableCell>
+                    <TableCell onClick={() => {foodId = food.id; handleDelete()}}><DeleteIcon key={food.email} fontSize="inherit" /></TableCell>
+                    </TableRow>
+                ))
+                }
+                </TableBody>
+            </Table>
             
         </React.Fragment>
     )

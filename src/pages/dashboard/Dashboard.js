@@ -25,6 +25,7 @@ import Deposits from './Deposits'
 import Orders from './Orders';
 import UserDashboard from './Users';
 import FoodDashboard from './foods';
+import CreateFood from './createFood';
 
 function Copyright(props) {
   return (
@@ -210,9 +211,14 @@ function DashboardContent() {
                     <UserDashboard />
                 </>
               } />
-              <Route path='/foods' element={
+              <Route exact path='/foods' element={
                 <>
                     <FoodDashboard />
+                </>
+              } />
+              <Route path='/foods/create' element={
+                <>
+                    <CreateFood />
                 </>
               } />
               <Route path='*' element={

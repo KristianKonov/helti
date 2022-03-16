@@ -5,6 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Cookies from 'js-cookie'
 import Title from './Title';
 import axios from 'axios'
 
@@ -22,7 +23,7 @@ export default function Orders() {
       url: 'http://localhost:8080/api/admin/all',
       headers: { 
           'accept': '*/*', 
-          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlckBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNjQ2OTQ3MDgzLCJleHAiOjE2NDgwODAwMDB9.veK6HF-RavyY-iIe99qaIO5bmBMx1RTt05VTqKRhwE18cadtZOZM4yyCapvChn3BMI_kBvUmq4Hi2-CjB1YmCw'
+          'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
       }
     }
     axios(config).then(response => {
