@@ -8,10 +8,12 @@
 .landing-page 
     @include background-gradient
     @include flexbox(100vh)
-    background-size: 4000% 4000%
-    -webkit-animation: textanim 20s ease infinite
-    -moz-animation: textanim 20s ease infinite
-    animation: textanim 20s ease infinite
+    @include for-tablets
+        height: auto
+
+.landing-page-logged
+    @include background-gradient
+    @include flexbox(40vh)
     @include for-tablets
         height: auto
 

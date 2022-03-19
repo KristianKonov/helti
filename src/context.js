@@ -20,7 +20,7 @@ export const UserProvider = (props) => {
           
     axios(config)
     .then(function (response) {       
-            console.log(response)    
+            console.log('context response is ', response)
             setUserData({
                 'id': response.data.id,
                 'email': response.data.email,

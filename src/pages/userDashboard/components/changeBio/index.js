@@ -5,6 +5,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { styled } from '@mui/material/styles';
 import AddIcon from '@mui/icons-material/Add';
 import Cookies from 'js-cookie'
+import { Link } from 'react-router-dom'
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
@@ -120,10 +121,10 @@ const EditBiologicalData = () => {
                 });
         }
     }   
-
+    console.log('tuk', userData.userData.biologicalData)
     return(
         <div>
-            <h2>Добавяне на биологични данни</h2>
+            <h2>Промяна на биологични данни</h2>
             <div>
                 {error.status && 
                     <Stack sx={{ width: '100%' }} spacing={2}>
@@ -140,7 +141,9 @@ const EditBiologicalData = () => {
                     </Stack>
                 }
             </div>
+            {console.log(userData.userData)}
             {
+                userData.userData.biologicalData !== undefined && userData.userData.biologicalData !== null ?
                 height !== null && weight !== null && fatPercentage !== null && age !== null ?
                 <>
                     <div className="dashboard-input-wrapper">
@@ -174,6 +177,7 @@ const EditBiologicalData = () => {
                     </LoadingButton>
                 </>
                 : "Loading..."
+                : <p className="dashboard-noinfo">Все още нямате добавени биологични данни! <Link to='/dashboard/settings/addbiodata'>Добави сега!</Link></p>
             }
             
         </div>

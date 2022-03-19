@@ -17,6 +17,15 @@ export const GlobalStyles = createGlobalStyle`
     content: ${({ theme }) => theme.changeLogo};
     transition: all 0.50s linear;
   }
+  .headerBg {
+    background: ${({ theme }) => theme.mozbg};
+    background: ${({ theme }) => theme.webkitbg};
+    background: ${({ theme }) => theme.olinearbg};
+    background: ${({ theme }) => theme.mslinearbg};
+    background: ${({ theme }) => theme.lineargrad};
+    filter: ${({ theme }) => theme.filterbg};
+    transition: all 1s ease;
+  }
   .landing-title {
     // background: ${({ theme }) => theme.textbg1} !important;
     // background: ${({ theme }) => theme.textbg2} !important;
@@ -29,6 +38,15 @@ export const GlobalStyles = createGlobalStyle`
     // -webkit-text-fill-color: transparent !important;
   }
   .landing-page {
+    background: ${({ theme }) => theme.mozbg};
+    background: ${({ theme }) => theme.webkitbg};
+    background: ${({ theme }) => theme.olinearbg};
+    background: ${({ theme }) => theme.mslinearbg};
+    background: ${({ theme }) => theme.lineargrad};
+    filter: ${({ theme }) => theme.filterbg};
+    transition: all 1s ease;
+  }
+  .landing-page-logged {
     background: ${({ theme }) => theme.mozbg};
     background: ${({ theme }) => theme.webkitbg};
     background: ${({ theme }) => theme.olinearbg};

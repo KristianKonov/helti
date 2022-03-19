@@ -8,6 +8,7 @@ import UserDashboardPage from './components/dashboard';
 import ChangeNamePage from './components/changeName';
 import AddBiologicalData from './components/addBio';
 import EditBiologicalData from './components/changeBio';
+import DeactivateAccountPage from './components/deactivate';
 
 const UserDashboard = () => {
     return(
@@ -57,6 +58,11 @@ const UserDashboard = () => {
                     <Route path='/settings/addbiodata' element={
                         <>
                             <AddBiologicalData />
+                        </>
+                    } />
+                    <Route path='/settings/deactivate' element={
+                        <>
+                            <DeactivateAccountPage />
                         </>
                     } />
                     <Route path='*' element={

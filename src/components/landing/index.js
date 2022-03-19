@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './landing.sass'
+import UserContext from '../../context'
 
 const LandingPage = (props) => {
+    const userData = useContext(UserContext)
     return(
-        <div className="landing-page">
+        <div className={userData.isAuthenticated ? "landing-page-logged" : "landing-page"} >
             <div className="container">
                 {props.children}
             </div>

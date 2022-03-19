@@ -17,37 +17,37 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 export const userDashboardPrimary = (
   <React.Fragment>
     <Link to='/dashboard'>
-      <ListItemButton>
+      <ListItemButton selected>
         <ListItemIcon>
-          <DashboardIcon />
+          <DashboardIcon/>
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
     </Link>
-    <Link to='/dashboard/meal-generator'>
-      <ListItemButton>
+    {/* <Link to='/dashboard/meal-generator'> */}
+      <ListItemButton disabled>
         <ListItemIcon>
           <RestaurantIcon />
         </ListItemIcon>
         <ListItemText primary="Meal generator" />
       </ListItemButton>
-    </Link>
-    <Link to='/dashboard/trainers'>
-      <ListItemButton>
+    {/* </Link> */}
+    {/* <Link to='/dashboard/trainers'> */}
+      <ListItemButton disabled>
         <ListItemIcon>
           <FitnessCenterIcon />
         </ListItemIcon>
         <ListItemText primary="Hire a personal trainer" />
       </ListItemButton>
-    </Link>
-    <Link to='/dashboard/reports'>
-        <ListItemButton>
+    {/* </Link> */}
+    {/* <Link to='/dashboard/reports'> */}
+        <ListItemButton disabled>
         <ListItemIcon>
             <BarChartIcon />
         </ListItemIcon>
         <ListItemText primary="Reports" />
         </ListItemButton>
-    </Link>
+    {/* </Link> */}
   </React.Fragment>
 );
 
@@ -64,20 +64,28 @@ export const userDashboardSecondary = (
         <ListItemText primary="Change name" />
         </ListItemButton>
     </Link>
-    <Link to='/dashboard/settings/changeemail'>
-        <ListItemButton>
+    {/* <Link to='/dashboard/settings/changeemail'> */}
+        <ListItemButton disabled>
         <ListItemIcon>
             <AlternateEmailIcon />
         </ListItemIcon>
         <ListItemText primary="Change email" />
         </ListItemButton>
-    </Link>
+    {/* </Link> */}
     <Link to='/dashboard/settings/changebiodata'>
         <ListItemButton>
         <ListItemIcon>
             <HealthAndSafetyIcon />
         </ListItemIcon>
         <ListItemText primary="Change biological data" />
+        </ListItemButton>
+    </Link>
+    <Link to='/dashboard/settings/deactivate'>
+        <ListItemButton>
+        <ListItemIcon>
+            <HealthAndSafetyIcon />
+        </ListItemIcon>
+        <ListItemText primary="Deactivate account" />
         </ListItemButton>
     </Link>
   </React.Fragment>
