@@ -5,10 +5,6 @@ import Title from './Title';
 import axios from 'axios'
 import './dashboard.sass'
 
-function preventDefault(event) {
-  event.preventDefault();
-}
-
 
 export default function Deposits() {
   useEffect(() => {

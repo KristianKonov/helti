@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import EditIcon from '@mui/icons-material/Edit';
 import TableRow from '@mui/material/TableRow';
-import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Cookies from 'js-cookie'
 import Title from './Title';
@@ -25,7 +23,6 @@ const UserDashboard = () => {
     const [updateFirstName, setUpdateFirstName] = useState('')
     const [updateLastName, setUpdateLastName] = useState('')
     const [updateEmail, setUpdateEmail] = useState('')
-    const [updateRole, setUpdateRole] = useState('')
     const [updatePassword, setUpdatePassword] = useState('')
 
     let userId = null

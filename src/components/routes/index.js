@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LandingPage from '../landing'
 import Homepage from '../../pages/homepage'
@@ -12,8 +12,11 @@ import LoginPage from '../../pages/login'
 import SearchOurDatabase from '../SearchDB'
 import Dashboard from '../../pages/dashboard/Dashboard'
 import history from './../history'
+import UserContext from '../../context'
+import UserDashboard from '../../pages/userDashboard'
 
 const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
+    const userData = useContext(UserContext)
     return (
         <BrowserRouter history={history}>
             <Routes>
@@ -23,7 +26,7 @@ const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
                     <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} />
                     <Homepage />
                     </LandingPage>
-                    <LandingInfo />
+                    {!userData.isAuthenticated && <LandingInfo />}
                     <SearchOurDatabase />
                     <Footer />
                 </>
@@ -32,6 +35,13 @@ const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
                 <>
                     <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
                     <About />
+                    <Footer />
+                </>
+                } />
+                <Route exact path='/dashboard/*' element={
+                <>
+                    <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+                    <UserDashboard />
                     <Footer />
                 </>
                 } />

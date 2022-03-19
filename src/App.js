@@ -1,13 +1,11 @@
-import React , { useState, useEffect, createContext } from 'react'
+import React , { useState } from 'react'
 import './App.sass';
 import './styles/variables.sass'
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/globalStyles";
 import { lightTheme, darkTheme } from "./components/theme"
 import PageRoutes from './components/routes';
-import UserContext, {UserProvider} from './context';
-import Cookies from 'js-cookie'
-import jwt_decode from "jwt-decode";
+import {UserProvider} from './context';
 
 function App() {
   // const [user, setUser] = useState(null)

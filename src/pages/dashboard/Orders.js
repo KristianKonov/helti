@@ -9,10 +9,6 @@ import Cookies from 'js-cookie'
 import Title from './Title';
 import axios from 'axios'
 
-function preventDefault(event) {
-  event.preventDefault();
-}
-
 export default function Orders() {
   const [loaded, setLoaded] = useState(false)
   const [users, setUsers] = useState([{}])

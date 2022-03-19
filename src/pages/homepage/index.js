@@ -1,28 +1,45 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './home-page.sass'
 import iPhone from './images/iphone.png'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
+import UserContext from './../../context'
+import PersonIcon from '@mui/icons-material/Person';
 
 const Homepage = () => {
+    const userData = useContext(UserContext)
+    console.log(userData)
     return(
     <div className="landing">
         <div className="landing-wrapper">
-            <div className="photo-wrapper">
-                <img alt="iPhone" className="landing-photo" src={iPhone} />
+            {userData.isAuthenticated ? 
+            <div className="landing-authenticated">
+                <h1>Радваме се да те видим отново, {userData.userData.firstName + ' ' + userData.userData.lastName}</h1>
+                {userData.userData.biologicalData?.age ? <p>Вие сте на <span>4кг</span> от целта си</p> : <p>Все още не сте въвели <span>биологичните си данни</span>.</p>}
+                <Link to='/dashboard'><Button type="submit" variant="contained" endIcon={<PersonIcon />}>
+                    Go to profile
+                </Button></Link>
             </div>
-            <div className="landing-textbox">
-                <h2 className="landing-title">
-                    76 423 човека се приближиха
-                    с 314 642 кг. към целта си
-                </h2>
-                <p>
-                    Следете вашите калории, упражнения, 
-                    биометрични и здравни данни.
-                </p>
-                <Link to='/register'><Button variant="contained">Започни сега!</Button></Link>
-                <p>Вече имате акаунт? <Link to='/login'>Влезте сега!</Link></p>
-            </div>
+            : 
+            <>
+                <div className="photo-wrapper">
+                    <img alt="iPhone" className="landing-photo" src={iPhone} />
+                </div>
+                <div className="landing-textbox">
+                    <h2 className="landing-title">
+                        76 423 човека се приближиха
+                        с 314 642 кг. към целта си
+                    </h2>
+                    <p>
+                        Следете вашите калории, упражнения, 
+                        биометрични и здравни данни.
+                    </p>
+                    <Link to='/register'><Button variant="contained">Започни сега!</Button></Link>
+                    {/* <p>Вече имате акаунт? <Link to='/login'>Влезте сега!</Link></p> */}
+                </div>
+            </>
+        }
+            
         </div>
     </div>
     )

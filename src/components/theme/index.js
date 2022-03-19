@@ -3,6 +3,7 @@ import Darklogo from './../../images/dark_logo.svg'
 export const lightTheme = {
     body: '#FFF',
     text: '#000',
+    darkbluetowhite: '#02195B',
     background: '#363537',
     footerBg: '#00071C',
     footerColor: '#ffffff',
@@ -29,6 +30,7 @@ export const lightTheme = {
 export const darkTheme = {
     body: '#222',
     text: '#fff',
+    darkbluetowhite: '#fff',
     background: '#999',
     footerBg: '#ffffff',
     footerColor: '#00071C',

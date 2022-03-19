@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import Footer from '../../components/footer';
+import { Routes, Route } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';

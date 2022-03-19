@@ -9,7 +9,6 @@ import './../mobile_nav/mobile_nav.sass'
 import './../burger-menu/burger-nav.sass'
 import adjust from './../../images/icons/adjust.svg'
 import adminIcon from './../../images/icons/admin.svg'
-import { CircularProgress } from '@mui/material'
 
 const Header = ({flag, themeToggler}, props) => {
     const [navToggle, setNavToggle] = useState(false)
@@ -22,7 +21,7 @@ const Header = ({flag, themeToggler}, props) => {
         setLoaded(true)
         return
     }
-    const isLogged = userData.userData.isAuthenticated
+    const isLogged = userData.isAuthenticated
     return(
         <header className={(flag ? "headerBg" : "")}>
             <div className="container">

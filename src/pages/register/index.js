@@ -1,4 +1,4 @@
-import React, { isValidElement, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './register.sass'
 
@@ -12,7 +12,6 @@ const RegisterPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
-    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     const [error, setError] = useState({
         'error': false,
         'message': ''
@@ -21,7 +20,6 @@ const RegisterPage = () => {
         'status': false,
         'message': ''
     })
-    const [serverError, setServerError] = useState(null)
     const registerHandler = (e) => {
         e.preventDefault()
 

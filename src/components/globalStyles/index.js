@@ -6,6 +6,9 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
     transition: all 0.50s linear;
   }
+  .search-database h3 {
+    color: ${({ theme }) => theme.darkbluetowhite};
+  }
   .logo-wrapper {
     box-shadow: ${({ theme }) => theme.logoshadow};
     transition: all 0.50s linear;

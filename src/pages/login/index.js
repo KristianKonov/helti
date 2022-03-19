@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext }  from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import jwt_decode from "jwt-decode";
+import React, { useState, useContext }  from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import UserContext from '../../context';
 import Cookies from 'js-cookie'
 import './login.sass'
@@ -33,22 +32,35 @@ const LoginPage = (props) => {
         };
         try {
             const response = await axios(config)
-            console.log(response)
             var token = response.headers.authorization
             token = token.split(' ')[1]
-            const decoded = jwt_decode(token)
             document.cookie = `x-auth-token=${token}`
-            user = {
-                'id': decoded.id,
-                'email': decoded.sub,
-                'role': decoded.authorities[0].authority,
-                'isEnabled': decoded.isEnabled,
-                'isAuthenticated': true
-            }
-            // setUserData({
-            //     'email': decoded.sub,
-            //     'role': decoded.authorities[0].authority
-            // })
+            var config2 = {
+                method: 'get',
+                url: 'http://localhost:8080/api/user',
+                headers: { 
+                    'accept': '*/*', 
+                    'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
+                }
+                };
+                
+                axios(config2)
+                .then(function (response) {
+                    userData.setUserData({
+                        'id': response.data.id,
+                        'email': response.data.email,
+                        'role': response.data.role,
+                        'firstName': response.data.firstName,
+                        'lastName': response.data.lastName,
+                        'biologicalData': response.data.biologicalDataVersion
+                    })
+                    userData.setIsAuthenticated(true)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    userData.setUserData({})
+                    document.cookie = 'x-auth-token=; Max-Age=0; path=/; domain=';
+                });
             loaded = true
             if(loaded)
                 userData.setUserData(user)

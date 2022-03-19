@@ -1,0 +1,41 @@
+@import './../../styles/variables.sass'
+
+.user-dashboard-wrapper
+    background-color: #f5f5f5
+    @include clearfix()
+    .user-dashboard-nav
+        float: left
+        padding: 25px
+        background-color: #fff
+        div
+            color: rgba(0,0,0,.4)
+            font-weight: 700
+            &:hover
+                color: rgba(0,0,0,.8)
+    .user-dashboard-body
+        overflow: hidden
+        margin: 50px
+        padding: 0px 20px
+        label
+        color: $darkBlue
+        button
+            margin: 20px 0px
+            background-color: #167c47b3
+            &:hover
+                background-color: #19ae61b3
+        h2
+            color: $mediumBlue
+        h3
+            color: $mediumBlue
+    .dashboard-input-wrapper
+        margin: 20px 0px
+
+.user-dashboard-biodata 
+    list-style: none
+    margin: 0px
+    padding: 10px
+    li
+    color: rgba(0,0,0,.5)
+    font-weight: 700
+    span
+        color: $darkBlue
