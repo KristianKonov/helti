@@ -9,7 +9,7 @@ import Cookies from 'js-cookie'
 import Title from './Title';
 import axios from 'axios'
 
-export default function Orders() {
+export default function RecentUsers() {
   const [loaded, setLoaded] = useState(false)
   const [users, setUsers] = useState([{}])
   var recentUsers = users.slice((users.length-5),(users.length))
@@ -50,7 +50,7 @@ export default function Orders() {
               <TableCell>{user.id}</TableCell>
               <TableCell>{user.firstName + ' ' + user.lastName}</TableCell>
               <TableCell>{user.email}</TableCell>
-              <TableCell>{user.appUserRole}</TableCell>
+              <TableCell>{user.role}</TableCell>
             </TableRow>
           )) :
           'Loading...'

@@ -14,6 +14,9 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 import './foods.sass'
 
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
 const FoodDashboard = () => {
     const [loaded, setLoaded] = useState(false)
     const [foods, setFoods] = useState([{}])
@@ -27,6 +30,15 @@ const FoodDashboard = () => {
     const [updateCarbs, setUpdateCarbs] = useState(0)
     const [updateFats, setUpdateFats] = useState(0)
     let foodId = null
+
+    const [error, setError] = useState({
+        'error': false,
+        'message': ''
+    })
+    const [success, setSuccess] = useState({
+        'status': false,
+        'message': ''
+    })
     
     useEffect(() => {
         var config = {
@@ -98,8 +110,20 @@ const FoodDashboard = () => {
             }
         }
         axios(config).then(response => {
+            setSuccess({
+                'status': true,
+                'message': 'Successfully updated item: ' + editFood.name
+            })
+            setError({
+                'status': false,
+                'message': ''
+            })
             console.log(response)
         }).catch(error => {
+            setError({
+                'status': true,
+                'message': error.message
+            })
             console.log(error.message)
         })
     }
@@ -121,6 +145,20 @@ const FoodDashboard = () => {
             {editLoaded && editFood.name !== null && editFood.id !== null && updateFats !== null ?
             <div className={editFlag ? 'edit-form visible' : 'edit-form'}>
             <Title>Edit food:</Title>
+            {error.error && 
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert variant="outlined" severity="error">
+                    {error.message}
+                    </Alert>
+                </Stack>
+            }
+            {success.status && 
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert variant="outlined" severity="success">
+                    {success.message}
+                    </Alert>
+                </Stack>
+            }
             <form onSubmit={editUserHandler} >
                 <div>
                     <label>

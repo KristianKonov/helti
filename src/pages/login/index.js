@@ -64,7 +64,9 @@ const LoginPage = (props) => {
             loaded = true
             if(loaded)
                 userData.setUserData(user)
-            history('/')
+            setTimeout(function() {
+                history('/')
+            }, 1000);
         } catch(err) {
             console.log(err.response)
             setError({'error': true, 'message': 'Check account and password!'})

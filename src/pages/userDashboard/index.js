@@ -1,23 +1,22 @@
 import React from 'react'
 import './userDashboard.sass'
-import { userDashboardPrimary, userDashboardSecondary } from './dashboardList';
+import UserDashboardNavigation from './dashboardList';
 import { List } from '@mui/material';
-import { Divider } from '@mui/material';
 import { Routes, Route } from 'react-router-dom'
 import UserDashboardPage from './components/dashboard';
 import ChangeNamePage from './components/changeName';
 import AddBiologicalData from './components/addBio';
 import EditBiologicalData from './components/changeBio';
 import DeactivateAccountPage from './components/deactivate';
+import MealGeneratorPage from './components/mealGenerator';
+import ChangePasswordPage from './components/changePassword';
 
 const UserDashboard = () => {
     return(
         <div className="user-dashboard-wrapper">
             <div className="user-dashboard-nav">
                 <List component="nav">
-                    {userDashboardPrimary} 
-                    <Divider sx={{ my: 1 }} />
-                    {userDashboardSecondary}
+                    <UserDashboardNavigation />
                 </List>
             </div>
             <div className='user-dashboard-body'>
@@ -27,7 +26,7 @@ const UserDashboard = () => {
                     } />
                     <Route exact path='/meal-generator' element={
                         <>
-                            <UserDashboardPage />
+                            <MealGeneratorPage />
                         </>
                     } />
                     <Route exact path='/trainers' element={
@@ -48,6 +47,11 @@ const UserDashboard = () => {
                     <Route path='/settings/changeemail' element={
                         <>
                             <UserDashboardPage />
+                        </>
+                    } />
+                    <Route path='/settings/changepassword' element={
+                        <>
+                            <ChangePasswordPage />
                         </>
                     } />
                     <Route path='/settings/changebiodata' element={

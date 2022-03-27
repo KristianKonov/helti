@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import UserContext from '../../../../context';
@@ -12,6 +12,8 @@ import AddIcon from '@mui/icons-material/Add';
 
 const UserDashboardPage = () => {
     const userData = useContext(UserContext)
+    const location = useLocation();
+    console.log(location.pathname)
 
     return(
         <>
@@ -46,9 +48,9 @@ const UserDashboardPage = () => {
                         <>
                         <ul className="user-dashboard-biodata">
                             <li>Възраст: <span>{userData.userData.biologicalData.age}</span></li>
-                            <li>Подкожна мазнина: <span>{userData.userData.biologicalData.fatPercentage}</span></li>
+                            <li>Подкожна мазнина: <span>{userData.userData.biologicalData.measurement.fatPercentage}</span></li>
                             <li>Височина: <span>{userData.userData.biologicalData.height}</span></li>
-                            <li>Тегло: <span>{userData.userData.biologicalData.weight}</span></li>
+                            <li>Тегло: <span>{userData.userData.biologicalData.measurement.weight}</span></li>
                         </ul>
                         <Link to='settings/changebiodata'><Button variant="contained" endIcon={<EditIcon />}>
                             Промени

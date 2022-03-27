@@ -6,6 +6,9 @@ import Button from '@mui/material/Button';
 import UserContext from './../../context'
 import PersonIcon from '@mui/icons-material/Person';
 
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+
 const Homepage = () => {
     const userData = useContext(UserContext)
     console.log(userData)
@@ -13,13 +16,25 @@ const Homepage = () => {
     <div className="landing">
         <div className="landing-wrapper">
             {userData.isAuthenticated ? 
-            <div className="landing-authenticated">
-                <h1>Радваме се да те видим отново, {userData.userData.firstName + ' ' + userData.userData.lastName}</h1>
-                {userData.userData.biologicalData?.age ? <p>Вие сте на <span>4кг</span> от целта си</p> : <p>Все още не сте въвели <span>биологичните си данни</span>.</p>}
-                <Link to='/dashboard'><Button type="submit" variant="contained" endIcon={<PersonIcon />}>
-                    Go to profile
-                </Button></Link>
-            </div>
+            <Grid item xs={12} md={12} lg={12}>
+            <Paper
+                sx={{
+                    p: 2,
+                    display: 'flex',
+                    background: 'rgba(0,0,0,.2)',
+                    flexDirection: 'column',
+                    padding: '20px'
+                }}
+            >
+                <div className="landing-authenticated">
+                    <h1>Радваме се да те видим отново, {userData.userData.firstName + ' ' + userData.userData.lastName}</h1>
+                    {userData.userData.biologicalData?.age ? <p>Вие сте на <span>4кг</span> от целта си</p> : <p>Все още не сте въвели <span>биологичните си данни</span>.</p>}
+                    <Link to='/dashboard'><Button type="submit" variant="contained" endIcon={<PersonIcon />}>
+                        Go to profile
+                    </Button></Link>
+                </div>
+            </Paper>
+        </Grid>
             : 
             <>
                 <div className="photo-wrapper">

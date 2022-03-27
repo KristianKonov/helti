@@ -10,6 +10,8 @@ import Cookies from 'js-cookie'
 import Title from './Title';
 import './users.sass'
 import axios from 'axios'
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const UserDashboard = () => {
     const [loaded, setLoaded] = useState(false)
@@ -17,6 +19,7 @@ const UserDashboard = () => {
     const [editFlag, setEditFlag] = useState(false)
     const [editUser, setEditUser] = useState({})
     const [editLoaded, setEditLoaded] = useState(false)
+    const [editPassword, setEditPassword] = useState(false)
 
     // UPDATE FORM
 
@@ -24,6 +27,14 @@ const UserDashboard = () => {
     const [updateLastName, setUpdateLastName] = useState('')
     const [updateEmail, setUpdateEmail] = useState('')
     const [updatePassword, setUpdatePassword] = useState('')
+    const [success, setSuccess] = useState({
+        'status': false,
+        'message': ''
+    })
+    const [error, setError] = useState({
+        'status': false,
+        'message': ''
+    })
 
     let userId = null
     
@@ -77,24 +88,45 @@ const UserDashboard = () => {
 
     const editUserHandler = (e) => {
         e.preventDefault()
-        var config = {
-            method: 'put',
-            url: 'http://localhost:8080/api/admin/update/',
-            headers: {
-                'Authorization': 'Bearer ' + Cookies.get('x-auth-token'),
-                'Content-Type': 'application/json',
-                'accept': '*/*'
-            },
-            data: {
-                'email': updateEmail,
-                'firstName': updateFirstName,
-                'id': editUser.id,
-                'lastName': updateLastName,
-                'password': updatePassword
+        if(editPassword) {
+            var config = {
+                method: 'put',
+                url: 'http://localhost:8080/api/admin/update/',
+                headers: {
+                    'Authorization': 'Bearer ' + Cookies.get('x-auth-token'),
+                    'Content-Type': 'application/json',
+                    'accept': '*/*'
+                },
+                data: {
+                    'email': updateEmail,
+                    'firstName': updateFirstName,
+                    'id': editUser.id,
+                    'lastName': updateLastName,
+                    'password': updatePassword
+                }
+            }
+        } else {
+            var config = {
+                method: 'put',
+                url: 'http://localhost:8080/api/admin/update/',
+                headers: {
+                    'Authorization': 'Bearer ' + Cookies.get('x-auth-token'),
+                    'Content-Type': 'application/json',
+                    'accept': '*/*'
+                },
+                data: {
+                    'email': updateEmail,
+                    'firstName': updateFirstName,
+                    'id': editUser.id,
+                    'lastName': updateLastName
+                }
             }
         }
         axios(config).then(response => {
-            console.log(response)
+            setSuccess({
+                'status': true,
+                'message': 'You have sucessfully changed user: ' + editUser.email
+            })
         }).catch(error => {
             console.log(error.message)
         })
@@ -122,7 +154,7 @@ const UserDashboard = () => {
                         <TableCell>{user.id}</TableCell>
                         <TableCell>{user.firstName + ' ' + user.lastName}</TableCell>
                         <TableCell>{user.email}</TableCell>
-                        <TableCell>{user.appUserRole}</TableCell>
+                        <TableCell>{user.role}</TableCell>
                         <TableCell><EditIcon onClick={() => {setEditUser(user); editToggle()}} key={user.email} fontSize="inherit" /></TableCell>
                         <TableCell><DeleteIcon onClick={() => {userId = user.id; handleDelete()}} key={user.email} fontSize="inherit" /></TableCell>
                     </TableRow>
@@ -133,6 +165,13 @@ const UserDashboard = () => {
             {editUser && editUser.firstName !== null && editUser.id !== null && updateLastName !== null ?
             <div className={editFlag ? 'edit-form visible' : 'edit-form'}>
             <Title>Edit food:</Title>
+            {success.status && <div>
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert variant="outlined" severity="success">
+                    {success.message}
+                    </Alert>
+                </Stack>
+            </div>}
             <form onSubmit={editUserHandler} >
                 <div>
                     <label>
@@ -160,10 +199,16 @@ const UserDashboard = () => {
                 </div>
                 <div>
                     <label>
+                        Do you want to edit password:
+                        <input type="checkbox" onChange={() => setEditPassword(!editPassword)} />
+                    </label>
+                </div>
+                {editPassword && <div>
+                    <label>
                         Password: 
                         <input type='password' value={updatePassword} onChange={(e) => setUpdatePassword(e.target.value)} />
                     </label>
-                </div>
+                </div> }
                 <button className="update-btn" type="submit">Update</button>
             </form>
         </div>

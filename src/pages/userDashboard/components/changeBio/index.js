@@ -5,7 +5,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { styled } from '@mui/material/styles';
 import AddIcon from '@mui/icons-material/Add';
 import Cookies from 'js-cookie'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
@@ -28,9 +28,11 @@ const EditBiologicalData = () => {
     const [age, setAge] = useState(null)
     const [fatPercentage, setFatPercentage] = useState(null)
     const [goal, setGoal] = useState('')
+    const [gender, setGender] = useState('')
     const [height, setHeight] = useState(null)
     const [weight, setWeight] = useState(null)
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
     const [success, setSuccess] = useState({
         'status': false,
         'message': ''
@@ -39,22 +41,17 @@ const EditBiologicalData = () => {
         'status': false,
         'message': ''
     })
-    console.log(userData)
 
     useEffect(() => {
         if(userData.userData?.biologicalData?.age) {
             setAge(userData.userData.biologicalData.age)
-            setFatPercentage(userData.userData.biologicalData.fatPercentage)
+            setGender(userData.userData.biologicalData.gender)
             setHeight(userData.userData.biologicalData.height)
-            setWeight(userData.userData.biologicalData.weight)
             setGoal(userData.userData.biologicalData.goal)
-            console.log(userData.userData.biologicalData.goal)
-        } else {
-            console.log('hi')
         }
     },[userData.userData.biologicalData])
         
-    function MyFormControlLabel(props) {
+    function GoalForm(props) {
         const radioGroup = useRadioGroup();
         
         let checked = false;
@@ -62,66 +59,76 @@ const EditBiologicalData = () => {
         if (radioGroup) {
             checked = radioGroup.value === props.value;
             setGoal(radioGroup.value)
-            console.log(goal)
+        }
+        
+        return <StyledFormControlLabel checked={checked} {...props} />;
+    }
+    
+    function GenderForm(props) {
+        const radioGroup = useRadioGroup();
+        
+        let checked = false;
+        
+        if (radioGroup) {
+            checked = radioGroup.value === props.value;
+            setGender(radioGroup.value)
         }
         
         return <StyledFormControlLabel checked={checked} {...props} />;
     }
 
-    const addBiologicalData = () => {
-        if(weight === userData.userData?.biologicalData?.weight && height === userData.userData?.biologicalData?.height && goal === userData.userData?.biologicalData?.goal && fatPercentage === userData.userData?.biologicalData?.fatPercentage && age === userData.userData?.biologicalData?.age) {
+    const AddMeasurement = () => {
+        if(weight === null) {
             setError({
                 'status': true,
-                'message': "No changes found!"
+                'message': 'Добави теглото си за да продължиш!'
             })
         } else {
-            setLoading(true)
-            var data = JSON.stringify({
-                "age": age,
-                "fatPercentage": fatPercentage,
-                "goal": goal,
-                "height": height,
+            var dataMeasurement = JSON.stringify({
                 "weight": weight
-                });
+            });
     
-                var config = {
-                method: 'post',
-                url: 'http://localhost:8080/api/user/add-biological-data',
-                headers: { 
-                    'accept': '*/*', 
-                    'Content-Type': 'application/json', 
-                    'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
-                },
-                data: data
-                };
+            var configMeasurement = {
+            method: 'post',
+            url: 'http://localhost:8080/api/measurements/create',
+            headers: { 
+                'accept': '*/*', 
+                'Content-Type': 'application/json', 
+                'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
+            },
+            data: dataMeasurement
+            };
     
-                axios(config)
-                .then(function (response) {
-                    setLoading(false)
-                    setSuccess({
-                        'status': true,
-                        'message': 'Вие успешно добавихте биологичните си данни'
-                    })
-                    setError({
-                        'status': false,
-                        'message': ''
-                    })
+            axios(configMeasurement)
+            .then(function (responseMeasurement) {
+                setLoading(false)
+                setSuccess({
+                    'status': true,
+                    'message': 'Вие успешно добавихте биологичните данни и теглото си! Ще бъдете пренасочени!'
                 })
-                .catch(function (error) {
-                    setLoading(false)
-                    setError({
-                        'status': true,
-                        'message': 'Нещо се обърка!'
-                    })
-                    setSuccess({
-                        'status': false,
-                        'message': ''
-                    })
-                    console.log(error);
-                });
+                setError({
+                    'status': false,
+                    'message': ''
+                })
+                setTimeout(function() {
+                    navigate('/dashboard')
+                }, 3000);
+            })
+            .catch(function (error) {
+                setLoading(false)
+                setError({
+                    'status': true,
+                    'message': 'Нещо се обърка!'
+                })
+                setSuccess({
+                    'status': false,
+                    'message': ''
+                })
+                console.log(error);
+            });
         }
-    }   
-    console.log('tuk', userData.userData.biologicalData)
+    }
+
     return(
         <div>
             <h2>Промяна на биологични данни</h2>
@@ -141,39 +148,22 @@ const EditBiologicalData = () => {
                     </Stack>
                 }
             </div>
-            {console.log(userData.userData)}
             {
                 userData.userData.biologicalData !== undefined && userData.userData.biologicalData !== null ?
-                height !== null && weight !== null && fatPercentage !== null && age !== null ?
+                height !== null && age !== null ?
                 <>
                     <div className="dashboard-input-wrapper">
-                        <TextField type="number" color='primary' id="outlined-basic" value={age !== undefined ? age : ''} onChange={(e) => setAge(e.target.value)} label="Възраст" variant="outlined" />
-                    </div>
-                    <div className="dashboard-input-wrapper">
-                        <TextField type="number" color='primary' id="outlined-basic" value={height !== undefined ? height : ''} onChange={(e) => setHeight(e.target.value)} label="Височина" variant="outlined" />
-                    </div>
-                    <div className="dashboard-input-wrapper">
-                        <TextField type="number" color='primary' id="outlined-basic" value={weight !== undefined ? weight : ''} onChange={(e) => setWeight(e.target.value)} label="Тегло" variant="outlined" />
-                    </div>
-                    <div className="dashboard-input-wrapper">
-                        <TextField type="number" color='primary' id="outlined-basic" value={fatPercentage !== undefined ? fatPercentage : ''} onChange={(e) => setFatPercentage(e.target.value)} label="% подкожни мазнини" variant="outlined" />
-                    </div>
-                    <div className="dashboard-input-wrapper">
-                        <h3>Цел:</h3>
-                        <RadioGroup name="use-radio-group" defaultValue={goal}>
-                            <MyFormControlLabel value="CUT" label="Отслабване" control={<Radio />} />
-                            <MyFormControlLabel value="BULK" label="Покачване на мускулна маса" control={<Radio />} />
-                        </RadioGroup>
+                        <TextField type="number" color='primary' id="outlined-basic" value={weight !== null ? weight : ''} onChange={(e) => setWeight(e.target.value)} label="Тегло" variant="outlined" />
                     </div>
                     <LoadingButton
                     color="secondary"
-                    onClick={addBiologicalData}
+                    onClick={AddMeasurement}
                     loading={loading}
                     loadingPosition="start"
                     startIcon={<AddIcon />}
                     variant="contained"
                     >
-                    Добави
+                    Промени
                     </LoadingButton>
                 </>
                 : "Loading..."

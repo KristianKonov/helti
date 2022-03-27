@@ -21,7 +21,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits'
-import Orders from './Orders';
+import RecentUsers from './recentUsers';
 import UserDashboard from './Users';
 import FoodDashboard from './foods';
 import CreateFood from './createFood';
@@ -199,7 +199,7 @@ function DashboardContent() {
                     {/* Recent Orders */}
                     <Grid item xs={12}>
                       <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        <Orders />
+                        <RecentUsers />
                       </Paper>
                     </Grid>
                   </Grid>

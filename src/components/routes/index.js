@@ -22,53 +22,67 @@ const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
             <Routes>
                 <Route exact path='/' element={
                 <>
-                    <LandingPage>
-                    <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} />
-                    <Homepage />
-                    </LandingPage>
-                    {!userData.isAuthenticated && <LandingInfo />}
-                    <SearchOurDatabase />
+                    <div className="page-wrapper">
+                        <LandingPage>
+                        <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} />
+                        <Homepage />
+                        </LandingPage>
+                        {!userData.isAuthenticated && <LandingInfo />}
+                        <SearchOurDatabase />
+                    </div>
                     <Footer />
                 </>
                 } />
                 <Route exact path='/about' element={
                 <>
-                    <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
-                    <About />
+                    <div className="page-wrapper">
+                        <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+                        <About />
+                    </div>
                     <Footer />
                 </>
                 } />
                 <Route exact path='/dashboard/*' element={
                 <>
-                    <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
-                    <UserDashboard />
+                    <div className="page-wrapper">
+                        <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+                        <UserDashboard />
+                    </div>
                     <Footer />
                 </>
                 } />
                 <Route path='/login' element={
                 <>
-                    <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
-                    <LoginPage />
+                    <div className="page-wrapper">
+                        <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+                        <LoginPage />
+                    </div>
                     <Footer />
                 </>
                 } />
                 <Route path='/register' element={
                 <>
-                    <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
-                    <RegisterPage />
+                    <div className="page-wrapper">
+                        <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+                        <RegisterPage />
+                    </div>
                     <Footer />
                 </>
                 } />
                 <Route exact path='/admin/*' element={
                 <>
-                    <Dashboard />
+                    <div className="page-wrapper">
+                        <Dashboard />
+                    </div>
                     <Footer />
                 </>
                 } />
                 <Route path='*' element={
                 <>
-                    <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
-                    <NotFound />
+                    <div className="page-wrapper">
+                        <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+                        <NotFound />
+                    </div>
                     <Footer />
                 </>
                 } />
