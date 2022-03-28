@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import UserContext from '../../../../context';
 import './../../userDashboard.sass'
 import Button from '@mui/material/Button';
+import UserChart from './../../../../components/user_chart'
 
 // Icons
 import EditIcon from '@mui/icons-material/Edit';
@@ -28,7 +29,7 @@ const UserDashboardPage = () => {
                     height: 240,
                 }}
                 >
-                
+                    <UserChart />
                 </Paper>
             </Grid>
             {/* Recent Deposits */}

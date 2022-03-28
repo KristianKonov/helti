@@ -52,7 +52,8 @@ const LoginPage = (props) => {
                         'role': response.data.role,
                         'firstName': response.data.firstName,
                         'lastName': response.data.lastName,
-                        'biologicalData': response.data.biologicalDataVersion
+                        'biologicalData': response.data.biologicalDataVersion,
+                        'measurements': response.data.measurements
                     })
                     userData.setIsAuthenticated(true)
                 })

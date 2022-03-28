@@ -14,6 +14,7 @@ import Dashboard from '../../pages/dashboard/Dashboard'
 import history from './../history'
 import UserContext from '../../context'
 import UserDashboard from '../../pages/userDashboard'
+import FaqPage from '../../pages/faq'
 
 const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
     const userData = useContext(UserContext)
@@ -38,6 +39,15 @@ const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
                     <div className="page-wrapper">
                         <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
                         <About />
+                    </div>
+                    <Footer />
+                </>
+                } />
+                <Route exact path='/faq' element={
+                <>
+                    <div className="page-wrapper">
+                        <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+                        <FaqPage />
                     </div>
                     <Footer />
                 </>

@@ -1,0 +1,19 @@
+@import './../../styles/variables.sass'
+
+.food-details-wrapper
+    display: flex
+    justify-content: space-between
+    @include for-tablets
+        display: block
+        text-align: center
+    .food-details-left, .food-details-right
+        float: left
+        @include for-tablets
+            float: unset
+            display: inline-block
+    .food-details-right
+        width: 100%
+        margin: 0px 20px
+.food-details-wrapper-big
+    @include clearfix()
+    

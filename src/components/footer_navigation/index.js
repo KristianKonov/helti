@@ -4,18 +4,17 @@ import {Link} from 'react-router-dom'
 const FooterNavigation = () => {
     const footernav = [
         {
-            pageName: 'Terms and conditions',
-            pageURL: '/terms'
+            pageName: 'Често задавани въпроси',
+            pageURL: '/faq'
         },
         {
-            pageName: 'Terms and conditions',
-            pageURL: '/terms'
+            pageName: 'Контакти',
+            pageURL: '/contact-us'
         },
         {
-            pageName: 'Terms and conditions',
+            pageName: 'Общи условия за ползване',
             pageURL: '/terms'
         }
-
     ]
 
     return(

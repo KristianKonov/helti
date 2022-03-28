@@ -3,6 +3,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import './mealgenerator.sass'
 
+
 // Radio imports
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -16,6 +17,7 @@ import Paper from '@mui/material/Paper';
 // Button
 import LoadingButton from '@mui/lab/LoadingButton';
 import AddIcon from '@mui/icons-material/Add';
+import FoodCard from '../../../../components/food_card';
 
 const MealGeneratorPage = () => {
     const [loading, setLoading] = useState(false)
@@ -298,16 +300,14 @@ const MealGeneratorPage = () => {
                             generatorResponse.foods.map((food, index) => {
                                 console.log(food)
                                 return(
-                                        <div key={index} className="food-body">
-                                            <img className="food-img" />
-                                            <h3>{food.foodDetails.name}</h3>
-                                            <ul>
-                                                <li>Калории: <span>{food.foodDetails.calories}</span></li>
-                                                <li>Протейн: <span>{food.foodDetails.protein}</span></li>
-                                                <li>Въглехидрати: <span>{food.foodDetails.carbs}</span></li>
-                                                <li>Мазнини: <span>{food.foodDetails.fats}</span></li>
-                                            </ul>
-                                            Количеството, което трябва да приемете е <b>{food.amount}</b>
+                                        <div key={index} className="food-card">
+                                            <FoodCard name={food.foodDetails.name}
+                                            calories={food.foodDetails.calories}
+                                            protein={food.foodDetails.protein}
+                                            carbs={food.foodDetails.carbs}
+                                            fats={food.foodDetails.fats}
+                                            amount={food.amount}
+                                            />
                                         </div>
                                 )
                                 
