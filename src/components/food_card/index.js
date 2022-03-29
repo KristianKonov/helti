@@ -32,10 +32,10 @@ const FoodCard = (props) => {
         <Typography gutterBottom variant="h5" component="div">
           {props.name}
         </Typography>
-            <li>Калории: {props.calories}</li>
-            <li>Протеин: {props.protein}</li>
-            <li>Въглехидрати: {props.carbs}</li>
-            <li>Мазнини: {props.fats}</li>
+            <li>Калории: {Math.round((props.calories + Number.EPSILON) * 100) / 100}</li>
+            <li>Протеин: {Math.round((props.protein + Number.EPSILON) * 100) / 100}</li>
+            <li>Въглехидрати: {Math.round((props.carbs + Number.EPSILON) * 100) / 100}</li>
+            <li>Мазнини: {Math.round((props.fats + Number.EPSILON) * 100) / 100}</li>
         <Typography variant="body2" color="text.secondary">
           Количеството което трябва да приемете е: <b>{props.amount}</b>
         </Typography>

@@ -78,8 +78,6 @@ const LoginPage = (props) => {
     const loginSubmit = async (e) => {
         e.preventDefault()
         loginRequest()
-        console.log()
-
     }
 
     return(

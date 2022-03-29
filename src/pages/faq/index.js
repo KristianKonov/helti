@@ -7,6 +7,7 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import FaqCategories from '../../components/faq_categories';
+import { Helmet } from 'react-helmet-async';
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -53,6 +54,9 @@ const FaqPage = () => {
 
     return(
         <div className="faq-page-wrapper">
+            <Helmet>
+                <title>Често задавни въпроси | Helti</title>
+            </Helmet>
             <div className="container">
             <h2 className="page-title">Често задавни въпроси:</h2>
             <FaqCategories />

@@ -5,30 +5,44 @@ export const lightTheme = {
     text: '#000',
     darkbluetowhite: '#02195B',
     background: '#363537',
+    dashboardBg: 'rgba(245, 245, 245, 1)',
+    dashboardNavBg: 'rgba(255,255,255, 1)',
+    dashboardNavLinks: 'rgba(0, 0, 0, 0.4)',
     footerBg: '#00071C',
     footerColor: '#ffffff',
-    mozbg: '-moz-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
-    webkitbg: '-webkit-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
-    olinearbg: '-o-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
-    mslinearbg: '-ms-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
-    lineargrad: 'linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    mozbg: '-moz-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    webkitbg: '-webkit-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    olinearbg: '-o-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    mslinearbg: '-ms-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    lineargrad: 'linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
     filterbg: 'DXImageTransform.Microsoft.gradient( startColorstr="#02195B", endColorstr="#13B0DB", GradientType=1 )',
     logoshadow: '0px 0px 20px rgba(0,0,0,.3)',
+
+    // dashboard btn grad
+
+    dashboardBtnBg1: '-moz-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%) ',
+    dashboardBtnBg2: '-webkit-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    dashboardBtnBg3: '-o-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    dashboardBtnBg4: '-ms-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    dashboardBtnBg5: 'linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    dashboardBtnBg6: 'progid:DXImageTransform.Microsoft.gradient( startColorstr="#00AFDB", endColorstr="#4CB062", GradientType=1 )',
 
     // text-gradient
 
     changeLogo: `url(${Darklogo})`,
 
-    textbg1: '-moz-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textbg2: '-webkit-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textbg3: '-o-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textbg4: '-ms-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textbg5: 'linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textgradbg: 'progid:DXImageTransform.Microsoft.gradient( startColorstr="#02195B", endColorstr="#00071C", GradientType=0 )',
-
+    lighttextgrad1: '-moz-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
+    lighttextgrad2: '-webkit-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
+    lighttextgrad3: '-o-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
+    lighttextgrad4: '-ms-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
+    lighttextgrad5: 'linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
+    textgradbg: 'progid:DXImageTransform.Microsoft.gradient( startColorstr="#02195B", endColorstr="#00071C", GradientType=0 )'
 }
 export const darkTheme = {
-    body: '#00071C',
+    body: '#161d30',
+    dashboardBg: 'rgba(255,255,255,.1)',
+    dashboardNavBg: 'rgba(255,255,255,.2)',
+    dashboardNavLinks: 'rgba(255, 255, 255, .8)',
     text: '#fff',
     darkbluetowhite: '#fff',
     background: '#999',
@@ -38,21 +52,32 @@ export const darkTheme = {
 
     // text-gradient
 
-    textbg1: '-moz-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textbg2: '-webkit-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textbg3: '-o-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textbg4: '-ms-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textbg5: 'linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    textgradbg: 'progid:DXImageTransform.Microsoft.gradient( startColorstr="#02195B", endColorstr="#00071C", GradientType=0 )',
 
     // background landing
-    mozbg: '-moz-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
-    webkitbg: '-webkit-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
-    olinearbg: '-o-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
-    mslinearbg: '-ms-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
-    lineargrad: 'linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    mozbg: '-moz-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    webkitbg: '-webkit-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    olinearbg: '-o-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    mslinearbg: '-ms-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
+    lineargrad: 'linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)',
     filterbg: 'DXImageTransform.Microsoft.gradient( startColorstr="#02195B", endColorstr="#13B0DB", GradientType=1 )',
-    logoshadow: '0px 0px 20px rgba(0,0,0,.3)'
+    logoshadow: '0px 0px 20px rgba(0,0,0,.3)',
+
+    // DashBoard btn grad
+
+    dashboardBtnBg1: '-moz-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%) ',
+    dashboardBtnBg2: '-webkit-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    dashboardBtnBg3: '-o-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    dashboardBtnBg4: '-ms-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    dashboardBtnBg5: 'linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    dashboardBtnBg6: 'progid:DXImageTransform.Microsoft.gradient( startColorstr="#00AFDB", endColorstr="#4CB062", GradientType=1 )',
+
+
+    lighttextgrad1: '-moz-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%) ',
+    lighttextgrad2: '-webkit-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    lighttextgrad3: '-o-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    lighttextgrad4: '-ms-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    lighttextgrad5: 'linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    lighttextgrad6: 'progid:DXImageTransform.Microsoft.gradient( startColorstr="#00AFDB", endColorstr="#4CB062", GradientType=1 )',
 
 
     // mozbg: '-moz-linear-gradient(90deg, rgba(0, 7, 28, 1) 15%, rgba(0, 11, 43, 1) 50%, rgba(0, 7, 28, 1) 85%)',

@@ -18,6 +18,7 @@ import Paper from '@mui/material/Paper';
 import LoadingButton from '@mui/lab/LoadingButton';
 import AddIcon from '@mui/icons-material/Add';
 import FoodCard from '../../../../components/food_card';
+import { Helmet } from 'react-helmet-async';
 
 const MealGeneratorPage = () => {
     const [loading, setLoading] = useState(false)
@@ -164,6 +165,11 @@ const MealGeneratorPage = () => {
 
     return(
         <div>
+            <Helmet>
+                <title>
+                    Генериране на режим | Helti
+                </title>
+            </Helmet>
             {
                 !generated ?
                 <div>
@@ -258,10 +264,10 @@ const MealGeneratorPage = () => {
                         <div className="target-macros">
                             <h2>Генерираната храна съдържа:</h2>
                             <ul>
-                                <li>Калории: <span>{generatorResponse.targetMacros.calories}</span></li>
-                                <li>Протейн: <span>{generatorResponse.targetMacros.protein}</span></li>
-                                <li>Въглехидрати: <span>{generatorResponse.targetMacros.carbs}</span></li>
-                                <li>Мазнини: <span>{generatorResponse.targetMacros.fats}</span></li>
+                                <li>Калории: <span>{Math.round((generatorResponse.targetMacros.calories + Number.EPSILON) * 100) / 100}</span></li>
+                                <li>Протеин: <span>{Math.round((generatorResponse.targetMacros.protein + Number.EPSILON) * 100) / 100}</span></li>
+                                <li>Въглехидрати: <span>{Math.round((generatorResponse.targetMacros.carbs + Number.EPSILON) * 100) / 100}</span></li>
+                                <li>Мазнини: <span>{Math.round((generatorResponse.targetMacros.fats + Number.EPSILON) * 100) / 100}</span></li>
                             </ul>
                         </div>
                         </Paper>
@@ -278,10 +284,10 @@ const MealGeneratorPage = () => {
                         <div className="current-macros">
                             <h2>Вашите препоръчителни макроси:</h2>
                             <ul>
-                                <li>Калории: <span>{generatorResponse.currentMacros.calories}</span></li>
-                                <li>Протейн: <span>{generatorResponse.currentMacros.protein}</span></li>
-                                <li>Въглехидрати: <span>{generatorResponse.currentMacros.carbs}</span></li>
-                                <li>Мазнини: <span>{generatorResponse.currentMacros.fats}</span></li>
+                                <li>Калории: <span>{Math.round((generatorResponse.currentMacros.calories + Number.EPSILON) * 100) / 100}</span></li>
+                                <li>Протеин: <span>{Math.round((generatorResponse.currentMacros.protein + Number.EPSILON) * 100) / 100}</span></li>
+                                <li>Въглехидрати: <span>{Math.round((generatorResponse.currentMacros.carbs + Number.EPSILON) * 100) / 100}</span></li>
+                                <li>Мазнини: <span>{Math.round((generatorResponse.currentMacros.fats + Number.EPSILON) * 100) / 100}</span></li>
                             </ul>
                     </div>
                         </Paper>

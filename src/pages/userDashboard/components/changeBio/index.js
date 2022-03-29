@@ -13,6 +13,7 @@ import axios from 'axios'
 import { Stack } from '@mui/material';
 import { Alert } from '@mui/material';
 import './../../userDashboard.sass'
+import { Helmet } from 'react-helmet-async';
 
 const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
     ({ theme, checked }) => ({
@@ -105,7 +106,7 @@ const EditBiologicalData = () => {
                 var temp = responseMeasurement.data
                 userData.setUserData(user => ({
                     ...user,
-                    'biologicalData': {
+                    'biologicalData': { 
                         ...user.biologicalData,
                         'measurement': {...temp}
                     },
@@ -144,47 +145,52 @@ const EditBiologicalData = () => {
     }
 
     return(
-        <div>
-            <h2>Промяна на биологични данни</h2>
+        <>
+            <Helmet>
+                <title>Промяна на биологични данни | Helti</title>
+            </Helmet>
             <div>
-                {error.status && 
-                    <Stack sx={{ width: '100%' }} spacing={2}>
-                        <Alert variant="outlined" severity="error">
-                        {error.message}
-                        </Alert>
-                    </Stack>
+                <h2>Промяна на биологични данни</h2>
+                <div>
+                    {error.status && 
+                        <Stack sx={{ width: '100%' }} spacing={2}>
+                            <Alert variant="outlined" severity="error">
+                            {error.message}
+                            </Alert>
+                        </Stack>
+                    }
+                    {success.status && 
+                        <Stack sx={{ width: '100%' }} spacing={2}>
+                            <Alert variant="outlined" severity="success">
+                            {success.message}
+                            </Alert>
+                        </Stack>
+                    }
+                </div>
+                {
+                    userData.userData.biologicalData !== undefined && userData.userData.biologicalData !== null ?
+                    height !== null && age !== null ?
+                    <>
+                        <div className="dashboard-input-wrapper">
+                            <TextField type="number" color='primary' id="outlined-basic" value={weight !== null ? weight : ''} onChange={(e) => setWeight(e.target.value)} label="Тегло" variant="outlined" />
+                        </div>
+                        <LoadingButton
+                        color="secondary"
+                        onClick={AddMeasurement}
+                        loading={loading}
+                        loadingPosition="start"
+                        startIcon={<AddIcon />}
+                        variant="contained"
+                        >
+                        Промени
+                        </LoadingButton>
+                    </>
+                    : "Loading..."
+                    : <p className="dashboard-noinfo">Все още нямате добавени биологични данни! <Link to='/dashboard/settings/addbiodata'>Добави сега!</Link></p>
                 }
-                {success.status && 
-                    <Stack sx={{ width: '100%' }} spacing={2}>
-                        <Alert variant="outlined" severity="success">
-                        {success.message}
-                        </Alert>
-                    </Stack>
-                }
+                
             </div>
-            {
-                userData.userData.biologicalData !== undefined && userData.userData.biologicalData !== null ?
-                height !== null && age !== null ?
-                <>
-                    <div className="dashboard-input-wrapper">
-                        <TextField type="number" color='primary' id="outlined-basic" value={weight !== null ? weight : ''} onChange={(e) => setWeight(e.target.value)} label="Тегло" variant="outlined" />
-                    </div>
-                    <LoadingButton
-                    color="secondary"
-                    onClick={AddMeasurement}
-                    loading={loading}
-                    loadingPosition="start"
-                    startIcon={<AddIcon />}
-                    variant="contained"
-                    >
-                    Промени
-                    </LoadingButton>
-                </>
-                : "Loading..."
-                : <p className="dashboard-noinfo">Все още нямате добавени биологични данни! <Link to='/dashboard/settings/addbiodata'>Добави сега!</Link></p>
-            }
-            
-        </div>
+        </>
     )
 }
 

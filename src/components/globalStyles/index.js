@@ -7,14 +7,19 @@ export const GlobalStyles = createGlobalStyle`
     transition: all 0.50s linear;
   }
   .search-database h3 {
-    color: ${({ theme }) => theme.darkbluetowhite};
+    // color: ${({ theme }) => theme.darkbluetowhite};
+    background: ${({ theme }) => theme.lighttextgrad1} !important;
+    background: ${({ theme }) => theme.lighttextgrad2} !important;
+    background: ${({ theme }) => theme.lighttextgrad3} !important;
+    background: ${({ theme }) => theme.lighttextgrad4} !important;
+    background: ${({ theme }) => theme.lighttextgrad5} !important;
+    filter: ${({ theme }) => theme.textgradbg} !important;
+    transition: all 1s ease;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
   }
   .logo-wrapper {
     box-shadow: ${({ theme }) => theme.logoshadow};
-    transition: all 0.50s linear;
-  }
-  .logo-wrapper .logo {
-    content: ${({ theme }) => theme.changeLogo};
     transition: all 0.50s linear;
   }
   .headerBg {
@@ -26,17 +31,33 @@ export const GlobalStyles = createGlobalStyle`
     filter: ${({ theme }) => theme.filterbg};
     transition: all 1s ease;
   }
-  .landing-title {
-    // background: ${({ theme }) => theme.textbg1} !important;
-    // background: ${({ theme }) => theme.textbg2} !important;
-    // background: ${({ theme }) => theme.textbg3} !important;
-    // background: ${({ theme }) => theme.textbg4} !important;
-    // background: ${({ theme }) => theme.textbg5} !important;
-    // filter: ${({ theme }) => theme.textgradbg} !important;
-    // transition: all 1s ease;
-    // -webkit-background-clip: text !important;
-    // -webkit-text-fill-color: transparent !important;
+  .user-dashboard-wrapper .user-dashboard-body button,
+  .landing-textbox a button {
+    background: ${({ theme }) => theme.dashboardBtnBg1};
+    background: ${({ theme }) => theme.dashboardBtnBg2};
+    background: ${({ theme }) => theme.dashboardBtnBg3};
+    background: ${({ theme }) => theme.dashboardBtnBg4};
+    background: ${({ theme }) => theme.dashboardBtnBg5};
+    filter: ${({ theme }) => theme.dashboardBtnBg6};
+    transition: all 1s ease;
   }
+
+  .user-dashboard-wrapper {
+    background: ${({ theme }) => theme.dashboardBg};
+  }
+
+  .user-dashboard-wrapper .user-dashboard-nav {
+    background: ${({ theme }) => theme.dashboardNavBg};
+  }
+
+  .user-dashboard-wrapper .user-dashboard-nav a span {
+    color: ${({ theme }) => theme.dashboardNavLinks};
+  }
+
+  .user-dashboard-wrapper .user-dashboard-nav div {
+    color: ${({ theme }) => theme.dashboardNavLinks};
+  }
+
   .landing-page {
     background: ${({ theme }) => theme.mozbg};
     background: ${({ theme }) => theme.webkitbg};
@@ -56,15 +77,14 @@ export const GlobalStyles = createGlobalStyle`
     transition: all 1s ease;
   }
   footer {
-    background-color: ${({ theme }) => theme.footerBg};
+    // background-color: ${({ theme }) => theme.footerBg};
+    background: ${({ theme }) => theme.mozbg};
+    background: ${({ theme }) => theme.webkitbg};
+    background: ${({ theme }) => theme.olinearbg};
+    background: ${({ theme }) => theme.mslinearbg};
+    background: ${({ theme }) => theme.lineargrad};
+    filter: ${({ theme }) => theme.filterbg};
     transition: all 1s ease;
   }
-  footer a {
-    color: ${({ theme }) => theme.footerColor};
-    transition: all 1s ease;
-  }
-  footer img {
-    filter: ${({ theme }) => theme.footerLogo};
-    transition: all 1s ease;
-  }
+  
   `

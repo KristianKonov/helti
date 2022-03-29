@@ -6,6 +6,7 @@ import { GlobalStyles } from "./components/globalStyles";
 import { lightTheme, darkTheme } from "./components/theme"
 import PageRoutes from './components/routes';
 import {UserProvider} from './context';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function App() {
   // const [user, setUser] = useState(null)
@@ -38,12 +39,14 @@ function App() {
   return (
     <ThemeProvider theme={localStorage.getItem('theme') === 'light' ? lightTheme : darkTheme}>
       <>
-        <UserProvider>
-            <GlobalStyles/>
-            <div className="App">
-              <PageRoutes theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
-            </div>
-        </UserProvider>
+        <HelmetProvider>
+          <UserProvider>
+              <GlobalStyles/>
+              <div className="App">
+                <PageRoutes theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+              </div>
+          </UserProvider>
+        </HelmetProvider>
       </>
     </ThemeProvider>
   );

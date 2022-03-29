@@ -26,9 +26,7 @@ const UserChart = () => {
                 })
             )}
     },[userData])
-    console.log('here', chartData)
     if(chartData !== null && userData.userData.measurements.length > 0 ) {
-        console.log(chartData.length)
         if(!loading) {
             var min = 2;
             var max = 98;
@@ -43,8 +41,6 @@ const UserChart = () => {
                         if(max < item.item.weight)
                             max=item.item.weight
                     }
-                    console.log('item', item.item.weight)
-                    console.log('min ', min, ' max ', max)
                 })
             }
             return(

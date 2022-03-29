@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import UserContext from '../../../../context';
+import { Helmet } from 'react-helmet-async';
 
 const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
     ({ theme, checked }) => ({
@@ -60,6 +61,11 @@ const DeactivateAccountPage = () => {
 
     return(
         <div className="dashboard-deactivate">
+            <Helmet>
+                <title>
+                    Деактивиране | Helti
+                </title>
+            </Helmet>
             <h3>Сигурни ли сте че искате да деактивирате акаунта си?</h3>
             <RadioGroup name="use-radio-group">
                 <MyFormControlLabel value="NOTIME" label="Нямам време" control={<Radio />} />

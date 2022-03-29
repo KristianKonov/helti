@@ -1,10 +1,14 @@
 import React from 'react'
 import './about.sass'
 import LogoBig from './../../images/logo_big.svg'
+import { Helmet } from 'react-helmet-async'
 
 const About = () => {
     return(
         <div className="container">
+            <Helmet>
+                <title>За нас | Helti</title>
+            </Helmet>
             <div className="about">
                 <div className="about-header">
                     <img className="about-logo" alt="Helti logo" src={LogoBig} />

@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 import { Stack } from '@mui/material';
 import { Alert } from '@mui/material';
+import { Helmet } from 'react-helmet-async';
 
 
 const ChangeNamePage = () => {
@@ -54,6 +55,12 @@ const ChangeNamePage = () => {
     
             axios(config)
             .then(function (response) {
+                console.log(response.data)
+                userData.setUserData(user => ({
+                    ...user,
+                    'firstName': response.data.firstName,
+                    'lastName': response.data.lastName
+                }))
                 setLoading(false)
                 setSuccess({
                     'status': true,
@@ -81,6 +88,11 @@ const ChangeNamePage = () => {
 
     return(
         <div>
+            <Helmet>
+                <title>
+                    Промяна на име | Helti
+                </title>
+            </Helmet>
             <h2>Change name</h2>
             <div>
                 {error.status && 

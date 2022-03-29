@@ -18,6 +18,10 @@
         overflow: hidden
         margin: 50px
         padding: 0px 20px
+        @include for-phone-only
+            margin: 20px 0px
+            padding: 0px 2.5%
+            width: 95%
         label
         color: $darkBlue
         button
@@ -29,7 +33,7 @@
         h2
             color: $mediumBlue
         h3
-            color: $mediumBlue
+            color: $lightBlue
     .dashboard-input-wrapper
         margin: 20px 0px
 

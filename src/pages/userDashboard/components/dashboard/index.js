@@ -10,17 +10,17 @@ import UserChart from './../../../../components/user_chart'
 // Icons
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
+import { Helmet } from 'react-helmet-async';
 
 const UserDashboardPage = () => {
     const userData = useContext(UserContext)
     const location = useLocation();
-    
-    console.log('first one', userData.userData.biologicalData)
-    console.log('second one', userData.userData.measurements)
     return(
         <>
+            <Helmet>
+                <title>Профил | Helti</title>
+            </Helmet>
             <Grid container spacing={3}>
-            {/* Chart */}
             <Grid item xs={12} md={8} lg={8}>
                 <Paper
                 sx={{
@@ -33,7 +33,6 @@ const UserDashboardPage = () => {
                     <UserChart />
                 </Paper>
             </Grid>
-            {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={4}>
                 <Paper
                 sx={{
@@ -70,7 +69,6 @@ const UserDashboardPage = () => {
                 : 'Loading...'}
                 </Paper>
             </Grid>
-            {/* Recent Orders */}
             <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                 </Paper>

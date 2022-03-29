@@ -20,7 +20,6 @@ export const UserProvider = (props) => {
           
     axios(config)
     .then(function (response) {       
-            console.log('context response is ', response)
             setUserData({
                 'id': response.data.id,
                 'email': response.data.email,
@@ -43,11 +42,14 @@ export const UserProvider = (props) => {
         setUserData({})
         setIsAuthenticated(false)
         document.cookie = 'x-auth-token=; Max-Age=0; path=/; domain=';
-        window.location.reload()
+        document.location.href="/";
+        // window.location.reload()
     }
 
     useEffect(() => {
-        setUserContext()
+        if(Cookies.get('x-auth-token')) {
+            setUserContext()
+        }
     },[])
 
     return(

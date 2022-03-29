@@ -8,12 +8,15 @@ import PersonIcon from '@mui/icons-material/Person';
 
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import { Helmet } from 'react-helmet-async';
 
 const Homepage = () => {
     const userData = useContext(UserContext)
-    console.log(userData)
     return(
     <div className="landing">
+        <Helmet>
+            <title>Helti</title>
+        </Helmet>
         <div className="landing-wrapper">
             {userData.isAuthenticated ? 
             <Grid item xs={12} md={12} lg={12}>
@@ -50,11 +53,12 @@ const Homepage = () => {
                         биометрични и здравни данни.
                     </p>
                     <Link to='/register'><Button variant="contained">Започни сега!</Button></Link>
+                    <p><span>Вече имате акаунт? <Link to='/login'>Влезте сега!</Link></span></p>
                     {/* <p>Вече имате акаунт? <Link to='/login'>Влезте сега!</Link></p> */}
                 </div>
             </>
         }
-            
+        
         </div>
     </div>
     )
