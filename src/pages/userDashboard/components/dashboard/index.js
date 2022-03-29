@@ -14,8 +14,9 @@ import AddIcon from '@mui/icons-material/Add';
 const UserDashboardPage = () => {
     const userData = useContext(UserContext)
     const location = useLocation();
-    console.log(location.pathname)
-
+    
+    console.log('first one', userData.userData.biologicalData)
+    console.log('second one', userData.userData.measurements)
     return(
         <>
             <Grid container spacing={3}>

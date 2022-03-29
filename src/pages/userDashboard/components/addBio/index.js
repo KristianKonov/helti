@@ -88,13 +88,17 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
         return <StyledFormControlLabel checked={checked} {...props} />;
     }
 
+    useEffect(() => {
+        console.log('updated ', userData.userData)
+    },[userData.userData])
+
     const addBiologicalData = () => {
         if(height === null && goal === '' && age === null) {
             setError({
                 'status': true,
                 'message': "No changes found!"
             })
-        } else {
+        } else { 
             setLoading(true)
 
             var data = JSON.stringify({
@@ -115,9 +119,21 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
                 data: data
             };
 
+            
+
             axios(config)
             .then(function (response) {
                 setLoading(false)
+                console.log('bio', response)
+                userData.setUserData({
+                    'id': response.data.id,
+                    'email': response.data.email,
+                    'role': response.data.role,
+                    'firstName': response.data.firstName,
+                    'lastName': response.data.lastName,
+                    'biologicalData': response.data.biologicalDataVersion,
+                    'measurements': response.data.measurements
+                })
                 setProgress(50)
                 setInfo({
                     'status': true,
@@ -167,6 +183,19 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
     
             axios(configMeasurement)
             .then(function (responseMeasurement) {
+                console.log('meas', responseMeasurement)
+                var temp = responseMeasurement.data
+                userData.setUserData(user => ({
+                    ...user,
+                    'biologicalData': {
+                        ...user.biologicalData,
+                        'measurement': {...temp}
+                    },
+                    'measurements': [
+                        ...user.measurements,
+                        temp
+                    ]
+                }))
                 setLoading(false)
                 setProgress(100)
                 setSuccess({
@@ -183,7 +212,7 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
                 })
                 setTimeout(function() {
                     navigate('/dashboard')
-                }, 3000);
+                }, 2000);
             })
             .catch(function (error) {
                 setLoading(false)

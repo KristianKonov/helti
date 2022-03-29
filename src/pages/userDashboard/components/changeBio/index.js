@@ -101,6 +101,20 @@ const EditBiologicalData = () => {
     
             axios(configMeasurement)
             .then(function (responseMeasurement) {
+                console.log(responseMeasurement)
+                var temp = responseMeasurement.data
+                userData.setUserData(user => ({
+                    ...user,
+                    'biologicalData': {
+                        ...user.biologicalData,
+                        'measurement': {...temp}
+                    },
+                    'measurements': [
+                        ...user.measurements,
+                        temp
+                    ]
+                }))
+                console.log('asdasd', userData.userData)
                 setLoading(false)
                 setSuccess({
                     'status': true,
@@ -112,7 +126,7 @@ const EditBiologicalData = () => {
                 })
                 setTimeout(function() {
                     navigate('/dashboard')
-                }, 3000);
+                }, 1500);
             })
             .catch(function (error) {
                 setLoading(false)
