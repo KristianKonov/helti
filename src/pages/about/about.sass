@@ -12,7 +12,14 @@
             font-size: 42px
             margin: 10px
             padding: 0px
-            @include text-gradient()
+            background: -moz-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)
+            background: -webkit-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)
+            background: -o-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)
+            background: -ms-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)
+            background: linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#00AFDB", endColorstr="#4CB062", GradientType=1 )
+            -webkit-background-clip: text
+            -webkit-text-fill-color: transparent
     .about-desc
         text-align: justify
         opacity: 0.7

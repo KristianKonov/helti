@@ -28,12 +28,10 @@ const FoodDetails = (props) => (
                         {props.food.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                        <ul>
                             <li>Калории: {props.food.calories}</li>
                             <li>Протеин: {props.food.protein}</li>
                             <li>Въглехидрати: {props.food.carbs}</li>
                             <li>Мазнини: {props.food.fats}</li>
-                        </ul>
                         </Typography>
                         <CardActions>
                     </CardActions>

@@ -22,7 +22,7 @@ const rows = [
 const FoodTable = () => {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 150, maxWidth: 1000}} fullwidth aria-label="simple table">
+      <Table sx={{ minWidth: 150, maxWidth: 1000}} fullwidth="true" aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Витамини и минерали (100g serving)</TableCell>
