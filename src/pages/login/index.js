@@ -46,6 +46,7 @@ const LoginPage = (props) => {
                 
                 axios(config2)
                 .then(function (response) {
+                    console.log(response)
                     userData.setUserData({
                         'id': response.data.id,
                         'email': response.data.email,

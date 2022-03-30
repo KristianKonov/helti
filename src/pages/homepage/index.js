@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import UserContext from './../../context'
 import PersonIcon from '@mui/icons-material/Person';
-
+import CountUp from 'react-countup';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Helmet } from 'react-helmet-async';
 
 const Homepage = () => {
+    
     const userData = useContext(UserContext)
     return(
     <div className="landing">
@@ -30,7 +31,7 @@ const Homepage = () => {
                 }}
             >
                 <div className="landing-authenticated">
-                    <h1>Радваме се да те видим отново, {userData.userData.firstName + ' ' + userData.userData.lastName}</h1>
+                    <h2>Радваме се да те видим отново, {userData.userData.firstName + ' ' + userData.userData.lastName}</h2>
                     {userData.userData.biologicalData?.age ? <p>Вие сте на <span>4кг</span> от целта си</p> : <p>Все още не сте въвели <span>биологичните си данни</span>.</p>}
                     <Link to='/dashboard'><Button type="submit" variant="contained" endIcon={<PersonIcon />}>
                         Go to profile
@@ -40,13 +41,10 @@ const Homepage = () => {
         </Grid>
             : 
             <>
-                <div className="photo-wrapper">
-                    <img alt="iPhone" className="landing-photo" src={iPhone} />
-                </div>
                 <div className="landing-textbox">
                     <h2 className="landing-title">
-                        76 423 човека се приближиха
-                        с 314 642 кг. към целта си
+                        <span className="counter"><CountUp useEasing end={76423} duration={3} /></span> човека се приближиха
+                        с <span className="counter"><CountUp useEasing end={314642} duration={3} /></span> кг. към целта си
                     </h2>
                     <p>
                         Следете вашите калории, упражнения, 
@@ -55,6 +53,9 @@ const Homepage = () => {
                     <Link to='/register'><Button variant="contained">Започни сега!</Button></Link>
                     <p><span>Вече имате акаунт? <Link to='/login'>Влезте сега!</Link></span></p>
                     {/* <p>Вече имате акаунт? <Link to='/login'>Влезте сега!</Link></p> */}
+                </div>
+                <div className="photo-wrapper">
+                    <img alt="iPhone" className="landing-photo" src={iPhone} />
                 </div>
             </>
         }

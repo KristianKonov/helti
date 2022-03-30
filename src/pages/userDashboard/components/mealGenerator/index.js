@@ -3,6 +3,8 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import './mealgenerator.sass'
 
+// SVG Import
+import PersonFood from './../../images/person_food.svg'
 
 // Radio imports
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
@@ -95,7 +97,6 @@ const MealGeneratorPage = () => {
         .then(function (response) {
             setGenerated(true)
             setGeneratorResponse(response.data)
-            console.log(response.data);
         })
         .catch(function (error) {
             console.log(error);
@@ -184,6 +185,7 @@ const MealGeneratorPage = () => {
                                     display: 'flex',
                                     flexDirection: 'column',
                                     height: 240,
+                                    opacity: .9
                                 }}
                             >
                                 <div>
@@ -203,6 +205,7 @@ const MealGeneratorPage = () => {
                                         display: 'flex',
                                         flexDirection: 'column',
                                         height: 240,
+                                        opacity: .9
                                     }}
                                 >
                                     <div>
@@ -222,6 +225,7 @@ const MealGeneratorPage = () => {
                                         display: 'flex',
                                         flexDirection: 'column',
                                         height: 240,
+                                        opacity: .9
                                     }}
                                 >
                                     <div>
@@ -259,6 +263,7 @@ const MealGeneratorPage = () => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 height: 240,
+                                opacity: .9
                             }}
                         >
                         <div className="target-macros">
@@ -279,6 +284,7 @@ const MealGeneratorPage = () => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 height: 240,
+                                opacity: .9
                             }}
                         >
                         <div className="current-macros">
@@ -297,7 +303,8 @@ const MealGeneratorPage = () => {
                             sx={{
                                 p: 2,
                                 display: 'flex',
-                                flexDirection: 'column'
+                                flexDirection: 'column',
+                                opacity: 0.9
                             }}
                         >
                         <div className="generated-foods-body">
@@ -327,6 +334,7 @@ const MealGeneratorPage = () => {
                 </Grid>
             </div>
             }
+            <img src={PersonFood} className="user-dashboard-vector" />
         </div>
     )
 }

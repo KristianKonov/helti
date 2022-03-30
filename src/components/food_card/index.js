@@ -25,7 +25,7 @@ const FoodCard = (props) => {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt={props.name}
         height="140"
         image="https://i.imgur.com/kqOj5QG.jpg"
       />

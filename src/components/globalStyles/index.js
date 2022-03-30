@@ -18,6 +18,9 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
   }
+  .search-database p {
+    color: ${({ theme }) => theme.grey};
+  }
   .logo-wrapper {
     box-shadow: ${({ theme }) => theme.logoshadow};
     transition: all 0.50s linear;

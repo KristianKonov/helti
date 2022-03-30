@@ -31,11 +31,14 @@ export const lightTheme = {
 
     changeLogo: `url(${Darklogo})`,
 
-    lighttextgrad1: '-moz-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    lighttextgrad2: '-webkit-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    lighttextgrad3: '-o-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    lighttextgrad4: '-ms-linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
-    lighttextgrad5: 'linear-gradient(90deg, rgba(0, 7, 28, 1) 0%, rgba(2, 25, 91, 1) 100%)',
+    grey: 'rgba(0,0,0,.7)',
+
+    lighttextgrad1: '-moz-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%) ',
+    lighttextgrad2: '-webkit-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    lighttextgrad3: '-o-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    lighttextgrad4: '-ms-linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    lighttextgrad5: 'linear-gradient(200deg, rgba(76, 176, 98, 1) 0%, rgba(0, 175, 219, 1) 100%)',
+    lighttextgrad6: 'progid:DXImageTransform.Microsoft.gradient( startColorstr="#00AFDB", endColorstr="#4CB062", GradientType=1 )',
     textgradbg: 'progid:DXImageTransform.Microsoft.gradient( startColorstr="#02195B", endColorstr="#00071C", GradientType=0 )'
 }
 export const darkTheme = {
@@ -50,7 +53,7 @@ export const darkTheme = {
     footerColor: '#00071C',
     footerLogo: 'invert(1)',
 
-    // text-gradient
+    grey: 'rgba(255,255,255,.9)',
 
 
     // background landing

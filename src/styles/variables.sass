@@ -6,6 +6,12 @@ $lightBlue: #13B0DB
 
 $heltiGreen: #1BED80
 
+$gradientPink: rgba(238, 73, 114, 1)
+
+$gradientOrange: rgba(245, 177, 67, 1)
+
+
+
 $cursive-font: 'Comfortaa', cursive
 
 @mixin background-gradient()
@@ -25,10 +31,25 @@ $cursive-font: 'Comfortaa', cursive
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0F924E', endColorstr='#1BED80', GradientType=1 )
     background: -ms-linear-gradient(180deg, rgba(27, 237, 128, 1) 0%, rgba(15, 146, 78, 1) 100%)
     background: linear-gradient(180deg, rgba(27, 237, 128, 1) 0%, rgba(15, 146, 78, 1) 100%)
-    
+  
+@mixin homepage-btn-gradient()
+    background: -moz-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%) 
+    background: -webkit-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
+    background: -o-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EE4972', endColorstr='#F5B143', GradientType=0 )
+    background: -ms-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
+    background: linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
+
 @mixin text-gradient()
-    color: #1BED80
-    text-shadow: 0px 0px 10px rgba(0,0,0,.1)
+    background: -moz-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%) 
+    background: -webkit-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
+    background: -o-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EE4972', endColorstr='#F5B143', GradientType=0 )
+    background: -ms-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
+    background: linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+    // color: #1BED80
 
 @mixin loginButtonGradient()
     background: -moz-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 176, 219, 1) 100%)

@@ -7,6 +7,9 @@ import './../../userDashboard.sass'
 import Button from '@mui/material/Button';
 import UserChart from './../../../../components/user_chart'
 
+// SVG Import
+import PersonFitnessTracker from './../../images/fitness_tracker.svg'
+
 // Icons
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
@@ -28,6 +31,7 @@ const UserDashboardPage = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     height: 240,
+                    opacity: .9
                 }}
                 >
                     <UserChart />
@@ -40,11 +44,14 @@ const UserDashboardPage = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     height: 240,
+                    opacity: .9
                 }}
                 >
                 {userData.userData.firstName !== undefined ?
                 <>
-                    <h3>Добре дошъл, {userData.userData.firstName} {userData.userData.lastName}</h3>
+                    <div className="user-dashboard-flex-box">
+                        <span class="user-dashboard-span">Добре дошъл,</span><h3>{userData.userData.firstName} {userData.userData.lastName}</h3>
+                    </div>
                     {userData.userData.biologicalData?.age !== undefined ? 
                         <>
                         <ul className="user-dashboard-biodata">
@@ -70,10 +77,11 @@ const UserDashboardPage = () => {
                 </Paper>
             </Grid>
             <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', opacity: .9 }}>
                 </Paper>
             </Grid>
             </Grid>
+            <img src={PersonFitnessTracker} className="user-dashboard-vector" />
         </>
     )
 }

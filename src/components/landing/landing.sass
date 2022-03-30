@@ -7,7 +7,7 @@
 
 .landing-page 
     @include background-gradient
-    @include flexbox(100vh)
+    @include flexbox(75vh)
     @include for-tablets
         height: auto
 
@@ -60,3 +60,11 @@
         background-position: 100% 50%
     100%
         background-position: 0% 50%
+
+@keyframes breathingEffect
+    0%
+        transform: scale(1,1)
+    50%
+        transform: scale(1.025, 1.025)
+    100%
+        transform: scale(1,1)
