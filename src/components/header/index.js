@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from '../navigation/index'
-import logo from './../../images/logo.svg'
+import logo from './../../images/footer_logo.svg'
 import './header.sass'
 import UserContext from '../../context'
 import MobileNavigation from './../mobile_nav/'

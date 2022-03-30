@@ -22,7 +22,6 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.grey};
   }
   .logo-wrapper {
-    box-shadow: ${({ theme }) => theme.logoshadow};
     transition: all 0.50s linear;
   }
   .headerBg {
