@@ -26,9 +26,10 @@ export const UserProvider = (props) => {
                 'role': response.data.role,
                 'firstName': response.data.firstName,
                 'lastName': response.data.lastName,
-                'biologicalData': response.data.biologicalDataVersion,
+                'biologicalData': response.data.biologicalData,
                 'measurements': response.data.measurements
             })
+            console.log(response.data)
             setIsAuthenticated(true)
         })
         .catch(function (error) {

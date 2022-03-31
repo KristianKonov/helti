@@ -13,7 +13,11 @@ import axios from 'axios'
 import { Stack } from '@mui/material';
 import { Alert } from '@mui/material';
 import './../../userDashboard.sass'
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import GoalsNomenclature from '../nomenclature/goals';
+import FoodNomenclature from '../nomenclature/food';
+import ActivityNomenclature from '../nomenclature/activity';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -40,14 +44,16 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
         const userData = useContext(UserContext)
         const [age, setAge] = useState(null)
         const [progress, setProgress] = useState(0)
-        //   const [goal, setGoal] = useState('')
-        //   const [gender, setGender] = useState('')
-        let goal = ''
-        let gender = ''
+        const [goal, setGoal] = useState(null)
+        const [gender, setGender] = useState('')
         const [height, setHeight] = useState(null)
         const [weight, setWeight] = useState(null)
         const [loading, setLoading] = useState(false)
         const navigate = useNavigate()
+
+        const [foodHabits, setFoodHabits] = useState(3)
+        const [activityHabits, setActivityHabits] = useState(2)
+
         const [success, setSuccess] = useState({
           'status': false,
           'message': ''
@@ -67,13 +73,11 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
         
         if (radioGroup && radioGroup.value !== undefined) {
             checked = radioGroup.value === props.value;
-            // setGoal(radioGroup.value)
-            goal = radioGroup.value
         }
         
         return <StyledFormControlLabel checked={checked} {...props} />;
     }
-    
+
     function GenderForm(props) {
         const radioGroup = useRadioGroup();
         
@@ -82,15 +86,11 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
         if (radioGroup && radioGroup.value !== undefined) {
             checked = radioGroup.value === props.value;
             // setGender(radioGroup.value)
-            gender = radioGroup.value
+            var tempGender = radioGroup.value
         }
         
         return <StyledFormControlLabel checked={checked} {...props} />;
     }
-
-    useEffect(() => {
-        console.log('updated ', userData.userData)
-    },[userData.userData])
 
     const addBiologicalData = () => {
         if(height === null && goal === '' && age === null) {
@@ -124,7 +124,6 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
             axios(config)
             .then(function (response) {
                 setLoading(false)
-                console.log('bio', response)
                 userData.setUserData({
                     'id': response.data.id,
                     'email': response.data.email,
@@ -171,19 +170,18 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
             });
     
             var configMeasurement = {
-            method: 'post',
-            url: 'http://localhost:8080/api/measurements/create',
-            headers: { 
-                'accept': '*/*', 
-                'Content-Type': 'application/json', 
-                'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
-            },
-            data: dataMeasurement
+                method: 'post',
+                url: 'http://localhost:8080/api/measurements/create',
+                headers: { 
+                    'accept': '*/*', 
+                    'Content-Type': 'application/json', 
+                    'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
+                },
+                data: dataMeasurement
             };
     
             axios(configMeasurement)
             .then(function (responseMeasurement) {
-                console.log('meas', responseMeasurement)
                 var temp = responseMeasurement.data
                 userData.setUserData(user => ({
                     ...user,
@@ -229,6 +227,16 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
         }
     }
 
+    const addbio = () => {
+        setProgress(100)
+        console.log('height ', height)
+        console.log('weight ', weight)
+        console.log('age ', age)
+        console.log('foodhabit ', foodHabits)
+        console.log('activity ', activityHabits)
+        console.log('goal ', goal)
+    }
+
     return(
         <div>
             <h2>Добавяне на биологични данни</h2>
@@ -256,56 +264,131 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
                     </Stack>
                 }
             </div>
-                {progress === 0 ?
-                <>
-                    <div className="dashboard-input-wrapper">
-                        <TextField type="number" color='primary' id="outlined-basic" value={age !== null ? age : ''} onChange={(e) => setAge(e.target.value)} label="Възраст" variant="outlined" />
+                {progress === 0 &&
+                    <>
+                        <div className="biological-form-info">
+                            <p>Моля попълнете полетата.</p>
+                        </div>
+                        <div className="dashboard-input-wrapper">
+                            <TextField type="number" color='primary' id="outlined-basic" value={age !== null ? age : ''} onChange={(e) => setAge(e.target.value)} label="Възраст" variant="outlined" />
+                        </div>
+                        <div className="dashboard-input-wrapper">
+                            <TextField type="number" color='primary' id="outlined-basic" value={height !== null ? height : ''} onChange={(e) => setHeight(e.target.value)} label="Височина" variant="outlined" />
+                        </div>
+                        <div className="dashboard-input-wrapper">
+                            <h3>Пол:</h3>
+                            <RadioGroup onChange={(e) => setGender(e.target.value)} name="use-radio-group">
+                                <GenderForm value="MALE" label="Мъж" control={<Radio />} />
+                                <GenderForm value="FEMALE" label="Жена" control={<Radio />} />
+                            </RadioGroup>
+                        </div>
+                        <LoadingButton
+                        disabled={height !== null && age !== null && gender !== '' ? false : true}
+                        color="secondary"
+                        onClick={() => setProgress(45)}
+                        loading={loading}
+                        loadingPosition="end"
+                        endIcon={<ArrowRightIcon />}
+                        variant="contained"
+                        >
+                        Продължи
+                        </LoadingButton>
+                    </>
+                }
+                {
+                progress === 45 &&
+                    <div>
+                        <div className="biological-form-info">
+                            <h3>Въведете теглото си</h3>
+                            <p>Спрямо настоящо</p>
+                        </div>
+                        <div className="dashboard-input-wrapper">
+                            <TextField type="number" color='primary' id="outlined-basic" value={weight !== null ? weight : ''} onChange={(e) => setWeight(e.target.value)} label="Тегло" variant="outlined" />
+                        </div>
+                        <LoadingButton
+                        disabled={weight !== null && weight !== '' ? false : true}
+                        color="secondary"
+                        onClick={() => setProgress(60)}
+                        loading={loading}
+                        loadingPosition="end"
+                        endIcon={<ArrowRightIcon />}
+                        variant="contained"
+                        >
+                        Продължи
+                        </LoadingButton>
                     </div>
-                    <div className="dashboard-input-wrapper">
-                        <TextField type="number" color='primary' id="outlined-basic" value={height !== null ? height : ''} onChange={(e) => setHeight(e.target.value)} label="Височина" variant="outlined" />
+                }
+                {progress === 60 &&
+                    <>
+                        <div className="biological-form-info">
+                            <h3>Какви са целите ти?</h3>
+                            <p>Спрямо целите се изчисляват макроси/ хранителни режими и т.н.</p>
+                        </div>
+                        <div className="dashboard-input-wrapper">
+                        <GoalsNomenclature goal={goal} setGoal={setGoal} GoalForm={GoalForm} />
+                        </div>
+                        <LoadingButton
+                        color="secondary"
+                        onClick={() => setProgress(75)}
+                        loading={loading}
+                        loadingPosition="end"
+                        endIcon={<ArrowRightIcon />}
+                        variant="contained"
+                        >
+                        Продължи
+                        </LoadingButton>
+                    </>
+                }
+                {
+                    progress === 75 &&
+                    <div>
+                        <div className="biological-form-info">
+                            <h3>Как се храните?</h3>
+                            <p>Оценете хранителните си навици използвайки slider-а по-долу</p>
+                        </div>
+                        <FoodNomenclature foodHabits={foodHabits} setFoodHabits={setFoodHabits} />
+                        <LoadingButton
+                        color="secondary"
+                        onClick={() => setProgress(90)}
+                        loading={loading}
+                        loadingPosition="end"
+                        endIcon={<ArrowRightIcon />}
+                        variant="contained"
+                        >
+                        Продължи
+                        </LoadingButton>
                     </div>
-                    <div className="dashboard-input-wrapper">
-                        <h3>Пол:</h3>
-                        <RadioGroup name="use-radio-group">
-                            <GenderForm value="MALE" label="Мъж" control={<Radio />} />
-                            <GenderForm value="FEMALE" label="Жена" control={<Radio />} />
-                        </RadioGroup>
+                }
+                {
+                    progress === 90 &&
+                    <div>
+                        <div className="biological-form-info">
+                            <h3>Ниво на активност</h3>
+                            <p>Въведете колко сте активни в ежедневието си.</p>
+                        </div>
+                        <ActivityNomenclature activityHabits={activityHabits} setActivityHabits={setActivityHabits} />
+                        <LoadingButton
+                        color="secondary"
+                        onClick={addbio}
+                        disabled={goal === null ? true : false}
+                        loading={loading}
+                        loadingPosition="start"
+                        startIcon={<AddIcon />}
+                        variant="contained"
+                        >
+                        Добави
+                        </LoadingButton>
                     </div>
-                    <div className="dashboard-input-wrapper">
-                        <h3>Цел:</h3>
-                        <RadioGroup name="use-radio-group">
-                            <GoalForm value="CUT" label="Отслабване" control={<Radio />} />
-                            <GoalForm value="BULK" label="Покачване на мускулна маса" control={<Radio />} />
-                        </RadioGroup>
+                }
+                {
+                    progress === 100 &&
+                    <div>
+                        <div className="biological-form-info">
+                            <h3>posted</h3>
+                            <p>Въведете колко сте активни в ежедневието си.</p>
+                        </div>
                     </div>
-                    <LoadingButton
-                    color="secondary"
-                    onClick={addBiologicalData}
-                    loading={loading}
-                    loadingPosition="start"
-                    startIcon={<AddIcon />}
-                    variant="contained"
-                    >
-                    Добави
-                    </LoadingButton>
-                </>
-                :
-                <div>
-                    <div className="dashboard-input-wrapper">
-                        <TextField type="number" color='primary' id="outlined-basic" value={weight !== null ? weight : ''} onChange={(e) => setWeight(e.target.value)} label="Тегло" variant="outlined" />
-                    </div>
-                    <LoadingButton
-                    color="secondary"
-                    onClick={AddMeasurement}
-                    loading={loading}
-                    loadingPosition="start"
-                    startIcon={<AddIcon />}
-                    variant="contained"
-                    >
-                    Добави
-                    </LoadingButton>
-                </div>
-            }
+                }
         </div>
     )
 }

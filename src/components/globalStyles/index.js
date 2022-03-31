@@ -6,7 +6,8 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
     transition: all 0.50s linear;
   }
-  .search-database h3 {
+  .search-database h3,
+  .user-dashboard-body h2 {
     // color: ${({ theme }) => theme.darkbluetowhite};
     background: ${({ theme }) => theme.lighttextgrad1} !important;
     background: ${({ theme }) => theme.lighttextgrad2} !important;
@@ -18,7 +19,8 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
   }
-  .search-database p {
+  .search-database p,
+  .user-dashboard-body p {
     color: ${({ theme }) => theme.grey};
   }
   .logo-wrapper {

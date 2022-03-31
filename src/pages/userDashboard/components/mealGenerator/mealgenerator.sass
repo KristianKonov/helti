@@ -35,7 +35,14 @@
     margin: 10px 1%
     padding: 0px 0.5%
     @include for-tablets
-        width: 100%
+        width: 45%
+        display: inline-block
+        margin: 20px 2%
+        float: unset    
+    @include for-phone-only
+        width: 95%
+        margin: 20px 1.5%
+        padding: 0px
         float: unset
     div
         max-width: initial
@@ -46,3 +53,6 @@
         list-style: none
         font-size: 14px
         margin: 5px 0px
+    div
+        p
+            color: rgba(0,0,0,.8)

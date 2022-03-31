@@ -37,23 +37,19 @@
         button
             margin: 20px 0px
             background-color: #167c47b3
+            transition: 1s ease
             color: #fff
             &:hover
                 background-color: #19ae61b3
+            &:disabled
+                opacity: .3
         h2
-            color: $mediumBlue
         .user-dashboard-flex-box
-            display: flex
-            align-content: center
-            vertical-align: bottom
-            justify-content: flex-start
         .user-dashboard-span
-            display: inline
-            float: left
             margin-top: auto
             font-weight: 700
             color: rgba(0, 0, 0, 0.5)
-            padding: 10px 5px 10px 0px
+            padding: 10px 5px 0px 0px
         h3
             color: $lightBlue
             margin: 0
@@ -93,6 +89,9 @@
 
 .status-body
     margin: 20px 0px
+
+.dashboard-form-slider
+    padding: 0px 20px
 
 .dashboard-nav-btn
     display: none
@@ -134,7 +133,8 @@
         animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both
         height: 0px
         overflow: hidden
-    
+
+// ANIMATIONS
 
 @keyframes showNav
     0%

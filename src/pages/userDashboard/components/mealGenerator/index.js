@@ -304,7 +304,7 @@ const MealGeneratorPage = () => {
                                 p: 2,
                                 display: 'flex',
                                 flexDirection: 'column',
-                                opacity: 0.9
+                                opacity: 1
                             }}
                         >
                         <div className="generated-foods-body">

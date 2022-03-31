@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
@@ -18,24 +18,51 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
     }),
   );
 
-
 const DeactivateAccountPage = () => {
     const userData = useContext(UserContext)
-    const [reason, setReason] = useState('')
+    const [reasonsList, SetReasonsList] = useState(null)
+    let reason = null
     function MyFormControlLabel(props) {
         const radioGroup = useRadioGroup();
         
         let checked = false;
         
-        if (radioGroup) {
+        if (radioGroup && radioGroup.value !== undefined) {
             checked = radioGroup.value === props.value;
-            if(radioGroup.value) {
-                setReason(radioGroup.value)
-            }
+            reason = radioGroup.value
         }
+
+        // if (radioGroup) {
+        //     checked = radioGroup.value === props.value;
+        //     if(radioGroup.value) {
+        //         reason = radioGroup.value
+        //         console.log(radioGroup.value, ' re', reason)
+        //     }
+        // }
         
         return <StyledFormControlLabel checked={checked} {...props} />;
     }
+
+    useEffect(() => {
+        // GET REASONS
+        var config = {
+            method: 'get',
+            url: 'http://localhost:8080/api/nomenclature/account-deactivation-reasons',
+            headers: {
+                'accept': '*/*',
+                'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
+            }
+        }
+        axios(config)
+        .then(function (response) {
+            SetReasonsList(
+                response.data
+            )
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+    },[])
 
     const deactivateUser = () => {
         var config = {
@@ -68,8 +95,18 @@ const DeactivateAccountPage = () => {
             </Helmet>
             <h3>Сигурни ли сте че искате да деактивирате акаунта си?</h3>
             <RadioGroup name="use-radio-group">
-                <MyFormControlLabel value="NOTIME" label="Нямам време" control={<Radio />} />
-                <MyFormControlLabel value="NONEED" label="Не се нуждая от Helti" control={<Radio />} />
+                {
+                    reasonsList !== null && reasonsList.length > 1 ? 
+                    reasonsList.map(item => {
+                        return (
+                            <div key={item.index}>
+                                <MyFormControlLabel key={item.name} value={item.id} label={item.name} control={<Radio />} />
+                            </div>
+                        )
+                    })
+                    :
+                    'Loading reasons'
+                }
             </RadioGroup>
             <Button disabled={reason !== '' ? false : true} onClick={deactivateUser} variant="contained" endIcon={<DeleteIcon />}>
                 Деактивирай

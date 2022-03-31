@@ -1,7 +1,6 @@
 @import './../../styles/variables.sass'
     
 .login-page
-    min-height: 83vh
     @include container()
     .login-additional
         p
@@ -12,8 +11,13 @@
                 text-decoration: none
     .login-form
         color: $darkBlue
-        background-color: #efefef
-        box-shadow: 0px 0px 5px rgba(0,0,0,.3)
+        background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(245, 251, 255, 1) 100%) 
+        background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(245, 251, 255, 1) 100%)
+        background: -o-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(245, 251, 255, 1) 100%)
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F5FBFF', endColorstr='#FFFFFF', GradientType=1 )
+        background: -ms-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(245, 251, 255, 1) 100%)
+        background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(245, 251, 255, 1) 100%)
+        box-shadow: 0px 0px 20px rgba(0,0,0,.1)
         width: 40%
         text-align: center
         margin: 0 auto
@@ -32,6 +36,11 @@
         @include for-tablets
             margin: 0px
             padding: 5px 0px
+        label
+            position: relative
+        .login-show-password svg
+            position: absolute
+            right: 15px
     .login-submit-btn
         background-color: $heltiGreen
         color: #fff

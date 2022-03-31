@@ -7,8 +7,11 @@ import './login.sass'
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
 const LoginPage = (props) => {
     const history = useNavigate()
+    const [visiblePassword, setVisiblePassword] = useState(false)
     const [error, setError] = useState({
         'error': false,
         'message': ''
@@ -53,7 +56,7 @@ const LoginPage = (props) => {
                         'role': response.data.role,
                         'firstName': response.data.firstName,
                         'lastName': response.data.lastName,
-                        'biologicalData': response.data.biologicalDataVersion,
+                        'biologicalData': response.data.biologicalData,
                         'measurements': response.data.measurements
                     })
                     userData.setIsAuthenticated(true)
@@ -81,6 +84,10 @@ const LoginPage = (props) => {
         loginRequest()
     }
 
+    const togglePassword = () => {
+        setVisiblePassword(!visiblePassword)
+    }
+
     return(
         <div className="container">
             <div className="login-page">
@@ -103,8 +110,9 @@ const LoginPage = (props) => {
                             </label>
                         </div>
                         <div className="input-div">
-                            <label>
-                                <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" />
+                            <label className="login-show-password">
+                                <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type={visiblePassword ? "text": "password"} />
+                                <VisibilityIcon onClick={togglePassword} />
                             </label>
                         </div>
                         <div className="login-additional">

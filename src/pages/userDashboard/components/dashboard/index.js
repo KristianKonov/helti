@@ -44,13 +44,13 @@ const UserDashboardPage = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     height: 240,
-                    opacity: .9
+                    opacity: .9 
                 }}
                 >
                 {userData.userData.firstName !== undefined ?
                 <>
                     <div className="user-dashboard-flex-box">
-                        <span class="user-dashboard-span">Добре дошъл,</span><h3>{userData.userData.firstName} {userData.userData.lastName}</h3>
+                        <span className="user-dashboard-span">Добре дошъл,</span><h3>{userData.userData.firstName} {userData.userData.lastName}</h3>
                     </div>
                     {userData.userData.biologicalData?.age !== undefined ? 
                         <>

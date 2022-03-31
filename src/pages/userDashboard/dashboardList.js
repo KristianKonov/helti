@@ -68,7 +68,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
           </React.Fragment>
             <Divider sx={{ my: 1 }} />
             <React.Fragment>
-              <ListSubheader component="div" inset>
+              <ListSubheader sx={{ background: 'none' }} component="div" inset>
                 Account settings
               </ListSubheader>
               <Link onClick={() => setNavToggle(false)} to='/dashboard/settings/changename'>

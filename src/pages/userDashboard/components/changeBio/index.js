@@ -115,7 +115,6 @@ const EditBiologicalData = () => {
                         temp
                     ]
                 }))
-                console.log('asdasd', userData.userData)
                 setLoading(false)
                 setSuccess({
                     'status': true,
