@@ -23,12 +23,13 @@ const Header = ({flag, themeToggler}, props) => {
     }
     const isLogged = userData.isAuthenticated
     return(
-        <header className={(flag ? "headerBg" : "")}>
+        <header className={(flag ? userData.isAuthenticated ? "header-auth" : 'headerBg' : "")}>
             <div className="container">
                 <div className="header-wrapper">
                     <div className="logo-wrapper">
                         <Link to='/'><img alt="Helti Logo" className='logo' src={logo} /></Link>
                         {loaded && (userData.userData.role === 'ADMIN') ? (<Link to='/admin'><img className="admin-icon" src={adminIcon} alt="Admin" /></Link>) : null}
+                        
                     </div>
                     <div className="navigation">
                         <ul className="navigation-ul">

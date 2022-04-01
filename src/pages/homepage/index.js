@@ -1,18 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import './home-page.sass'
 import iPhone from './images/iphone.png'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import UserContext from './../../context'
 import PersonIcon from '@mui/icons-material/Person';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CountUp from 'react-countup';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Helmet } from 'react-helmet-async';
 
 const Homepage = () => {
-    
+    const [lastMeasurement, setLastMeasurement] = useState(null)
     const userData = useContext(UserContext)
+    
+    useEffect(() => {
+        if(userData.userData?.biologicalData?.measurement !== null && userData.userData?.biologicalData?.measurement !== undefined){
+            setLastMeasurement((new Date().getTime() - new Date(userData.userData.biologicalData.measurement.createdAt).getTime())/1000/60/60/24)
+        }
+    },[userData])
     return(
     <div className="landing">
         <Helmet>
@@ -31,8 +38,16 @@ const Homepage = () => {
                 }}
             >
                 <div className="landing-authenticated">
-                    <h2>Радваме се да те видим отново, {userData.userData.firstName + ' ' + userData.userData.lastName}</h2>
-                    {userData.userData.biologicalData?.age ? <p>Вие сте на <span>4кг</span> от целта си</p> : <p>Все още не сте въвели <span>биологичните си данни</span>.</p>}
+                    <div className="landing-welcome-message">
+                        <h2>Радваме се да те видим отново,</h2>
+                        <div>
+                            <h2><span>{userData.userData.firstName + ' ' + userData.userData.lastName}</span>
+                            <AccountCircleIcon className="accountIcon" /></h2>
+                        </div>
+                    </div>
+                    {userData.userData.biologicalData?.measurement !== undefined && userData.userData?.biologicalData?.measurement !== null ?
+                    lastMeasurement > 1 ? <p>Не сте се мерили от {parseInt(lastMeasurement)} {parseInt(lastMeasurement)  === 1 ? 'ден' : 'дни'}</p> : <p>Вие сте на <span>4кг</span> от целта си</p> : 
+                    <p>Все още не сте въвели <span>биологичните си данни</span>.</p>}
                     <Link to='/dashboard'><Button type="submit" variant="contained" endIcon={<PersonIcon />}>
                         Go to profile
                     </Button></Link>

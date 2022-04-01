@@ -22,7 +22,7 @@
         content: url('./../../images/dots_bg.svg')
         position: absolute
         right: 0
-        bottom: 25vh
+        bottom: 24vh
         animation: backgroundAnimation 10s infinite
         animation-delay: 5s
         @include for-tablets
@@ -81,10 +81,12 @@
             text-shadow: 0px 0px 20px #000
             cursor: pointer
         .landing-title
-            @include text-gradient()
+            color: #fff
             font-size: 32px
             font-weight: 700
             animation: 2s ease-out 0s 1 text-anim
+            span
+                @include text-gradient()
         p
             color: #fff
             font-family: 'Comfortaa', cursive
@@ -137,6 +139,7 @@
             border-radius: 100%
             text-align: left
         .landing-info-title
+            font-size: 18px
             background: -moz-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%) 
             background: -webkit-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
             background: -o-linear-gradient(45deg, rgba(245, 177, 67, 1) 0%, rgba(238, 73, 114, 1) 100%)
@@ -148,14 +151,35 @@
             padding-bottom: 20px
             background-repeat: no-repeat
         .landing-info-desc
-            font-family: 'Comfortaa', cursive
+            font-family: $cursive-font
+            font-size: 16px
             opacity: 0.7
         
 .landing-authenticated
     color: #fff
     text-shadow: 1px 1px 1px rgba(0,0,0,.8)
+    .landing-welcome-message
+        display: flex
+        align-content: center
+        @include for-tablets
+            display: block
+        div
+            margin: auto 5px
+            h2
+                margin: auto 0
+                display: flex
+                @include for-tablets
+                    display: inline-flex
+                    margin: 5px 0px
+            span
+                margin: auto 0
     h2
         font-family: $cursive-font
+        display: inline
+    svg.accountIcon
+        height: 30px
+        width: auto
+        margin: auto 10px
     button
         background-color: rgba(27, 237, 128, .7)
         text-shadow: 1px 1px 1px rgba(0,0,0,.4)

@@ -6,12 +6,17 @@ import './login.sass'
 
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import Backdrop from '@mui/material/Backdrop';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const LoginPage = (props) => {
     const history = useNavigate()
     const [visiblePassword, setVisiblePassword] = useState(false)
+    const [backdrop, setBackdrop] = useState(false)
+    const [open, setOpen] = React.useState(false);
     const [error, setError] = useState({
         'error': false,
         'message': ''
@@ -49,7 +54,6 @@ const LoginPage = (props) => {
                 
                 axios(config2)
                 .then(function (response) {
-                    console.log(response)
                     userData.setUserData({
                         'id': response.data.id,
                         'email': response.data.email,
@@ -59,6 +63,7 @@ const LoginPage = (props) => {
                         'biologicalData': response.data.biologicalData,
                         'measurements': response.data.measurements
                     })
+                    setBackdrop(true)
                     userData.setIsAuthenticated(true)
                 })
                 .catch(function (error) {
@@ -71,7 +76,7 @@ const LoginPage = (props) => {
                 userData.setUserData(user)
             setTimeout(function() {
                 history('/')
-            }, 1000);
+            }, 2000);
         } catch(err) {
             console.log(err.response)
             setError({'error': true, 'message': 'Check account and password!'})
@@ -91,6 +96,30 @@ const LoginPage = (props) => {
     return(
         <div className="container">
             <div className="login-page">
+                    {backdrop && <Backdrop
+                        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                        open={true}
+                    >
+                            <Grid item xs={12} md={2} lg={2}>
+                                <Paper
+                                    sx={{
+                                        p: 2,
+                                        display: 'flex',
+                                        flexDirection: 'column'
+                                    }}
+                                >
+                                <div class="success-animation">
+                                    <svg className="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                        <circle className="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                        <path className="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                                    </svg>
+                                    <div className="greetins-message">
+                                        <h3>Добре дошъл!</h3>
+                                    </div>
+                                </div>
+                                </Paper>
+                            </Grid>
+                </Backdrop> }
                 <div className="login-form">
                     <form onSubmit={loginSubmit}>
                         <div className="login-welcome">

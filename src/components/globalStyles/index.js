@@ -27,12 +27,12 @@ export const GlobalStyles = createGlobalStyle`
     transition: all 0.50s linear;
   }
   .headerBg {
-    background: ${({ theme }) => theme.mozbg};
-    background: ${({ theme }) => theme.webkitbg};
-    background: ${({ theme }) => theme.olinearbg};
-    background: ${({ theme }) => theme.mslinearbg};
-    background: ${({ theme }) => theme.lineargrad};
-    filter: ${({ theme }) => theme.filterbg};
+    // background: ${({ theme }) => theme.mozbg};
+    // background: ${({ theme }) => theme.webkitbg};
+    // background: ${({ theme }) => theme.olinearbg};
+    // background: ${({ theme }) => theme.mslinearbg};
+    // background: ${({ theme }) => theme.lineargrad};
+    // filter: ${({ theme }) => theme.filterbg};
     transition: all 1s ease;
   }
   .user-dashboard-wrapper .user-dashboard-body button,
@@ -62,32 +62,23 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.dashboardNavLinks};
   }
 
-  .landing-page {
-    background: ${({ theme }) => theme.mozbg};
-    background: ${({ theme }) => theme.webkitbg};
-    background: ${({ theme }) => theme.olinearbg};
-    background: ${({ theme }) => theme.mslinearbg};
-    background: ${({ theme }) => theme.lineargrad};
-    filter: ${({ theme }) => theme.filterbg};
-    transition: all 1s ease;
-  }
   .landing-page-logged {
-    background: ${({ theme }) => theme.mozbg};
-    background: ${({ theme }) => theme.webkitbg};
-    background: ${({ theme }) => theme.olinearbg};
-    background: ${({ theme }) => theme.mslinearbg};
-    background: ${({ theme }) => theme.lineargrad};
-    filter: ${({ theme }) => theme.filterbg};
+    // background: ${({ theme }) => theme.mozbg};
+    // background: ${({ theme }) => theme.webkitbg};
+    // background: ${({ theme }) => theme.olinearbg};
+    // background: ${({ theme }) => theme.mslinearbg};
+    // background: ${({ theme }) => theme.lineargrad};
+    // filter: ${({ theme }) => theme.filterbg};
     transition: all 1s ease;
   }
   footer {
     // background-color: ${({ theme }) => theme.footerBg};
-    background: ${({ theme }) => theme.mozbg};
-    background: ${({ theme }) => theme.webkitbg};
-    background: ${({ theme }) => theme.olinearbg};
-    background: ${({ theme }) => theme.mslinearbg};
-    background: ${({ theme }) => theme.lineargrad};
-    filter: ${({ theme }) => theme.filterbg};
+    // background: ${({ theme }) => theme.mozbg};
+    // background: ${({ theme }) => theme.webkitbg};
+    // background: ${({ theme }) => theme.olinearbg};
+    // background: ${({ theme }) => theme.mslinearbg};
+    // background: ${({ theme }) => theme.lineargrad};
+    // filter: ${({ theme }) => theme.filterbg};
     transition: all 1s ease;
   }
   

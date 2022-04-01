@@ -15,14 +15,22 @@ $gradientOrange: rgba(245, 177, 67, 1)
 $cursive-font: 'Comfortaa', cursive
 
 @mixin background-gradient()
-    background: -moz-linear-gradient(90deg, rgba(0, 7, 28, 1) 15%, rgba(0, 11, 43, 1) 50%, rgba(0, 7, 28, 1) 85%)
-    background: -webkit-linear-gradient(90deg, rgba(0, 7, 28, 1) 15%, rgba(0, 11, 43, 1) 50%, rgba(0, 7, 28, 1) 85%)
-    background: -o-linear-gradient(90deg, rgba(0, 7, 28, 1) 15%, rgba(0, 11, 43, 1) 50%, rgba(0, 7, 28, 1) 85%)
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00071C', endColorstr='#00071C', GradientType=0 )
-    background: -ms-linear-gradient(90deg, rgba(0, 7, 28, 1) 15%, rgba(0, 11, 43, 1) 50%, rgba(0, 7, 28, 1) 85%)
-    background: linear-gradient(90deg, rgba(0, 7, 28, 1) 15%, rgba(0, 11, 43, 1) 50%, rgba(0, 7, 28, 1) 85%)
     background-repeat: no-repeat
     background-attachment: fixed
+    background: -moz-linear-gradient(90deg, rgba(3, 19, 36, 1) 30%, rgba(14, 70, 133, 1) 100%) 
+    background: -webkit-linear-gradient(90deg, rgba(3, 19, 36, 1) 30%, rgba(14, 70, 133, 1) 100%)
+    background: -o-linear-gradient(90deg, rgba(3, 19, 36, 1) 30%, rgba(14, 70, 133, 1) 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0E4685', endColorstr='#031324', GradientType=0 )
+    background: -ms-linear-gradient(90deg, rgba(3, 19, 36, 1) 30%, rgba(14, 70, 133, 1) 100%)
+    background: linear-gradient(90deg, rgba(3, 19, 36, 1) 30%, rgba(14, 70, 133, 1) 100%)
+
+@mixin auth-gradient()
+    background: -moz-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
+    background: -webkit-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
+    background: -o-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1367DB', endColorstr='#02195B', GradientType=0 )
+    background: -ms-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
+    background: linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
 
 @mixin button-gradient()
     background: -moz-linear-gradient(180deg, rgba(27, 237, 128, 1) 0%, rgba(15, 146, 78, 1) 100%)

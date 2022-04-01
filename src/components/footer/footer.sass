@@ -1,7 +1,11 @@
 @import './../../styles/variables.sass'
     
+footer.footer-auth
+    @include auth-gradient()
+    
 footer
     background-color: $darkBlue
+    @include background-gradient()
     padding: 5px 0px 10px 0px
     @include clearfix()
     .container
