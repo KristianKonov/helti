@@ -6,6 +6,8 @@ $lightBlue: #13B0DB
 
 $heltiGreen: #1BED80
 
+$newBlue: #0d4aac
+
 $gradientPink: rgba(238, 73, 114, 1)
 
 $gradientOrange: rgba(245, 177, 67, 1)
@@ -31,6 +33,14 @@ $cursive-font: 'Comfortaa', cursive
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1367DB', endColorstr='#02195B', GradientType=0 )
     background: -ms-linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
     background: linear-gradient(90deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
+
+@mixin auth-text()
+    background: -moz-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
+    background: -webkit-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
+    background: -o-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1367DB', endColorstr='#02195B', GradientType=0 )
+    background: -ms-linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
+    background: linear-gradient(0deg, rgba(2, 25, 91, 1) 0%, rgba(19, 103, 219, 1) 100%)
 
 @mixin button-gradient()
     background: -moz-linear-gradient(180deg, rgba(27, 237, 128, 1) 0%, rgba(15, 146, 78, 1) 100%)

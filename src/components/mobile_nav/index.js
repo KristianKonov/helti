@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './mobile_nav.sass'
 import adjust from './../../images/icons/adjust.svg'
 import UserContext from '../../context'
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const MobileNavigation = ({isLogged, navToggle, setNavToggle, navHandler, themeToggler}) => {
     const userData = useContext(UserContext)
@@ -35,7 +36,7 @@ const MobileNavigation = ({isLogged, navToggle, setNavToggle, navHandler, themeT
         },
         {
             pageName: 'Профил',
-            pageURL: '/login'+userData.userData.id
+            pageURL: '/dashboard'
         }
     ]
     if(isLogged) {
@@ -44,9 +45,10 @@ const MobileNavigation = ({isLogged, navToggle, setNavToggle, navHandler, themeT
                 {loggedMobileLinks.map(nav => {
                     return <li key={nav.pageName}><Link onClick={navHandler} key={nav.pageName} to={nav.pageURL}>{nav.pageName}</Link></li>
                 })}
-                <button className="mobile-logout-btn" onClick={userData.logOut}>Логаут</button>
-                {/* <button className="mobile-switch-btn" onClick={themeToggler}><img alt="adjust" src={adjust} /></button> */}
-                <img className={localStorage.getItem('theme') === 'dark' ? 'dark burger-img' : 'burger-img'} onClick={themeToggler} alt="adjust" src={adjust} />
+                <div className="mobile-nav-icons">
+                    <button className="mobile-logout-btn" onClick={userData.logOut}>Излез <LogoutIcon /></button>
+                    <img className={localStorage.getItem('theme') === 'dark' ? 'dark burger-img' : 'burger-img'} onClick={themeToggler} alt="adjust" src={adjust} />
+                </div>
             </div>
         )
     } else {

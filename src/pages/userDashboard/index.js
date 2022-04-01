@@ -10,6 +10,8 @@ import EditBiologicalData from './components/changeBio';
 import DeactivateAccountPage from './components/deactivate';
 import MealGeneratorPage from './components/mealGenerator';
 import ChangePasswordPage from './components/changePassword';
+import ProfileSettingsPage from './components/profileSettings';
+import DashboardNotFound from './components/notFound'
 
 const UserDashboard = () => {
     return(
@@ -39,19 +41,9 @@ const UserDashboard = () => {
                             <UserDashboardPage />
                         </>
                     } />
-                    <Route path='/settings/changename' element={
+                    <Route path='/settings/changeprofile' element={
                         <>
-                            <ChangeNamePage />
-                        </>
-                    } />
-                    <Route path='/settings/changeemail' element={
-                        <>
-                            <UserDashboardPage />
-                        </>
-                    } />
-                    <Route path='/settings/changepassword' element={
-                        <>
-                            <ChangePasswordPage />
+                            <ProfileSettingsPage />
                         </>
                     } />
                     <Route path='/settings/changebiodata' element={
@@ -71,7 +63,7 @@ const UserDashboard = () => {
                     } />
                     <Route path='*' element={
                         <>
-                            <h1>here</h1>
+                            <DashboardNotFound />
                         </>
                     } />
                 </Routes>

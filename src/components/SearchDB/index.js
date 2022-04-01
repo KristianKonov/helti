@@ -3,6 +3,7 @@ import './search_db.sass'
 
 const SearchOurDatabase = () => {
     const [ search, setSearch ] = useState('')
+    
     return(
         <div className="container">
             <div className="search-database">

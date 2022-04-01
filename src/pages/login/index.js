@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const LoginPage = (props) => {
     const history = useNavigate()
@@ -100,7 +101,7 @@ const LoginPage = (props) => {
                         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                         open={true}
                     >
-                            <Grid item xs={12} md={2} lg={2}>
+                            <Grid item xs={12} md={4} lg={4}>
                                 <Paper
                                     sx={{
                                         p: 2,
@@ -109,13 +110,15 @@ const LoginPage = (props) => {
                                     }}
                                 >
                                 <div class="success-animation">
+                                    <div className="greetings-message">
+                                    <AccountCircleIcon />
+                                    <h2><span>{userData.userData.firstName + ' ' + userData.userData.lastName}</span></h2>
+                                    <p style={{opacity: .6}}>Успешно влязохте в акаунта си.</p>
+                                    </div>
                                     <svg className="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                                         <circle className="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
                                         <path className="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
                                     </svg>
-                                    <div className="greetins-message">
-                                        <h3>Добре дошъл!</h3>
-                                    </div>
                                 </div>
                                 </Paper>
                             </Grid>

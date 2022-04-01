@@ -71,30 +71,14 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
               <ListSubheader sx={{ background: 'none' }} component="div" inset>
                 Account settings
               </ListSubheader>
-              <Link onClick={() => setNavToggle(false)} to='/dashboard/settings/changename'>
-                  <ListItemButton selected={location.pathname === '/dashboard/settings/changename' ? true : false}>
+              <Link onClick={() => setNavToggle(false)} to='/dashboard/settings/changeprofile'>
+                  <ListItemButton selected={location.pathname === '/dashboard/settings/changeprofile' ? true : false}>
                   <ListItemIcon>
                       <PersonIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Change name" />
+                  <ListItemText primary="Profile Settings" />
                   </ListItemButton>
               </Link>
-              <Link onClick={() => setNavToggle(false)} to='/dashboard/settings/changepassword'>
-                  <ListItemButton selected={location.pathname === '/dashboard/settings/changepassword' ? true : false}>
-                  <ListItemIcon>
-                      <PasswordIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Change password" />
-                  </ListItemButton>
-              </Link>
-              {/* <Link to='/dashboard/settings/changeemail'> */}
-                  <ListItemButton disabled>
-                  <ListItemIcon>
-                      <AlternateEmailIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Change email" />
-                  </ListItemButton>
-              {/* </Link> */}
               <Link onClick={() => setNavToggle(false)} to='/dashboard/settings/changebiodata'>
                   <ListItemButton selected={location.pathname === '/dashboard/settings/changebiodata' ? true : false}>
                   <ListItemIcon>

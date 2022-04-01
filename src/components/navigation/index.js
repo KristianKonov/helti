@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import './navigation.sass'
 import UserContext from '../../context'
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Navigation = ({isLogged}) => {
     const userData = useContext(UserContext)
@@ -43,7 +44,7 @@ const Navigation = ({isLogged}) => {
                 {loggedLinks.map(nav => {
                     return <li key={nav.pageName}><Link key={nav.pageName} to={nav.pageURL}>{nav.pageName}</Link></li>
                 })}
-                <button className="logout-btn" onClick={userData.logOut}>Логаут</button>
+                <button className="logout-btn" onClick={userData.logOut}>Излез <LogoutIcon /></button>
             </>
         )
     } else {

@@ -179,24 +179,24 @@ const MealGeneratorPage = () => {
                     <div className="user-dashboard-food-types">
                         <Grid container spacing={3}>
                             <Grid item xs={12} md={4} lg={4}>
-                            <Paper
-                                sx={{
-                                    p: 2,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    height: 240,
-                                    opacity: .9
-                                }}
-                            >
-                                <div>
-                                    <h3>Протейнови храни:</h3>
-                                    <RadioGroup name="protein-food">
-                                        {proteinFoods !== null ? proteinFoods.slice(0,5).map((food, index) => {
-                                            return <ProteinFoodsRadioGroup key={index} value={`${food.id}`} label={food.name} control={<Radio color="success" />} />
-                                        }) : <h2>Loading</h2>}
-                                    </RadioGroup>
-                                </div>
-                            </Paper>
+                                <Paper
+                                    sx={{
+                                        p: 2,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        height: 340,
+                                        opacity: .9
+                                    }}
+                                >
+                                    <div>
+                                        <h3>Протейнови храни:</h3>
+                                        <RadioGroup name="protein-food">
+                                            {proteinFoods !== null ? proteinFoods.slice(0,5).map((food, index) => {
+                                                return <ProteinFoodsRadioGroup key={index} value={`${food.id}`} label={food.name} control={<Radio color="success" />} />
+                                            }) : <h2>Loading</h2>}
+                                        </RadioGroup>
+                                    </div>
+                                </Paper>
                             </Grid>
                             <Grid item xs={12} md={4} lg={4}>
                                 <Paper
@@ -204,7 +204,7 @@ const MealGeneratorPage = () => {
                                         p: 2,
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        height: 240,
+                                        height: 340,
                                         opacity: .9
                                     }}
                                 >
@@ -224,7 +224,7 @@ const MealGeneratorPage = () => {
                                         p: 2,
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        height: 240,
+                                        height: 340,
                                         opacity: .9
                                     }}
                                 >

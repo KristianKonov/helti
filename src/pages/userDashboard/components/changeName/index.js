@@ -7,14 +7,15 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 import { Stack } from '@mui/material';
 import { Alert } from '@mui/material';
-import { Helmet } from 'react-helmet-async';
-
+import Skeleton from '@mui/material/Skeleton';
+import EditIcon from '@mui/icons-material/Edit';
 
 const ChangeNamePage = () => {
     const userData = useContext(UserContext)
     const [firstName, setFirstName] = useState(' ')
     const [lastName, setLastName] = useState(' ')
     const [loading, setLoading] = useState(false)
+    const [editMode, setEditMode] = useState(false)
     const [success, setSuccess] = useState({
         'status': false,
         'message': ''
@@ -88,50 +89,77 @@ const ChangeNamePage = () => {
 
     return(
         <div>
-            <Helmet>
-                <title>
-                    Промяна на име | Helti
-                </title>
-            </Helmet>
-            <h2>Change name</h2>
-            <div>
-                {error.status && 
-                    <Stack sx={{ width: '100%' }} spacing={2}>
-                        <Alert variant="outlined" severity="error">
-                        {error.message}
-                        </Alert>
+            <div className="dashboard-change-form">
+                <div>
+                    {error.status && 
+                        <Stack sx={{ width: '100%' }} spacing={2}>
+                            <Alert variant="outlined" severity="error">
+                            {error.message}
+                            </Alert>
+                        </Stack>
+                    }
+                    {success.status && 
+                        <Stack sx={{ width: '100%' }} spacing={2}>
+                            <Alert variant="outlined" severity="success">
+                            {success.message}
+                            </Alert>
+                        </Stack>
+                    }
+                </div>
+                {(firstName !== undefined && lastName !== undefined) ?
+                    <>
+                        <h4 className={editMode ? 'dashboard-active-label' : ''}>Промяна на име:</h4>
+                        <div className="dashboard-input-wrapper">
+                            <TextField disabled={editMode ? false : true} color='primary' value={firstName} onChange={(e) => setFirstName(e.target.value)} label="First Name" variant="outlined" />
+                        </div>
+                        <div>
+                            <TextField disabled={editMode ? false : true} color='primary' value={lastName} onChange={(e) => setLastName(e.target.value)} label="Last Name" variant="outlined" />
+                        </div>
+                        {
+                            editMode ?
+                            <LoadingButton
+                            color="secondary"
+                            onClick={saveNameChange}
+                            loading={loading}
+                            loadingPosition="start"
+                            startIcon={<SaveIcon />}
+                            variant="contained"
+                            >
+                            Save
+                            </LoadingButton>
+                            :
+                            <LoadingButton
+                                color="secondary"
+                                className="dashboard-mobile-only"
+                                onClick={() => setEditMode(true)}
+                                loadingPosition="start"
+                                startIcon={<EditIcon />}
+                                variant="contained"
+                            >
+                                Промени
+                            </LoadingButton>
+                            }
+                    </>
+                :
+                    <Stack spacing={2}>
+                        <Skeleton variant="rectangular" width={210} height={55} />
+                        <Skeleton variant="rectangular" width={210} height={55} />
                     </Stack>
                 }
-                {success.status && 
-                    <Stack sx={{ width: '100%' }} spacing={2}>
-                        <Alert variant="outlined" severity="success">
-                        {success.message}
-                        </Alert>
-                    </Stack>
+                {editMode ? '' : 
+                <div className="form-overlay">
+                    <LoadingButton
+                        color="secondary"
+                        onClick={() => setEditMode(true)}
+                        loadingPosition="start"
+                        startIcon={<EditIcon />}
+                        variant="contained"
+                    >
+                    Промени
+                    </LoadingButton>
+                </div>
                 }
             </div>
-            {(firstName !== undefined && lastName !== undefined) ?
-                <>
-                    <div className="dashboard-input-wrapper">
-                        <TextField color='primary' id="outlined-basic" value={firstName} onChange={(e) => setFirstName(e.target.value)} label="First Name" variant="outlined" />
-                    </div>
-                    <div>
-                        <TextField color='primary' id="outlined-basic" value={lastName} onChange={(e) => setLastName(e.target.value)} label="Last Name" variant="outlined" />
-                    </div>
-                    <LoadingButton
-                    color="secondary"
-                    onClick={saveNameChange}
-                    loading={loading}
-                    loadingPosition="start"
-                    startIcon={<SaveIcon />}
-                    variant="contained"
-                    >
-                    Save
-                    </LoadingButton>
-                </>
-            :
-                <h2>Loading...</h2>
-            }
         </div>
     )
 }

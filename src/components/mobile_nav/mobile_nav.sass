@@ -82,7 +82,9 @@
     cursor: pointer
 
 .mobile-logout-btn
-    background-color: $mediumBlue
+    background-color: rgba(0,0,0,.3)
+    display: flex
+    align-items: center
     color: #fff
     border: none
     opacity: .7
@@ -93,8 +95,17 @@
     transition: 1s ease
     &:hover
         opacity: 1
+    svg
+        margin-left: 5px
 
-
+.mobile-nav-icons
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    img
+        margin: auto 0
+        padding: 0
+    
 @keyframes dissapearAnim
     0%
         opacity: 100

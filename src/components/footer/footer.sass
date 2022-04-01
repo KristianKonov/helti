@@ -2,7 +2,23 @@
     
 footer.footer-auth
     @include auth-gradient()
-    
+footer.footer-fixed
+    z-index: 100
+    position: fixed
+    bottom: 0
+    width: 100%
+    left: 0
+    right: 0
+    @include for-tablets
+        position: unset
+.footer-svg-fixed
+    position: fixed
+    z-index: 5
+    bottom: 70px
+    pointer-events: none
+    @include for-tablets
+        position: unset
+
 footer
     background-color: $darkBlue
     @include background-gradient()

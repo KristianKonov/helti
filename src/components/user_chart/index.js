@@ -48,7 +48,6 @@ const UserChart = () => {
         }
     },[chartData])
 
-    console.log(userData)
     if(sorted !== null && userData.userData.measurements.length > 0 ) {
         if(!loading) {
             var min = 2;

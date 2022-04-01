@@ -21,24 +21,15 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
 const DeactivateAccountPage = () => {
     const userData = useContext(UserContext)
     const [reasonsList, SetReasonsList] = useState(null)
-    let reason = null
+    const [reason, setReason] = useState(null)
     function MyFormControlLabel(props) {
         const radioGroup = useRadioGroup();
         
         let checked = false;
         
         if (radioGroup && radioGroup.value !== undefined) {
-            checked = radioGroup.value === props.value;
-            reason = radioGroup.value
+            checked = parseInt(radioGroup.value) === props.value;
         }
-
-        // if (radioGroup) {
-        //     checked = radioGroup.value === props.value;
-        //     if(radioGroup.value) {
-        //         reason = radioGroup.value
-        //         console.log(radioGroup.value, ' re', reason)
-        //     }
-        // }
         
         return <StyledFormControlLabel checked={checked} {...props} />;
     }
@@ -67,13 +58,13 @@ const DeactivateAccountPage = () => {
     const deactivateUser = () => {
         var config = {
             method: 'put',
-            url: 'http://localhost:8080/api/registration/deactivate',
+            url: 'http://localhost:8080/api/user/disable',
             headers: { 
                 'accept': '*/*',
                 'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
             },
             params: {
-                'id': userData.userData.id
+                'deactivateReasonId': reason
             }
         };
 
@@ -94,12 +85,12 @@ const DeactivateAccountPage = () => {
                 </title>
             </Helmet>
             <h3>Сигурни ли сте че искате да деактивирате акаунта си?</h3>
-            <RadioGroup name="use-radio-group">
+            <RadioGroup onChange={(e) => setReason(e.target.value)} name="use-radio-group">
                 {
                     reasonsList !== null && reasonsList.length > 1 ? 
-                    reasonsList.map(item => {
+                    reasonsList.map((item, index) => {
                         return (
-                            <div key={item.index}>
+                            <div key={index}>
                                 <MyFormControlLabel key={item.name} value={item.id} label={item.name} control={<Radio />} />
                             </div>
                         )

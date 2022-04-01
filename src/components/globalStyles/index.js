@@ -9,12 +9,12 @@ export const GlobalStyles = createGlobalStyle`
   .search-database h3,
   .user-dashboard-body h2 {
     // color: ${({ theme }) => theme.darkbluetowhite};
-    background: ${({ theme }) => theme.lighttextgrad1} !important;
-    background: ${({ theme }) => theme.lighttextgrad2} !important;
-    background: ${({ theme }) => theme.lighttextgrad3} !important;
-    background: ${({ theme }) => theme.lighttextgrad4} !important;
-    background: ${({ theme }) => theme.lighttextgrad5} !important;
-    filter: ${({ theme }) => theme.textgradbg} !important;
+    // background: ${({ theme }) => theme.lighttextgrad1} !important;
+    // background: ${({ theme }) => theme.lighttextgrad2} !important;
+    // background: ${({ theme }) => theme.lighttextgrad3} !important;
+    // background: ${({ theme }) => theme.lighttextgrad4} !important;
+    // background: ${({ theme }) => theme.lighttextgrad5} !important;
+    // filter: ${({ theme }) => theme.textgradbg} !important;
     transition: all 1s ease;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
