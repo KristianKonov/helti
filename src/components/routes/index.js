@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 import LandingPage from '../landing'
 import Homepage from '../../pages/homepage'
 import Header from '../header'
@@ -18,6 +19,9 @@ import FaqPage from '../../pages/faq'
 
 const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
     const userData = useContext(UserContext)
+    const loggedIn = userData && userData.isAuthenticated
+    console.log(loggedIn)
+    const role = userData.userData.role
     return (
         <BrowserRouter history={history}>
             <Routes>
@@ -53,15 +57,18 @@ const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
                 </>
                 } />
                 <Route exact path='/dashboard/*' element={
-                <>
-                    <div className="page-wrapper">
-                        <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
-                        <UserDashboard />
-                    </div>
-                    <Footer />
-                </>
+                    loggedIn || Cookies.get('x-auth-token') ? (
+                        <>
+                            <div className="page-wrapper">
+                                <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
+                                <UserDashboard />
+                            </div>
+                            <Footer />
+                        </>
+                    ) : <Navigate to='/login' />
                 } />
                 <Route path='/login' element={
+                    loggedIn && Cookies.get('x-auth-token') ? <Navigate to='/' /> :
                 <>
                     <div className="page-wrapper">
                         <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
@@ -71,6 +78,7 @@ const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
                 </>
                 } />
                 <Route path='/register' element={
+                    loggedIn && Cookies.get('x-auth-token') ? <Navigate to='/' /> :
                 <>
                     <div className="page-wrapper">
                         <Header theme={theme} setTheme={setTheme} themeToggler={themeToggler} flag={true} />
@@ -80,12 +88,13 @@ const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
                 </>
                 } />
                 <Route exact path='/admin/*' element={
+                    loggedIn || Cookies.get('x-auth-token') && role === 'ADMIN' ?
                 <>
                     <div className="page-wrapper">
                         <Dashboard />
                     </div>
                     <Footer />
-                </>
+                </> : <Navigate to='/' />
                 } />
                 <Route path='*' element={
                 <>

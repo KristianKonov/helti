@@ -91,150 +91,73 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
         
         return <StyledFormControlLabel checked={checked} {...props} />;
     }
-
-    const addBiologicalData = () => {
-        if(height === null && goal === '' && age === null) {
-            setError({
-                'status': true,
-                'message': "No changes found!"
-            })
-        } else { 
-            setLoading(true)
-
-            var data = JSON.stringify({
-            "age": age,
-            "gender": gender,
-            "goal": goal,
-            "height": height
-            });
-
-            var config = {
-                method: 'post',
-                url: 'http://localhost:8080/api/user/add-biological-data',
-                headers: { 
-                    'accept': '*/*', 
-                    'Content-Type': 'application/json', 
-                    'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
-                },
-                data: data
-            };
-
-            
-
-            axios(config)
-            .then(function (response) {
-                setLoading(false)
-                userData.setUserData({
-                    'id': response.data.id,
-                    'email': response.data.email,
-                    'role': response.data.role,
-                    'firstName': response.data.firstName,
-                    'lastName': response.data.lastName,
-                    'biologicalData': response.data.biologicalDataVersion,
-                    'measurements': response.data.measurements
-                })
-                setProgress(50)
-                setInfo({
-                    'status': true,
-                    'message': 'Вие успешно добавихте биологичните си данни. Добавете теглото си за да продължите към Helti!'
-                })
-                setError({
-                    'status': false,
-                    'message': ''
-                })
-            })
-            .catch(function (error) {
-                setLoading(false)
-                setError({
-                    'status': true,
-                    'message': 'Нещо се обърка!'
-                })
-                setSuccess({
-                    'status': false,
-                    'message': ''
-                })
-                console.log(error);
-            });
-        }
-    }
-
-    const AddMeasurement = () => {
-        if(weight === null) {
-            setError({
-                'status': true,
-                'message': 'Добави теглото си за да продължиш!'
-            })
-        } else {
-            var dataMeasurement = JSON.stringify({
-                "weight": weight
-            });
     
-            var configMeasurement = {
-                method: 'post',
-                url: 'http://localhost:8080/api/measurements/create',
-                headers: { 
-                    'accept': '*/*', 
-                    'Content-Type': 'application/json', 
-                    'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
-                },
-                data: dataMeasurement
-            };
-    
-            axios(configMeasurement)
-            .then(function (responseMeasurement) {
-                var temp = responseMeasurement.data
-                userData.setUserData(user => ({
-                    ...user,
-                    'biologicalData': {
-                        ...user.biologicalData,
-                        'measurement': {...temp}
-                    },
-                    'measurements': [
-                        ...user.measurements,
-                        temp
-                    ]
-                }))
-                setLoading(false)
-                setProgress(100)
-                setSuccess({
-                    'status': true,
-                    'message': 'Вие успешно добавихте биологичните данни и теглото си! Ще бъдете пренасочени!'
-                })
-                setError({
-                    'status': false,
-                    'message': ''
-                })
-                setInfo({
-                    'status': false,
-                    'message': ''
-                })
-                setTimeout(function() {
-                    navigate('/dashboard')
-                }, 2000);
-            })
-            .catch(function (error) {
-                setLoading(false)
-                setError({
-                    'status': true,
-                    'message': 'Нещо се обърка!'
-                })
-                setSuccess({
-                    'status': false,
-                    'message': ''
-                })
-                console.log(error);
-            });
-        }
-    }
-
     const addbio = () => {
         setProgress(100)
-        console.log('height ', height)
-        console.log('weight ', weight)
-        console.log('age ', age)
-        console.log('foodhabit ', foodHabits)
-        console.log('activity ', activityHabits)
-        console.log('goal ', goal)
+
+        var dataMeasurement = {
+            "age": parseInt(age),
+            "energyBalanceFactor": parseInt(goal),
+            "foodThermicEffect": parseInt(foodHabits),
+            "gender": gender,
+            "height": parseInt(height),
+            "physicalActivityFactor": parseInt(activityHabits),
+            "weight": parseInt(weight)
+        };
+
+        console.log(dataMeasurement)
+
+        var configMeasurement = {
+            method: 'post',
+            url: 'http://localhost:8080/api/user/add-biological-data',
+            headers: { 
+                'accept': '*/*', 
+                'Content-Type': 'application/json', 
+                'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
+            },
+            data: dataMeasurement
+        };
+
+        axios(configMeasurement)
+        .then(function (responseMeasurement) {
+            console.log(responseMeasurement)
+            var temp = responseMeasurement.data
+
+            userData.setUserData({
+                ...temp
+            })
+
+            setLoading(false)
+            setProgress(100)
+            setSuccess({
+                'status': true,
+                'message': 'Вие успешно добавихте биологичните данни и теглото си! Ще бъдете пренасочени!'
+            })
+            setError({
+                'status': false,
+                'message': ''
+            })
+            setInfo({
+                'status': false,
+                'message': ''
+            })
+            setTimeout(function() {
+                navigate('/dashboard')
+            }, 2000);
+            console.log(userData.userData)
+        })
+        .catch(function (error) {
+            setLoading(false)
+            setError({
+                'status': true,
+                'message': 'Нещо се обърка!'
+            })
+            setSuccess({
+                'status': false,
+                'message': ''
+            })
+            console.log(error);
+        });
     }
 
     return(
@@ -370,7 +293,6 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
                         <LoadingButton
                         color="secondary"
                         onClick={addbio}
-                        disabled={goal === null ? true : false}
                         loading={loading}
                         loadingPosition="start"
                         startIcon={<AddIcon />}

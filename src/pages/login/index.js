@@ -1,9 +1,10 @@
+
 import React, { useState, useContext }  from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import UserContext from '../../context';
 import Cookies from 'js-cookie'
 import './login.sass'
-
+import axios from 'axios'
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Backdrop from '@mui/material/Backdrop';
@@ -24,12 +25,9 @@ const LoginPage = (props) => {
     })
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    let user = {}
-    let loaded = false
     const userData = useContext(UserContext)
 
-    const loginRequest = async () => {
-        var axios = require('axios');
+    const loginRequest = () => {
         var config = {
             method: 'post',
             url: 'http://localhost:8080/login',
@@ -39,8 +37,8 @@ const LoginPage = (props) => {
             },
             data: {'username': email, 'password': password}
         };
-        try {
-            const response = await axios(config)
+        axios(config)
+        .then(response => {
             var token = response.headers.authorization
             token = token.split(' ')[1]
             document.cookie = `x-auth-token=${token}`
@@ -51,37 +49,28 @@ const LoginPage = (props) => {
                     'accept': '*/*', 
                     'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
                 }
-                };
-                
-                axios(config2)
-                .then(function (response) {
-                    userData.setUserData({
-                        'id': response.data.id,
-                        'email': response.data.email,
-                        'role': response.data.role,
-                        'firstName': response.data.firstName,
-                        'lastName': response.data.lastName,
-                        'biologicalData': response.data.biologicalData,
-                        'measurements': response.data.measurements
-                    })
-                    setBackdrop(true)
-                    userData.setIsAuthenticated(true)
+            };
+            axios(config2)
+            .then(function (response) {
+                setBackdrop(true)
+                console.log(backdrop, 'tuk si')
+                userData.setUserData({
+                    ...response.data
                 })
-                .catch(function (error) {
-                    console.log(error)
-                    userData.setUserData({})
-                    document.cookie = 'x-auth-token=; Max-Age=0; path=/; domain=';
-                });
-            loaded = true
-            if(loaded)
-                userData.setUserData(user)
-            setTimeout(function() {
-                history('/')
-            }, 2000);
-        } catch(err) {
+                setTimeout(function() {
+                    userData.setIsAuthenticated(true)
+                    history('/')
+                }, 2000);
+            })
+            .catch(function (error) {
+                console.log(error)
+                userData.setUserData({})
+                document.cookie = 'x-auth-token=; Max-Age=0; path=/; domain=';
+            });
+        }).catch(err => {
             console.log(err.response)
             setError({'error': true, 'message': 'Check account and password!'})
-        }
+        })
     }
 
 
@@ -109,7 +98,7 @@ const LoginPage = (props) => {
                                         flexDirection: 'column'
                                     }}
                                 >
-                                <div class="success-animation">
+                                <div className="success-animation">
                                     <div className="greetings-message">
                                     <AccountCircleIcon />
                                     <h2><span>{userData.userData.firstName + ' ' + userData.userData.lastName}</span></h2>

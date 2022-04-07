@@ -19,16 +19,11 @@ export const UserProvider = (props) => {
           };
           
     axios(config)
-    .then(function (response) {       
-            setUserData({
-                'id': response.data.id,
-                'email': response.data.email,
-                'role': response.data.role,
-                'firstName': response.data.firstName,
-                'lastName': response.data.lastName,
-                'biologicalData': response.data.biologicalData,
-                'measurements': response.data.measurements
-            })
+    .then(function (response) {
+        const temp = response.data
+        setUserData({
+            ...temp
+        })
             console.log(response.data)
             setIsAuthenticated(true)
         })

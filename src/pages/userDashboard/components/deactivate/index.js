@@ -63,8 +63,8 @@ const DeactivateAccountPage = () => {
                 'accept': '*/*',
                 'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
             },
-            params: {
-                'deactivateReasonId': reason
+            data: {
+                'deactivateReasonId': parseInt(reason)
             }
         };
 

@@ -47,6 +47,7 @@ const UserDashboardPage = () => {
                     opacity: .9 
                 }}
                 >
+                {console.log(userData.userData)}
                 {userData.userData.firstName !== undefined ?
                 <>
                     <div className="user-dashboard-flex-box">

@@ -46,7 +46,7 @@ const Homepage = () => {
                         </div>
                     </div>
                     {userData.userData.biologicalData?.measurement !== undefined && userData.userData?.biologicalData?.measurement !== null ?
-                    lastMeasurement > 1 ? <p>Не сте се мерили от {parseInt(lastMeasurement)} {parseInt(lastMeasurement)  === 1 ? 'ден' : 'дни'}</p> : <p>Вие сте на <span>4кг</span> от целта си</p> : 
+                    lastMeasurement > 1 ? <p>Не сте се мерили от {parseInt(lastMeasurement)} {parseInt(lastMeasurement)  === 1 ? 'ден' : <p style={{display: 'inline'}}>дни! Премерете се и <span><Link to='/dashboard/changeBio'>въведете</Link></span> промените.</p>}</p> : <p>Вие сте на <span>4кг</span> от целта си</p> : 
                     <p>Все още не сте въвели <span>биологичните си данни</span>.</p>}
                     <Link to='/dashboard'><Button type="submit" variant="contained" endIcon={<PersonIcon />}>
                         Go to profile
