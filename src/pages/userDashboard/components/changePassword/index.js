@@ -1,5 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
-import UserContext from '../../../../context'
+import React, {useState} from 'react'
 import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
@@ -11,7 +10,6 @@ import Skeleton from '@mui/material/Skeleton';
 import EditIcon from '@mui/icons-material/Edit';
 
 const ChangePasswordPage = () => {
-    const userData = useContext(UserContext)
     const [password, setPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [confirmNewPassword, setConfirmNewPassword] = useState('')
@@ -28,6 +26,8 @@ const ChangePasswordPage = () => {
     })
 
     const savePasswordChange = () => {
+        if(newPassword !== confirmNewPassword)
+            setValidatePassword(false)
         if(!validatePassword) {
             setError({
                 'status': true,

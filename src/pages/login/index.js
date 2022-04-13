@@ -18,7 +18,6 @@ const LoginPage = (props) => {
     const history = useNavigate()
     const [visiblePassword, setVisiblePassword] = useState(false)
     const [backdrop, setBackdrop] = useState(false)
-    const [open, setOpen] = React.useState(false);
     const [error, setError] = useState({
         'error': false,
         'message': ''
@@ -53,7 +52,6 @@ const LoginPage = (props) => {
             axios(config2)
             .then(function (response) {
                 setBackdrop(true)
-                console.log(backdrop, 'tuk si')
                 userData.setUserData({
                     ...response.data
                 })

@@ -5,7 +5,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { styled } from '@mui/material/styles';
 import AddIcon from '@mui/icons-material/Add';
 import Cookies from 'js-cookie'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
@@ -17,6 +17,8 @@ import { Helmet } from 'react-helmet-async';
 import GoalsNomenclature from '../nomenclature/goals';
 import FoodNomenclature from '../nomenclature/food';
 import ActivityNomenclature from '../nomenclature/activity';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
     ({ theme, checked }) => ({
@@ -63,7 +65,7 @@ const EditBiologicalData = () => {
     })
 
     useEffect(() => {
-        if(userData.userData?.biologicalData?.age) {
+        if(userData.userData?.biologicalData?.birthDate) {
             setAge(userData.userData.biologicalData.age)
             setGender(userData.userData.biologicalData.gender)
             setHeight(userData.userData.biologicalData.height)
@@ -81,7 +83,6 @@ const EditBiologicalData = () => {
         
         if (radioGroup) {
             checked = radioGroup.value === props.value;
-            console.log('here', radioGroup.value, ' ', goal)
         }
         
         return <StyledFormControlLabel checked={checked} {...props} />;
@@ -123,8 +124,6 @@ const EditBiologicalData = () => {
 
         axios(configMeasurement)
         .then(function (responseMeasurement) {
-            console.log('RESPONSE', responseMeasurement)
-            console.log('DATA', JSON.stringify(dataMeasurement))
             setProgress(100)
             var temp = responseMeasurement.data
             userData.setUserData(user => ({
@@ -164,7 +163,6 @@ const EditBiologicalData = () => {
                 'status': false,
                 'message': ''
             })
-            console.log('tuk e greshkata', error);
         });
     }
 
@@ -174,6 +172,20 @@ const EditBiologicalData = () => {
                 <title>Промяна на биологични данни | Helti</title>
             </Helmet>
             <BorderLinearProgress variant="determinate" value={progress} />
+            {error.error && 
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert variant="outlined" severity="error">
+                    {error.message}
+                    </Alert>
+                </Stack>
+            }
+            {success.status && 
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert variant="outlined" severity="success">
+                    {success.message}
+                    </Alert>
+                </Stack>
+            }
             {progress === 0 && gender !== '' &&
                     <>
                         <div className="biological-form-info">

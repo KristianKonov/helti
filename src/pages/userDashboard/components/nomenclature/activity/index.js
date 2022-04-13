@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios'
-import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
-import Radio from '@mui/material/Radio';
 import Slider from '@mui/material/Slider';
 
 const ActivityNomenclature = (props) => {

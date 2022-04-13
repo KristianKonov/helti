@@ -18,7 +18,6 @@ const UserDashboard = () => {
     const [users, setUsers] = useState([{}])
     const [editFlag, setEditFlag] = useState(false)
     const [editUser, setEditUser] = useState({})
-    const [editLoaded, setEditLoaded] = useState(false)
     const [editPassword, setEditPassword] = useState(false)
 
     // UPDATE FORM
@@ -31,15 +30,11 @@ const UserDashboard = () => {
         'status': false,
         'message': ''
     })
-    const [error, setError] = useState({
-        'status': false,
-        'message': ''
-    })
 
     let userId = null
     
     useEffect(() => {
-        var config = {
+        var config2 = {
             method: 'get',
             url: 'http://localhost:8080/api/admin/all',
             headers: { 
@@ -47,7 +42,7 @@ const UserDashboard = () => {
                 'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
             }
         }
-        axios(config).then(response => {
+        axios(config2).then(response => {
             setUsers(response.data)
         }).then(setLoaded(true)).catch(error => {
             console.log(error.message)
@@ -55,14 +50,14 @@ const UserDashboard = () => {
     },[])
 
     const deleteUser = () => {
-        var config = {
+        var configDelete = {
             method: 'delete',
             url: 'http://localhost:8080/api/admin/delete/'+userId,
             headers: {
                 'Authorization': 'Bearer ' + Cookies.get('x-auth-token')
             }
         }
-        axios(config).then(response => {
+        axios(configDelete).then(response => {
             console.log(response)
         }).catch(error => {
             console.log(error.message)
@@ -79,7 +74,6 @@ const UserDashboard = () => {
         setUpdateFirstName(editUser.firstName)
         setUpdateLastName(editUser.lastName)
         setUpdateEmail(editUser.email)
-        setEditLoaded(true)
     },[editUser])
 
     const editToggle = () => {
@@ -89,7 +83,7 @@ const UserDashboard = () => {
     const editUserHandler = (e) => {
         e.preventDefault()
         if(editPassword) {
-            var config = {
+            var configPassword = {
                 method: 'put',
                 url: 'http://localhost:8080/api/admin/update/',
                 headers: {
@@ -122,7 +116,7 @@ const UserDashboard = () => {
                 }
             }
         }
-        axios(config).then(response => {
+        axios(editPassword ? configPassword : config).then(response => {
             setSuccess({
                 'status': true,
                 'message': 'You have sucessfully changed user: ' + editUser.email

@@ -5,7 +5,7 @@ const DashboardNotFound = () => {
     return(
         <div className="dashboard-not-found">
             <h2 style={{fontSize: 42}}>Page not found!</h2>
-            <img src={NotFoundIcon} />
+            <img alt="not-found" src={NotFoundIcon} />
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import UserContext from '../../../../context';
@@ -17,7 +17,6 @@ import { Helmet } from 'react-helmet-async';
 
 const UserDashboardPage = () => {
     const userData = useContext(UserContext)
-    const location = useLocation();
     return(
         <>
             <Helmet>
@@ -47,16 +46,15 @@ const UserDashboardPage = () => {
                     opacity: .9 
                 }}
                 >
-                {console.log(userData.userData)}
                 {userData.userData.firstName !== undefined ?
                 <>
                     <div className="user-dashboard-flex-box">
                         <span className="user-dashboard-span">Добре дошъл,</span><h3>{userData.userData.firstName} {userData.userData.lastName}</h3>
                     </div>
-                    {userData.userData.biologicalData?.age !== undefined ? 
+                    {userData.userData.biologicalData?.birthDate !== undefined ? 
                         <>
                         <ul className="user-dashboard-biodata">
-                            <li>Възраст: <span>{userData.userData.biologicalData.age}</span></li>
+                            <li>Възраст: <span>{parseInt((new Date().getTime() - new Date(userData.userData.biologicalData.birthDate).getTime())/1000/60/60/24/364)}</span></li>
                             <li>Подкожна мазнина: <span>{userData.userData.biologicalData.measurement.fatPercentage}</span></li>
                             <li>Височина: <span>{userData.userData.biologicalData.height}</span></li>
                             <li>Тегло: <span>{userData.userData.biologicalData.measurement.weight}</span></li>
@@ -82,7 +80,7 @@ const UserDashboardPage = () => {
                 </Paper>
             </Grid>
             </Grid>
-            <img src={PersonFitnessTracker} className="user-dashboard-vector" />
+            <img alt="" src={PersonFitnessTracker} className="user-dashboard-vector" />
         </>
     )
 }

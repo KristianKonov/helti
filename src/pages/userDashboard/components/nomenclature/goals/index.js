@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios'
-import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
+import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 
 const GoalsNomenclature = (props) => {

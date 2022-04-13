@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
@@ -7,7 +7,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import UserContext from '../../../../context';
 import { Helmet } from 'react-helmet-async';
 
 const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
@@ -19,7 +18,6 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
   );
 
 const DeactivateAccountPage = () => {
-    const userData = useContext(UserContext)
     const [reasonsList, SetReasonsList] = useState(null)
     const [reason, setReason] = useState(null)
     function MyFormControlLabel(props) {

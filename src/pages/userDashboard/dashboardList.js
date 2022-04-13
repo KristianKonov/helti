@@ -10,11 +10,9 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import { Divider } from '@mui/material';
 
 // Icons
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import PersonIcon from '@mui/icons-material/Person';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import PasswordIcon from '@mui/icons-material/Password';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
   const UserDashboardNavigation = () => {

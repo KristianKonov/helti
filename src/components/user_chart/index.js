@@ -34,7 +34,7 @@ const UserChart = () => {
                 chartData.sort(function(date1,date2) {
                     var da = new Date(date1.date);
                     var db = new Date(date2.date);
-                    if (da == db) {
+                    if (da === db) {
                         return 0;
                     }
                     return da > db ? 1 : -1;

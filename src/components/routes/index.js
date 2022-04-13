@@ -20,7 +20,6 @@ import FaqPage from '../../pages/faq'
 const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
     const userData = useContext(UserContext)
     const loggedIn = userData && userData.isAuthenticated
-    console.log(loggedIn)
     const role = userData.userData.role
     return (
         <BrowserRouter history={history}>
@@ -88,7 +87,7 @@ const PageRoutes = ({theme, setTheme, themeToggler, flag}) => {
                 </>
                 } />
                 <Route exact path='/admin/*' element={
-                    loggedIn || Cookies.get('x-auth-token') && role === 'ADMIN' ?
+                    (loggedIn || Cookies.get('x-auth-token')) && role === 'ADMIN' ?
                 <>
                     <div className="page-wrapper">
                         <Dashboard />

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import UserContext from '../../../../context'
 import TextField from '@mui/material/TextField';
@@ -18,6 +18,8 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 import GoalsNomenclature from '../nomenclature/goals';
 import FoodNomenclature from '../nomenclature/food';
 import ActivityNomenclature from '../nomenclature/activity';
+import DatePicker from 'react-date-picker';
+import dateFormat from "dateformat";
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -42,7 +44,7 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
   
   const AddBiologicalData = () => {
         const userData = useContext(UserContext)
-        const [age, setAge] = useState(null)
+        const [birthDate, setBirthDate] = useState(new Date())
         const [progress, setProgress] = useState(0)
         const [goal, setGoal] = useState(null)
         const [gender, setGender] = useState('')
@@ -86,26 +88,27 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
         if (radioGroup && radioGroup.value !== undefined) {
             checked = radioGroup.value === props.value;
             // setGender(radioGroup.value)
-            var tempGender = radioGroup.value
         }
         
         return <StyledFormControlLabel checked={checked} {...props} />;
+    }
+
+    const onChange = (date) => {
+        setBirthDate(dateFormat(date, "yyyy-mm-dd"))
     }
     
     const addbio = () => {
         setProgress(100)
 
         var dataMeasurement = {
-            "age": parseInt(age),
-            "energyBalanceFactor": parseInt(goal),
-            "foodThermicEffect": parseInt(foodHabits),
+            "birthDate": dateFormat(birthDate, "yyyy-mm-dd"),
+            "energyBalanceFactorId": parseInt(goal),
+            "foodThermicEffectId": parseInt(foodHabits),
             "gender": gender,
             "height": parseInt(height),
-            "physicalActivityFactor": parseInt(activityHabits),
+            "physicalActivityFactorId": parseInt(activityHabits),
             "weight": parseInt(weight)
         };
-
-        console.log(dataMeasurement)
 
         var configMeasurement = {
             method: 'post',
@@ -120,7 +123,6 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
 
         axios(configMeasurement)
         .then(function (responseMeasurement) {
-            console.log(responseMeasurement)
             var temp = responseMeasurement.data
 
             userData.setUserData({
@@ -144,7 +146,6 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
             setTimeout(function() {
                 navigate('/dashboard')
             }, 2000);
-            console.log(userData.userData)
         })
         .catch(function (error) {
             setLoading(false)
@@ -193,9 +194,18 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
                             <p>Моля попълнете полетата.</p>
                         </div>
                         <div className="dashboard-input-wrapper">
-                            <TextField type="number" color='primary' id="outlined-basic" value={age !== null ? age : ''} onChange={(e) => setAge(e.target.value)} label="Възраст" variant="outlined" />
+                            <div className="dashboard-calendar">
+                                <DatePicker
+                                    onChange={onChange}
+                                    maxDate={new Date()}
+                                    minDate={new Date('1915-01-01T00:00:00')}
+                                    monthPlaceholder="mm"
+                                    dayPlaceholder="dd"
+                                    yearPlaceholder="yyyy"
+                                />
+                            </div>
                         </div>
-                        <div className="dashboard-input-wrapper">
+                        <div className="dashboard-input-wrapper">   
                             <TextField type="number" color='primary' id="outlined-basic" value={height !== null ? height : ''} onChange={(e) => setHeight(e.target.value)} label="Височина" variant="outlined" />
                         </div>
                         <div className="dashboard-input-wrapper">
@@ -206,7 +216,7 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
                             </RadioGroup>
                         </div>
                         <LoadingButton
-                        disabled={height !== null && age !== null && gender !== '' ? false : true}
+                        disabled={height !== null && birthDate !== null && gender !== '' ? false : true}
                         color="secondary"
                         onClick={() => setProgress(45)}
                         loading={loading}
@@ -223,7 +233,7 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
                     <div>
                         <div className="biological-form-info">
                             <h3>Въведете теглото си</h3>
-                            <p>Спрямо настоящо</p>
+                            <p>Спрямо настоящото Ви тегло се определят препоръчителните за Вас макроси. </p>
                         </div>
                         <div className="dashboard-input-wrapper">
                             <TextField type="number" color='primary' id="outlined-basic" value={weight !== null ? weight : ''} onChange={(e) => setWeight(e.target.value)} label="Тегло" variant="outlined" />

@@ -10,7 +10,7 @@ const Footer = () => {
     const location = useLocation()
     return(
         <>
-            <div className={location.pathname === '/dashboard' || location.pathname.indexOf("/dashboard/") == 0 ? 'footer-svg-container footer-svg-fixed' : 'footer-svg-container'}>
+            <div className={location.pathname === '/dashboard' || location.pathname.indexOf("/dashboard/") === 0 ? 'footer-svg-container footer-svg-fixed' : 'footer-svg-container'}>
                 <svg className="footer-svg" width="100%" height="100" viewBox="0 0 500 200" preserveAspectRatio="none">
                 <defs>
                         {userData.isAuthenticated ?
@@ -27,7 +27,7 @@ const Footer = () => {
                     <path d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z" style={{stroke: 'none'}}></path>
                 </svg>
             </div>
-            <footer className={userData.isAuthenticated ? location.pathname === '/dashboard' || location.pathname.indexOf("/dashboard/") == 0 ? 'footer-auth footer-fixed' : 'footer-auth' : ''}>
+            <footer className={userData.isAuthenticated ? location.pathname === '/dashboard' || location.pathname.indexOf("/dashboard/") === 0 ? 'footer-auth footer-fixed' : 'footer-auth' : ''}>
                 <div className="container">
                     <div className="footer-wrapper">
                         <div className="footer-logo">

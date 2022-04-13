@@ -27,9 +27,6 @@ const MealGeneratorPage = () => {
     const [proteinFoods, setProteinFoods] = useState(null)
     const [carbFoods, setCarbFoods] = useState(null)
     const [fatFoods, setFatFoods] = useState(null)
-    const [proteinFoodId, setProteinFoodId] = useState(null)
-    const [carbFoodId, setCarbFoodId] = useState(null)
-    const [fatFoodId, setFatFoodId] = useState(null)
     const [generated, setGenerated] = useState(false)
     const [generatorResponse, setGeneratorResponse] = useState(null)
     let proteinId = null
@@ -84,6 +81,7 @@ const MealGeneratorPage = () => {
     }
 
     const submitFoods = () => {
+        setLoading(true)
         var config = {
             method: 'get',
             url: `http://localhost:8080/api/generation/meal?carbFoodId=${carbId}&fatFoodId=${fatId}&proteinFoodId=${proteinId}`,
@@ -95,6 +93,7 @@ const MealGeneratorPage = () => {
 
         axios(config)
         .then(function (response) {
+            setLoading(false)
             setGenerated(true)
             setGeneratorResponse(response.data)
         })
@@ -334,7 +333,7 @@ const MealGeneratorPage = () => {
                 </Grid>
             </div>
             }
-            <img src={PersonFood} className="user-dashboard-vector" />
+            <img alt="" src={PersonFood} className="user-dashboard-vector" />
         </div>
     )
 }
