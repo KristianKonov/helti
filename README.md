@@ -9,6 +9,7 @@
 
 <p align="center"> 🍓 Discipline is the bridge between goals and accomplishment. 🥑
     <br> 
+    Front-end of Helti.
 </p>
 
 ## 📝 Table of Contents
@@ -45,10 +46,9 @@ You may also see any lint errors in the console.
 + [MaterialUI](https://mui.com/) - MaterialUI Official Website
 
 ## ✍️ Authors <a name = "authors"></a>
-+ [@kristiankonov](https://github.com/kristiankonov) - Front-end developer & UI/UX design
-+ [@deyviddimitrov](https://github.com/deyviddimitrov) - Back-end developer
++ [@kristiankonov](https://github.com/kristiankonov) - Front-end developer & UI/UX design 🖥️
++ [@deyviddimitrov](https://github.com/deyviddimitrov) - Back-end developer 🖥️
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-+ Hat tip to anyone whose code was used
 + Inspiration
 + References
